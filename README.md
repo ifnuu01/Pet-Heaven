@@ -7,6 +7,9 @@ Berisikan gambar, logo dan item yang dibutuhkan halaman web
 -- Folder css
 tempat menyimpan file css
 
+-- Folder js
+tempat menyimpan script js
+
 -- Folder database
 tempat menyimpan file sql
 
