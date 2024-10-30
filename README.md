@@ -1,7 +1,10 @@
 # Pet-Haven-
 
 
--- Folder Assets
+-- Folder assets
+di dalam folder assets ada assets/img/profiles (untuk profile)
+assets/img/hewan (untuk gambar hewan)
+assets/logo (untuk logo)
 Berisikan gambar, logo dan item yang dibutuhkan halaman web
 
 -- Folder css
