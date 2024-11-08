@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: #f0f3f7;
+}
+
+nav {
+  background-color: #ffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  height: 90px;
+  position: fixed;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 999;
+}
+
+nav button {
+  border: none;
+  background-color: #ffff;
+  cursor: pointer;
+  outline: none;
+  margin-right: 2em;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #212121;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+nav button iconify-icon {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+nav button:hover {
+  color: #ffa500;
+}
+
+.dropdown-pengaturan {
+  position: fixed;
+  top: 90px;
+  right: -300px;
+  width: 220px;
+  height: 90px;
+  z-index: 10000;
+  background-color: #ffff;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  transition: 0.5s;
+}
+
+.dropdown-pengaturan .dropdown-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  align-items: flex-end;
+}
+
+.dropdown-pengaturan .dropdown-content button {
+  font-size: 1em;
+  width: 90%;
+  font-weight: bold;
+  color: #212121;
+  text-decoration: none;
+  border: none;
+  background-color: #ffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.dropdown-content button iconify-icon {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.dropdown-pengaturan .dropdown-content button:hover {
+  color: #ffa500;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 362px;
+  height: 100%;
+  background-color: #ffff;
+  transition: 0.5s;
+  z-index: 999;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar ul {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  justify-content: space-between;
+}
+
+.sidebar ul .logo {
+  display: flex;
+  flex-direction: column;
+  height: 20%;
+  gap: 1em;
+  /* background-color: aqua; */
+}
+
+.sidebar ul .logo a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.sidebar ul .logo .line {
+  width: 100%;
+  height: 1px;
+  background-color: #a7a7a7;
+}
+
+.sidebar-menu {
+  /* background-color: antiquewhite; */
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5em;
+  margin-top: 2em;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #212121;
+  text-decoration: none;
+  gap: 10px;
+}
+
+.sidebar-menu a span {
+  font-size: 1em;
+}
+
+.sidebar-menu a iconify-icon {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.sidebar-menu a:hover {
+  color: #ffa500;
+}
+
+.sidebar .footer {
+  /* background-color: aqua; */
+  height: 10%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: 1em;
+  font-weight: bold;
+  color: #212121;
+}
+
+.pengaturan.active {
+  color: #ffa500;
+}
+
+.dropdown-pengaturan.active {
+  right: 0;
+}

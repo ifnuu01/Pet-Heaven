@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "inter", sans-serif;
+}
+
+body {
+  background-color: #f0f3f7;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 887px;
+  min-width: 340px;
+  padding: 3em;
+  background-color: #ffff;
+  border-radius: 1em;
+  text-align: center;
+  box-shadow: 0 0 10px rgb(0, 0, 0, 0.25);
+}
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 2em;
+}
+
+.btn {
+  outline: none;
+  border: none;
+  width: 100%;
+  max-width: 585px;
+  border-radius: 5px;
+  height: 65px;
+  background-color: #ffa500;
+  font-size: 1.5em;
+  font-weight: 500;
+  color: #ffff;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #d87c00;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+form h1 {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+form .input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.input i {
+  display: inline-block;
+  margin-bottom: 1em;
+}
+
+input {
+  outline: 0;
+  width: 100%;
+  max-width: 585px;
+  border: 1px solid #a7a7a7;
+  border-radius: 5px;
+  color: #212121;
+  margin: 0 0 1em;
+  padding: 1em;
+  font-size: 1em;
+}
+
+.input-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.input-name input {
+  width: 100%;
+  max-width: 18em;
+}
+
+input:focus {
+  border: 1px solid #ffa500;
+}
+
+.login,
+.regis {
+  display: inline-block;
+  text-underline-offset: 3px;
+  color: #ffa500;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 0.5em;
+}
+
+.login:hover,
+.regis:hover {
+  color: #d87c00;
+}
+
+span {
+  display: inline-block;
+  color: #212121;
+  font-size: 1em;
+  margin-top: 0.5em;
+}
