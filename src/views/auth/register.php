@@ -1,7 +1,10 @@
 <?php
+require_once 'src/functions/connection.php';
+require_once 'src/functions/auth_function.php';
 
-require_once '../../functions/connection.php';
-require_once '../../functions/auth_function.php';
+if (isset($_SESSION['user'])) {
+    header('Location: /');
+}
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = registrasi($conn, $username, $nama_depan, $nama_belakang, $email, $password);
     if ($message['status']) {
         echo "<script>alert('$message[message]');</script>";
-        echo "<script>location.href='login.php';</script>";
+        echo "<script>location.href='login';</script>";
     } else {
         echo "<script>alert('$message[message]');</script>";
     }
@@ -29,12 +32,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Akun</title>
-    <link rel="stylesheet" href="../../../assets/css/auth.css">
+    <link rel="stylesheet" href="/assets/css/auth.css">
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
 <body>
 <div class="container">
         <div class="registration-page">
             <form action="#" method="POST">
+                <a href="/" class="icon"><iconify-icon icon="uil:exit"></iconify-icon></a>
                 <h1>Daftar</h1>
                 <div class="input">
                     <input type="text" name="username" id="username" placeholder="Username" autocomplete="off" autofocus required>
@@ -51,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <button type="submit" class="btn">Daftar</button>
             </form>
-            <span>Sudah memiliki akun? <a href="login.php" class="login">Masuk ke website</a></span>
+            <span>Sudah memiliki akun? <a href="/login" class="login">Masuk ke website</a></span>
         </div>
     </div>
 </body>
