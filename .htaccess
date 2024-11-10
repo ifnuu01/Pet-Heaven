@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# Arahkan semua permintaan ke public/index.php, kecuali file yang ada
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+# Biarkan file statis (CSS, JS, Gambar, Logo) diakses langsung
+RewriteRule ^assets/(css|js|img|logo)/ - [L]
+
+# Jangan biarkan akses langsung ke folder src/ dan isinya (melarang akses ke file PHP di src)
+RewriteRule ^src/ - [F,L]
+RewriteRule ^assets/ - [F,L]
+
