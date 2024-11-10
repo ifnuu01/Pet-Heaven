@@ -9,7 +9,7 @@
 
 .container-content {
   position: relative;
-  top: 150px;
+  top: 130px;
   left: 30%;
   width: 65%;
   background-color: #ffff;
@@ -46,7 +46,7 @@
   background-color: #ffff;
   padding: 1em;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   justify-content: space-between;
   align-items: center;
 }
