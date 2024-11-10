@@ -89,16 +89,17 @@ function login($conn, $username, $password)
 
     if (password_verify($password, $row['password']))
     {
+        $_SESSION['user'] = [
+            "id" => $row['id'],
+            "username" => $row['username'],
+            "nama_depan" => $row['nama_depan'],
+            "nama_belakang" => $row['nama_belakang'],
+            "email" => $row['email'],
+            "role" => $row['role']
+        ];
         return [
             "status" => true,
-            "message" => "Login berhasil",
-            "session" => [
-                "id" => $row['id'],
-                "username" => $row['username'],
-                "nama_depan" => $row['nama_depan'],
-                "nama_belakang" => $row['nama_belakang'],
-                "email" => $row['email']
-            ]
+            "message" => "Login berhasil"
         ];
         exit();
     }else{
@@ -110,5 +111,11 @@ function login($conn, $username, $password)
     }
 }
 
+function logout()
+{
+    session_destroy();
+    header('Location: /login');
+    exit();
+}
 
 ?>
