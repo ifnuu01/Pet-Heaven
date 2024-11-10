@@ -5,242 +5,52 @@ require 'connection.php';
 
 // ADMIN FUNCTION 
 
-function getDataPenjualan($conn) 
+function totalHewan($conn)
 {
-    $query = "
-        SELECT 
-            t.no_pembelian,
-            p.nama_depan AS nama_pengguna,
-            p.path_poto AS foto_user,
-            h.nama AS nama_hewan,
-            CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman,
-            (h.harga_hewan + t.biaya_pengiriman + t.pajak) AS total_pembelian,
-            t.path_bukti_pembayaran,
-            t.status,
-            t.waktu_pembayaran
-        FROM 
-            transaksi t
-        JOIN 
-            pengguna p ON t.id_pengguna = p.id
-        JOIN 
-            hewan h ON t.id_hewan = h.id
-        LEFT JOIN 
-            alamat a ON p.id = a.id_pengguna
-        where 
-            t.status != 'Menunggu'
-    ";
-
+    $query = "SELECT COUNT(id) as total FROM hewan WHERE status = 1";
     $result = $conn->query($query);
 
     if ($result === false) {
-        return ["error" => $conn->error];
+        return [
+            "status" => false,
+            "message" => $conn->error
+        ];
     }
 
-    $penjualanData = [];
-    while ($row = $result->fetch_object()) {
-        $penjualanData[] = $row;
-    }
-
-    return (object) ["data" => $penjualanData];
-};
-
-
-// Penggunaan function getDataPenjualan
-$penjualanData = getDataPenjualan($conn);
-
-if (isset($penjualanData->error))
-{
-    echo $penjualanData->error;
-}
-else 
-{
-    if (count($penjualanData->data) > 0) 
-    {
-        foreach ($penjualanData->data as $penjualan) 
-        {
-            echo "No Pembelian: $penjualan->no_pembelian <br>";
-            echo "Nama Pengguna: $penjualan->nama_pengguna <br>";
-            echo "Foto Pengguna: <img src='$penjualan->foto_user' width='100' height='100'> <br>";
-            echo "Nama Hewan: $penjualan->nama_hewan <br>";
-            echo "Alamat Pengiriman: $penjualan->alamat_pengiriman <br>";
-            echo "Total Pembelian: $penjualan->total_pembelian <br>";
-            echo "Bukti Pembayaran: <img src='$penjualan->path_bukti_pembayaran' width='100' height='100'> <br>";
-            echo "Status: $penjualan->status <br>";
-            echo "Waktu Pembayaran: $penjualan->waktu_pembayaran <br>";
-            echo "<hr>";
-        }
-    }
-    else 
-    {
-        echo "Data penjualan tidak ditemukan";
-    }
+    $total = $result->fetch_assoc();
+    return [
+        "status" => true,
+        "total" => $total['total']
+    ];
 }
 
-function searchDataPenjualan($conn, $namaPengguna) 
+function getDataHewan($conn, $limit_bawah, $limit_atas)
 {
     $query = "
-        SELECT 
-            t.no_pembelian,
-            p.nama_depan AS nama_pengguna,
-            p.path_poto AS foto_user,
-            h.nama AS nama_hewan,
-            CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman,
-            (h.harga_hewan + t.biaya_pengiriman + t.pajak) AS total_pembelian,
-            t.path_bukti_pembayaran,
-            t.status,
-            t.waktu_pembayaran
-        FROM 
-            transaksi t
-        JOIN 
-            pengguna p ON t.id_pengguna = p.id
-        JOIN 
-            hewan h ON t.id_hewan = h.id
-        LEFT JOIN 
-            alamat a ON p.id = a.id_pengguna
-        WHERE 
-            p.nama_depan LIKE CONCAT('%', ?, '%')
-            and t.status != 'Menunggu' 
-    ";
-
+            SELECT 
+                h.id,
+                h.nama_hewan,
+                h.path_poto,
+                h.tahapan_usia,
+                h.jenis_kelamin,
+                j.jenis_hewan,
+                h.harga,
+                h.tanggal_ditambahkan
+            FROM hewan h
+            JOIN jenis_hewan j ON h.jenis_hewan = j.id 
+            WHERE status = 1
+            LIMIT ?, ?";
+    
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("s", $namaPengguna);
-
+    $stmt->bind_param("ii", $limit_bawah, $limit_atas);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result === false) {
-        return ["error" => $conn->error];
-    }
-
-    $penjualanData = [];
-    while ($row = $result->fetch_object()) {
-        $penjualanData[] = $row;
-    }
-
-    return (object) ["data" => $penjualanData];
-};
-
-
-// Penggunaan function searchDataPenjualan
-
-// $hasilPencarian = searchDataPenjualan($conn, "A");
-
-
-// foreach ($hasilPencarian->data as $penjualan) 
-// {
-//     echo "No Pembelian: $penjualan->no_pembelian <br>";
-//     echo "Nama Pengguna: $penjualan->nama_pengguna <br>";
-//     echo "Foto Pengguna: <img src='$penjualan->foto_user' width='100' height='100'> <br>";
-//     echo "Nama Hewan: $penjualan->nama_hewan <br>";
-//     echo "Alamat Pengiriman: $penjualan->alamat_pengiriman <br>";
-//     echo "Total Pembelian: $penjualan->total_pembelian <br>";
-//     echo "Bukti Pembayaran: <img src='$penjualan->path_bukti_pembayaran' width='100' height='100'> <br>";
-//     echo "Status: $penjualan->status <br>";
-//     echo "Waktu Pembayaran: $penjualan->waktu_pembayaran <br>";
-//     echo "<hr>";
-// }
-
-
-function getDataKonfirmasiPembelian($conn)
-{
-    $query = "
-        SELECT 
-            t.no_pembelian,
-            p.nama_depan AS nama_pengguna,
-            p.path_poto AS foto_user,
-            h.nama AS nama_hewan,
-            CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman,
-            (h.harga_hewan + t.biaya_pengiriman + t.pajak) AS total_pembelian,
-            t.path_bukti_pembayaran,
-            t.status,
-            t.waktu_pembayaran
-        FROM 
-            transaksi t
-        JOIN 
-            pengguna p ON t.id_pengguna = p.id
-        JOIN 
-            hewan h ON t.id_hewan = h.id
-        LEFT JOIN 
-            alamat a ON p.id = a.id_pengguna
-        where 
-            t.status = 'Menunggu'
-    ";
-
-    $result = $conn->query($query);
-
-    if ($result === false) {
-        return ["error" => $conn->error];
-    }
-
-    $penjualanData = [];
-    while ($row = $result->fetch_object()) {
-        $penjualanData[] = $row;
-    }
-
-    return (object) ["data" => $penjualanData];
-};
-
-// Penggunaan function getDataKonfirmasiPembelian
-
-// $konfirmasiPembelianData = getDataKonfirmasiPembelian($conn);
-
-// foreach ($konfirmasiPembelianData->data as $penjualan) 
-// {
-//     echo "No Pembelian: $penjualan->no_pembelian <br>";
-//     echo "Nama Pengguna: $penjualan->nama_pengguna <br>";
-//     echo "Foto Pengguna: <img src='$penjualan->foto_user' width='100' height='100'> <br>";
-//     echo "Nama Hewan: $penjualan->nama_hewan <br>";
-//     echo "Alamat Pengiriman: $penjualan->alamat_pengiriman <br>";
-//     echo "Total Pembelian: $penjualan->total_pembelian <br>";
-//     echo "Bukti Pembayaran: <img src='$penjualan->path_bukti_pembayaran' width='100' height='100'> <br>";
-//     echo "Waktu Pembayaran: $penjualan->waktu_pembayaran <br>";
-//     echo "<hr>";
-// }
-
-function konfirmasiPembelian($conn, $no_pembelian, $status_konfirmasi) {
-    $queryCekTransaksi = "SELECT id_hewan FROM transaksi WHERE no_pembelian = ?";
-    $stmtCekTransaksi = $conn->prepare($queryCekTransaksi);
-    $stmtCekTransaksi->bind_param("s", $no_pembelian);
-    $stmtCekTransaksi->execute();
-    $result = $stmtCekTransaksi->get_result();
-    
-    if ($result->num_rows === 0) {
-        return "Transaksi tidak ditemukan.";
-    }
-
-    $transaksi = $result->fetch_object();
-    $id_hewan = $transaksi->id_hewan;
-
-    if ($status_konfirmasi === "Berhasil") {
-        $queryUpdateTransaksi = "UPDATE transaksi SET status = 'Berhasil' WHERE no_pembelian = ?";
-    } else if ($status_konfirmasi === "Ditolak") {
-        $queryUpdateTransaksi = "UPDATE transaksi SET status = 'Ditolak' WHERE no_pembelian = ?";
-        
-        $queryUpdateHewan = "UPDATE hewan SET status = 1 WHERE id = ?";
-        $stmtUpdateHewan = $conn->prepare($queryUpdateHewan);
-        $stmtUpdateHewan->bind_param("i", $id_hewan);
-        $stmtUpdateHewan->execute();
-    }
-
-    $stmtUpdateTransaksi = $conn->prepare($queryUpdateTransaksi);
-    $stmtUpdateTransaksi->bind_param("s", $no_pembelian);
-    $stmtUpdateTransaksi->execute();
-
-    return $stmtUpdateTransaksi->affected_rows > 0 ? "Konfirmasi berhasil diproses." : "Gagal memperbarui konfirmasi.";
-}
-
-// Penggunaan function konfirmasiPembelian
-// $pesan = konfirmasiPembelian($conn, "0914317577", "Ditolak");
-// echo $pesan;
-
-function getDataHewan($conn)
-{
-    $query = "SELECT * FROM hewan";
-
-    $result = $conn->query($query);
-
-    if ($result === false) {
-        return ["error" => $conn->error];
+        return [
+            "status" => false,
+            "message" => $conn->error
+        ];
     }
 
     $hewanData = [];
@@ -248,27 +58,35 @@ function getDataHewan($conn)
         $hewanData[] = $row;
     }
 
-    return (object) ["data" => $hewanData];
+    return [
+        "status" => true,
+        "data" => $hewanData
+    ];
 }
 
+// Cara penggunaan function getDataHewan
 
-// Penggunaan function getDataHewan
+// $hewanData = getDataHewan($conn, 0, 5);
 
-// $hewanData = getDataHewan($conn);
-
-// foreach ($hewanData->data as $hewan) 
-// {
-//     echo "ID Hewan: $hewan->id <br>";
-//     echo "Nama Hewan: $hewan->nama <br>";
-//     echo "Jenis Hewan: $hewan->jenis <br>";
-//     echo "Harga Hewan: $hewan->harga_hewan <br>";
-//     echo "Status: $hewan->status <br>";
-//     echo "<hr>";
+// if ($hewanData['status']) {
+//     foreach ($hewanData['data'] as $hewan) {
+//         echo "ID: $hewan->id <br>";
+//         echo "Nama Hewan: $hewan->nama_hewan <br>";
+//         echo "Foto: <img src='$hewan->path_poto' width='100' height='100'> <br>";
+//         echo "Tahapan Usia: $hewan->tahapan_usia <br>";
+//         echo "Jenis Kelamin: $hewan->jenis_kelamin <br>";
+//         echo "Jenis Hewan: $hewan->jenis_hewan <br>";
+//         echo "Harga: $hewan->harga <br>";
+//         echo "Tanggal Ditambahkan: $hewan->tanggal_ditambahkan <br>";
+//         echo "<hr>";
+//     }
+// } else {
+//     echo $hewanData['message'];
 // }
 
-function tambahHewan($conn, $nama, $tahap_usia, $berat, $jenis_kelamin, $warna, $jenis, $spesies, $harga_hewan, $file) 
+function tambahHewan($conn, $nama, $tahap_usia, $berat, $jenis_kelamin, $warna, $jenis, $harga_hewan, $file) 
 {
-    $target_dir = 'assets/img/hewan/';
+    $target_dir = '/assets/img/hewan/';
     $default_path = $target_dir . 'hewan.jpg';
 
     if (isset($file['name']) && $file['name'] != "") {
@@ -277,26 +95,38 @@ function tambahHewan($conn, $nama, $tahap_usia, $berat, $jenis_kelamin, $warna, 
 
         $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         if (!in_array($file_type, ['jpg', 'jpeg', 'png'])) {
-            return "Format file tidak didukung. Gunakan JPG atau PNG.";
+            return [
+                "status" => false,
+                "message" => "Format file tidak didukung. Gunakan JPG atau PNG."
+            ];
         }
 
         if (!move_uploaded_file($file['tmp_name'], $target_file)) {
-            return "Gagal mengunggah file foto.";
+            return [
+                "status" => false,
+                "message" => "Gagal mengunggah file foto."
+            ];
         }
 
         $path_poto = $target_file; 
     } 
 
-    $query = "INSERT INTO hewan (nama, path_poto, tahap_usia, berat, jenis_kelamin, warna, jenis, spesies, harga_hewan) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO hewan (nama_hewan, path_poto, tahapan_usia, berat, jenis_kelamin, warna, jenis_hewan, harga) 
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("sssdssssd", $nama, $path_poto, $tahap_usia, $berat, $jenis_kelamin, $warna, $jenis, $spesies, $harga_hewan);
+    $stmt->bind_param("sssdssid", $nama, $path_poto, $tahap_usia, $berat, $jenis_kelamin, $warna, $jenis, $harga_hewan);
     
     if ($stmt->execute()) {
-        return "Data hewan berhasil ditambahkan.";
+        return [
+            "status" => true,
+            "message" => "Data hewan berhasil ditambahkan."
+        ];
     } else {
-        return "Gagal menambahkan data hewan: " . $stmt->error;
+        return  [
+            "status" => false,
+            "message" => "Gagal menambahkan data hewan: " . $stmt->error
+        ];
     }
 }
 
@@ -304,7 +134,7 @@ function tambahHewan($conn, $nama, $tahap_usia, $berat, $jenis_kelamin, $warna, 
 // Penggunaan function tambahHewan
 // Ada di demo 
 
-function editHewan($conn, $id_hewan, $nama, $tahap_usia, $berat, $jenis_kelamin, $warna, $jenis, $spesies, $harga_hewan, $file) 
+function editHewan($conn, $id_hewan, $nama, $tahap_usia, $berat, $jenis_kelamin, $warna, $jenis, $harga_hewan, $file) 
 {
     $query = "SELECT path_poto, status FROM hewan WHERE id = ? AND status != 0";
     $stmt = $conn->prepare($query);
@@ -313,13 +143,16 @@ function editHewan($conn, $id_hewan, $nama, $tahap_usia, $berat, $jenis_kelamin,
     $result = $stmt->get_result();
     
     if ($result->num_rows === 0) {
-        return "Hewan tidak ditemukan atau status hewan adalah 0.";
+        return [
+            "status" => false,
+            "message" => "Data hewan tidak ditemukan."
+        ];
     }
 
     $current_data = $result->fetch_assoc();
     $current_path_poto = $current_data['path_poto'];
 
-    $target_dir = 'assets/img/hewan/';
+    $target_dir = '/assets/img/hewan/';
     $default_path = $target_dir . 'hewan.jpg';
     $path_poto = $current_path_poto; 
 
@@ -329,11 +162,17 @@ function editHewan($conn, $id_hewan, $nama, $tahap_usia, $berat, $jenis_kelamin,
 
         $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         if (!in_array($file_type, ['jpg', 'jpeg', 'png'])) {
-            return "Format file tidak didukung. Gunakan JPG atau PNG.";
+            return [
+                "status" => false,
+                "message" => "Format file tidak didukung. Gunakan JPG atau PNG."
+            ];
         }
 
         if (!move_uploaded_file($file['tmp_name'], $target_file)) {
-            return "Gagal mengunggah file foto.";
+            return [
+                "status" => false,
+                "message" => "Gagal mengunggah file foto."
+            ];
         }
 
         if ($current_path_poto !== $default_path && file_exists($current_path_poto)) {
@@ -343,14 +182,64 @@ function editHewan($conn, $id_hewan, $nama, $tahap_usia, $berat, $jenis_kelamin,
         $path_poto = $target_file; 
     }
 
-    $update_query = "UPDATE hewan SET nama = ?, path_poto = ?, tahap_usia = ?, berat = ?, jenis_kelamin = ?, warna = ?, jenis = ?, spesies = ?, harga_hewan = ? WHERE id = ?";
+    $update_query = "UPDATE hewan SET nama_hewan = ?, path_poto = ?, tahapan_usia = ?, berat = ?, jenis_kelamin = ?, warna = ?, jenis_hewan = ?,  harga = ? WHERE id = ?";
     
     $update_stmt = $conn->prepare($update_query);
-    $update_stmt->bind_param("sssdsssdii", $nama, $path_poto, $tahap_usia, $berat, $jenis_kelamin, $warna, $jenis, $spesies, $harga_hewan, $id_hewan);
+    $update_stmt->bind_param("sssdssidi", $nama, $path_poto, $tahap_usia, $berat, $jenis_kelamin, $warna, $jenis, $harga_hewan, $id_hewan);
     
     if ($update_stmt->execute()) {
-        return "Data hewan berhasil diperbarui.";
+        return [
+            "status" => true,
+            "message" => "Data hewan berhasil diperbarui."
+        ];
     } else {
-        return "Gagal memperbarui data hewan: " . $update_stmt->error;
+        return [
+            "status" => false,
+            "message" => "Gagal memperbarui data hewan: " . $update_stmt->error
+        ];
     }
 }
+
+// Hapus hewna
+function hapusHewan($conn, $id_hewan) 
+{
+    $query = "SELECT path_poto, status FROM hewan WHERE id = ? AND status != 0";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $id_hewan);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 0) {
+        return [
+            "status" => false,
+            "message" => "Data hewan tidak ditemukan."
+        ];
+    }
+
+    $current_data = $result->fetch_assoc();
+    $current_path_poto = $current_data['path_poto'];
+
+    $delete_query = "DELETE FROM hewan WHERE id = ?";
+
+    $delete_stmt = $conn->prepare($delete_query);
+    $delete_stmt->bind_param("i", $id_hewan);
+    $delete_stmt->execute();
+
+    if ($delete_stmt->affected_rows > 0) {
+        if ($current_path_poto !== '/assets/img/hewan/hewan.jpg' && file_exists($current_path_poto)) {
+            unlink($current_path_poto); 
+        }
+
+        return [
+            "status" => true,
+            "message" => "Data hewan berhasil dihapus."
+        ];
+    } else {
+        return [
+            "status" => false,
+            "message" => "Gagal menghapus data hewan: " . $delete_stmt->error
+        ];
+    }
+}
+
+
