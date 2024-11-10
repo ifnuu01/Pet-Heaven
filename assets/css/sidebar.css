@@ -52,14 +52,15 @@ nav button:hover {
   position: fixed;
   top: 90px;
   right: -300px;
-  width: 220px;
-  height: 90px;
+  width: 250px;
   z-index: 10000;
   background-color: #ffff;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   transition: 0.5s;
+  display: flex;
+  justify-content: center;
 }
 
 .dropdown-pengaturan .dropdown-content {
@@ -67,19 +68,16 @@ nav button:hover {
   flex-direction: column;
   gap: 1em;
   padding: 1em;
-  align-items: flex-end;
 }
 
 .dropdown-pengaturan .dropdown-content button {
-  font-size: 1em;
-  width: 90%;
+  font-size: 1.5em;
   font-weight: bold;
   color: #212121;
   text-decoration: none;
   border: none;
   background-color: #ffff;
   display: flex;
-  align-items: center;
   gap: 10px;
   cursor: pointer;
 }
@@ -112,6 +110,7 @@ nav button:hover {
   flex-direction: column;
   padding: 2em;
   justify-content: space-between;
+  /* background-color: aqua; */
 }
 
 .sidebar ul .logo {
@@ -119,7 +118,7 @@ nav button:hover {
   flex-direction: column;
   height: 20%;
   gap: 1em;
-  /* background-color: aqua; */
+  /* background-color: #ffff; */
 }
 
 .sidebar ul .logo a {
@@ -140,8 +139,8 @@ nav button:hover {
   height: 80%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 3.5em;
-  margin-top: 2em;
 }
 
 .sidebar-menu a {
@@ -168,7 +167,7 @@ nav button:hover {
 }
 
 .sidebar .footer {
-  /* background-color: aqua; */
+  /* background-color: #ffff; */
   height: 10%;
   display: flex;
   align-items: flex-end;
@@ -184,4 +183,8 @@ nav button:hover {
 
 .dropdown-pengaturan.active {
   right: 0;
+}
+
+.sidebar-menu a.active {
+  color: #ffa500;
 }

@@ -130,3 +130,19 @@ span {
   font-size: 1em;
   margin-top: 0.5em;
 }
+
+.icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.icon iconify-icon {
+  font-size: 2.5em;
+  color: #212121;
+  cursor: pointer;
+}
+
+.icon iconify-icon:hover {
+  color: #ffa500;
+}
