@@ -8,7 +8,7 @@ if (isset($_SESSION['user'])) {
     if ($_SESSION['user']['role'] == 'Admin') {
         echo "<script>location.href='dashboard';</script>";
     } else {
-        echo "<script>location.href='/';</script>";
+        echo "<script>location.href='';</script>";
     }
 }
 

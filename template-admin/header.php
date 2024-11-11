@@ -3,6 +3,7 @@ session_start();
 
 require_once 'functions/connection.php';
 require_once 'functions/auth_function.php';
+require_once 'functions/admin_function.php';
 
 if (!isset($_SESSION['user'])) {
     header('Location: /');
@@ -43,6 +44,7 @@ function isActive($path) {
     </title>
     <link rel="stylesheet" href="assets/css/sidebar.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/datapenjualan.css">
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
 <body>

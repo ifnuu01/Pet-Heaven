@@ -39,7 +39,9 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
             echo 'Detail Hewan';
         } elseif ($url === '/pembayaran') {
             echo 'Pembayaran';
-        } 
+        } elseif ($url === '/konfirmasi_pembayaran') {
+            echo 'Konfirmasi Pembayaran';
+        }
         ?>
     </title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
@@ -103,13 +105,13 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     }?>
     <div id="dropdown-kategori" class="">
         <div class="dropdown-content">
-            <a href="?kategori=1">Anjing</a>
-            <a href="?kategori=2">Kucing</a>
-            <a href="?kategori=3">Kelinci</a>
-            <a href="?kategori=4">Hamster</a>
-            <a href="?kategori=5">Sugar Glider</a>
-            <a href="?kategori=6">Reptil</a>
-            <a href="?kategori=7">Burung</a>
-            <a href="?kategori=8">Ikan</a>
+            <a href="/?kategori=1">Anjing</a>
+            <a href="/?kategori=2">Kucing</a>
+            <a href="/?kategori=3">Kelinci</a>
+            <a href="/?kategori=4">Hamster</a>
+            <a href="/?kategori=5">Sugar Glider</a>
+            <a href="/?kategori=6">Reptil</a>
+            <a href="/?kategori=7">Burung</a>
+            <a href="/?kategori=8">Ikan</a>
         </div>
     </div>
