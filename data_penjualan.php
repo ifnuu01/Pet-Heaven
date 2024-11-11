@@ -31,7 +31,7 @@ if (isset($_GET['search'])) {
 <div class="container">
     <div class="search-container">
         <form action="" method="GET">
-            <input type="text" name="search" class="search-input" placeholder="Cari" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+            <input type="text" name="search" class="search-input" placeholder="Cari Pengguna" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
             <button type="submit" hidden></button>
         </form>
     </div>
@@ -53,19 +53,19 @@ if (isset($_GET['search'])) {
             <?php if ($data['status'] && count($data['data']) > 0): ?>
                 <?php foreach ($data['data'] as $penjualan): ?>
                 <tr>
-                    <td><?= $penjualan->no_pembelian ?></td>
-                    <td><?= $penjualan->nama_depan ?></td>
-                    <td class="address"><?= $penjualan->alamat_pengiriman ?></td>
-                    <td>Rp<?= number_format($penjualan->total_pembelian, 2) ?></td>
-                    <td><?= $penjualan->waktu_pembayaran ?></td>
-                    <td class="status">
+                    <td class="align-center"><?= $penjualan->no_pembelian ?></td>
+                    <td class="align-center"><?= $penjualan->nama_depan ?></td>
+                    <td><?= $penjualan->alamat_pengiriman ?></td>
+                    <td class="align-center">Rp<?= number_format($penjualan->total_pembelian, 2) ?></td>
+                    <td class="align-center"><?= $penjualan->waktu_pembayaran ?></td>
+                    <td class="align-center">
                         <?php if ($penjualan->status == 'Dikonfirmasi'): ?>
                             <span class="status-confirmed"><?= $penjualan->status ?></span>
                         <?php else : ?>
                             <span class="status-rejected"><?= $penjualan->status ?></span>
                         <?php endif; ?>
                     </td>
-                    <td><button class="detail-btn">Detail</button></td>
+                    <td class="align-center"><button class="detail-btn">Detail</button></td>
                 </tr>
                 <?php endforeach; ?>
             <?php else: ?>

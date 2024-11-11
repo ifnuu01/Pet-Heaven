@@ -382,7 +382,7 @@ function detail_pembayaran($conn, $no_pembelian)
 
 function get_managemen_user($conn, $limit_bawah, $limit_atas)
 {
-    $query = "select p.id, p.nama_depan, p.email, p.nomor_hp, p.tanggal_lahir, p.jenis_kelamin, 
+    $query = "select p.id, p.nama_depan, p.email, p.nomor_hp, p.tanggal_lahir, p.jenis_kelamin, p.path_poto,
     CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman, p.tanggal_dibuat
     from pengguna p 
     join alamat a on p.id = a.id_pengguna
@@ -610,7 +610,7 @@ function search_manajemen_hewan($conn, $nama_hewan, $limit_bawah, $limit_atas)
 
 function search_pengguna($conn, $nama_pengguna, $limit_bawah, $limit_atas)
 {
-    $query = "select p.id, p.nama_depan, p.email, p.nomor_hp, p.tanggal_lahir, p.jenis_kelamin, 
+    $query = "select p.id, p.nama_depan, p.email, p.nomor_hp, p.tanggal_lahir, p.jenis_kelamin, p.path_poto,
     CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman, p.tanggal_dibuat
     from pengguna p 
     join alamat a on p.id = a.id_pengguna

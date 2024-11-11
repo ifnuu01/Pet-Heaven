@@ -64,7 +64,7 @@ th {
 td {
   padding: 16px;
   color: #212121;
-  font-size: 14px;
+  font-size: 12px;
   border-bottom: 1px solid #f0f3f7;
 }
 
@@ -82,7 +82,7 @@ tr:hover {
   font-size: 13px;
 }
 
-.status {
+.align-center {
   text-align: center;
 }
 

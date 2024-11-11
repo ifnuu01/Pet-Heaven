@@ -24,7 +24,7 @@ $total_halaman = ceil($total_data / $limit_per_halaman);
 <div class="container">
     <div class="search-container">
         <form action="" method="GET">
-            <input type="text" name="search" class="search-input" placeholder="Cari" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+            <input type="text" name="search" class="search-input" placeholder="Cari Hewan" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
             <button type="submit" hidden></button>
         </form>
         <button class="detail-btn3">Tambah Hewan</button>
@@ -48,13 +48,13 @@ $total_halaman = ceil($total_data / $limit_per_halaman);
             <?php if ($data['status'] && count($data['data']) > 0): ?>
                 <?php foreach ($data['data'] as $hewan): ?>
                     <tr>
-                        <td><?php echo $hewan->nama_hewan; ?></td>
-                        <td><?php echo $hewan->path_poto; ?></td>
-                        <td><?php echo $hewan->tahapan_usia; ?></td>
-                        <td><?php echo $hewan->jenis_kelamin; ?></td>
-                        <td><?php echo $hewan->jenis_hewan; ?></td>
-                        <td>Rp<?php echo number_format($hewan->harga, 2); ?></td>
-                        <td><?php echo $hewan->tanggal_ditambahkan; ?></td>
+                        <td class="align-center"><?php echo $hewan->nama_hewan; ?></td>
+                        <td class="align-center"><img src="<?php echo $hewan->path_poto; ?>" alt="Foto Hewan"></td>
+                        <td class="align-center"><?php echo $hewan->tahapan_usia; ?></td>
+                        <td class="align-center"><?php echo $hewan->jenis_kelamin; ?></td>
+                        <td class="align-center"><?php echo $hewan->jenis_hewan; ?></td>
+                        <td class="align-center">Rp<?php echo number_format($hewan->harga, 2); ?></td>
+                        <td class="align-center"><?php echo $hewan->tanggal_ditambahkan; ?></td>
                         <td class="container-btn">
                             <button class="detail-btn2"><iconify-icon icon="ph:note-pencil-bold"></iconify-icon></button>
                             <button class="detail-btn1"><iconify-icon icon="mdi:trash-can-outline"></iconify-icon></button>

@@ -208,7 +208,7 @@ nav.active {
 }
 
 .profile-dropdown .profile-content a {
-  font-size: 1.5em;
+  font-size: 1.2em;
   width: 90%;
   font-weight: bold;
   color: #212121;
@@ -233,7 +233,7 @@ nav.active {
 .profile-dropdown .profile-content button {
   display: flex;
   align-items: center;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: bold;
   color: #212121;
   text-decoration: none;
