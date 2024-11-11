@@ -1,14 +1,13 @@
+# Aktifkan URL Rewrite Engine
 RewriteEngine On
 
-# Arahkan semua permintaan ke public/index.php, kecuali file yang ada
-RewriteCond %{REQUEST_FILENAME} !-f
+# Menangani URL tanpa ekstensi .php (untuk file di root atau direktori lain yang memenuhi syarat)
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L,QSA]
 
-# Biarkan file statis (CSS, JS, Gambar, Logo) diakses langsung
-RewriteRule ^assets/(css|js|img|logo)/ - [L]
+# Tampilkan halaman 404 jika file atau halaman tidak ditemukan
+ErrorDocument 404 404.php
 
-# Jangan biarkan akses langsung ke folder src/ dan isinya (melarang akses ke file PHP di src)
-RewriteRule ^src/ - [F,L]
-RewriteRule ^assets/ - [F,L]
-
+# Nonaktifkan tampilan direktori (indexing) secara umum
+Options -Indexes

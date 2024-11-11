@@ -136,7 +136,7 @@ function tambahHewan($conn, $nama, $tahap_usia, $berat, $jenis_kelamin, $warna, 
 
 function editHewan($conn, $id_hewan, $nama, $tahap_usia, $berat, $jenis_kelamin, $warna, $jenis, $harga_hewan, $file) 
 {
-    $query = "SELECT path_poto, status FROM hewan WHERE id = ? AND status != 0";
+    $query = "SELECT path_poto, status FROM hewan WHERE id = ? AND status = 1 ";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id_hewan);
     $stmt->execute();
@@ -150,15 +150,13 @@ function editHewan($conn, $id_hewan, $nama, $tahap_usia, $berat, $jenis_kelamin,
     }
 
     $current_data = $result->fetch_assoc();
-    $current_path_poto = $current_data['path_poto'];
+    $current_poto = $current_data['path_poto'];
+    $path_poto = $current_poto;
 
-    $target_dir = '/assets/img/hewan/';
-    $default_path = $target_dir . 'hewan.jpg';
-    $path_poto = $current_path_poto; 
-
-    if (isset($file['name']) && $file['name'] != "") {
+    if(isset($file['name']) && $file['name'] != "") {
         $filename = basename($file['name']);
-        $target_file = $target_dir . uniqid() . '_' . $filename; 
+        $target_dir = $_SERVER['DOCUMENT_ROOT'] . '/assets/img/hewan/';
+        $target_file = $target_dir . uniqid() . '_' . $filename;
 
         $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         if (!in_array($file_type, ['jpg', 'jpeg', 'png'])) {
@@ -175,27 +173,27 @@ function editHewan($conn, $id_hewan, $nama, $tahap_usia, $berat, $jenis_kelamin,
             ];
         }
 
-        if ($current_path_poto !== $default_path && file_exists($current_path_poto)) {
-            unlink($current_path_poto); 
+        if (file_exists($current_poto)) {
+            unlink($current_poto);
         }
 
-        $path_poto = $target_file; 
+        $path_poto = $target_file;
     }
 
-    $update_query = "UPDATE hewan SET nama_hewan = ?, path_poto = ?, tahapan_usia = ?, berat = ?, jenis_kelamin = ?, warna = ?, jenis_hewan = ?,  harga = ? WHERE id = ?";
-    
-    $update_stmt = $conn->prepare($update_query);
-    $update_stmt->bind_param("sssdssidi", $nama, $path_poto, $tahap_usia, $berat, $jenis_kelamin, $warna, $jenis, $harga_hewan, $id_hewan);
-    
-    if ($update_stmt->execute()) {
+    $query = "UPDATE hewan SET nama_hewan = ?, path_poto = ?, tahapan_usia = ?, berat = ?, jenis_kelamin = ?, warna = ?, jenis_hewan = ?, harga = ? WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("sssdssidi", $nama, $path_poto, $tahap_usia, $berat, $jenis_kelamin, $warna, $jenis, $harga_hewan, $id_hewan);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
         return [
             "status" => true,
-            "message" => "Data hewan berhasil diperbarui."
+            "message" => "Data hewan berhasil diubah."
         ];
     } else {
         return [
             "status" => false,
-            "message" => "Gagal memperbarui data hewan: " . $update_stmt->error
+            "message" => "Gagal mengubah data hewan: " . $stmt->error
         ];
     }
 }

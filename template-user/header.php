@@ -1,34 +1,56 @@
 <?php
+session_start();
 
-// if (isset($_GET['search'])) {
-//     $search = $_GET['search'];
-//     echo $search;
-// }
-require_once 'src/functions/connection.php';
-require_once 'src/functions/auth_function.php';
+require_once 'functions/connection.php';
+require_once 'functions/auth_function.php';
+
 
 if (isset($_POST['logout'])) {
     logout();   
 }
 
-?>
+if (isset($_SESSION['user']['role'])){
+    if ($_SESSION['user']['role'] == 'Admin') {
+        echo "<script>location.href='dashboard';</script>";
+    }
+}
 
+$url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet-heaven</title>
+    <title>
+        <?php
+        if ($url === '/') {
+            echo 'Home';
+        } elseif ($url === '/profile') {
+            echo 'Profile';
+        } elseif ($url === '/riwayat_pembelian') {
+            echo 'Riwayat Pembelian';
+        } elseif ($url === '/notifikasi') {
+            echo 'Notifikasi';
+        } elseif ($url === '/alamat') {
+            echo 'Alamat';
+        } elseif ($url === '/detail_hewan') {
+            echo 'Detail Hewan';
+        } elseif ($url === '/pembayaran') {
+            echo 'Pembayaran';
+        } 
+        ?>
+    </title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
-    <link rel="stylesheet" href="/assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
 </head>
 <body>
     <nav>
         <ul class="content-nav-item">
             <li class="item1">
                 <div>
-                    <a href="/"><img src="/assets/logo/logo.png" alt="" width="120px"></a>
+                    <a href="/"><img src="assets/logo/logo.png" alt="" width="120px"></a>
                     <a href="/"><iconify-icon icon="line-md:home"></iconify-icon></a>
                     <span id="kategori">Kategori</span>
                 </div>

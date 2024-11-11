@@ -1,9 +1,15 @@
 <?php
-require_once 'src/functions/connection.php';
-require_once 'src/functions/auth_function.php';
+session_start();
+
+require_once 'functions/connection.php';
+require_once 'functions/auth_function.php';
 
 if (isset($_SESSION['user'])) {
-    header('Location: /');
+    if ($_SESSION['user']['role'] == 'Admin') {
+        echo "<script>location.href='dashboard';</script>";
+    } else {
+        echo "<script>location.href='/';</script>";
+    }
 }
 
 
@@ -32,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Akun</title>
-    <link rel="stylesheet" href="/assets/css/auth.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
 <body>

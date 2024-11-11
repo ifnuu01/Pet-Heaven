@@ -1,10 +1,11 @@
 <?php
+session_start();
 
-require_once 'src/functions/connection.php';
-require_once 'src/functions/auth_function.php';
+require_once 'functions/connection.php';
+require_once 'functions/auth_function.php';
 
 if (!isset($_SESSION['user'])) {
-    header('Location: /login');
+    header('Location: /');
     exit();
 }
 
@@ -12,8 +13,9 @@ if (isset($_POST['logout'])) {
     logout();   
 }
 
+$url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 function isActive($path) {
-    $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    global $url;
     return $url === $path ? 'active' : '';
 }
 
@@ -24,9 +26,23 @@ function isActive($path) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
-    <link rel="stylesheet" href="/assets/css/sidebar.css">
-    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <title>
+        <?php
+        if ($url === '/dashboard') {
+            echo 'Dashboard';
+        } elseif ($url === '/data_penjualan') {
+            echo 'Data Penjualan';
+        } elseif ($url === '/manajemen_hewan') {
+            echo 'Manajemen Hewan';
+        } elseif ($url === '/manajemen_user') {
+            echo 'Manajemen User';
+        } elseif ($url === '/konfirmasi_pembelian') {
+            echo 'Konfirmasi Pembelian';
+        }
+        ?>
+    </title>
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
 <body>
@@ -47,11 +63,11 @@ function isActive($path) {
     <div class="sidebar">
         <ul>
             <div class="logo">
-                <a href=""><img src="/assets/logo/logo.png" alt="" width="150px"></a>
+                <a href=""><img src="assets/logo/logo.png" alt="" width="150px"></a>
                 <div class="line"></div>
             </div>
             <div class="sidebar-menu">
-                <a href="/" class="<?= isActive('/') ?>"><iconify-icon icon="clarity:dashboard-line" ></iconify-icon><span>Dashboard</span></a>
+                <a href="/dashboard" class="<?= isActive('/dashboard') ?>"><iconify-icon icon="clarity:dashboard-line" ></iconify-icon><span>Dashboard</span></a>
                 <a href="/data_penjualan" class="<?= isActive('/data_penjualan') ?>"><iconify-icon icon="ep:sell" ></iconify-icon><span>Data Penjualan</span></a>
                 <a href="/manajemen_hewan" class="<?= isActive('/manajemen_hewan') ?>"><iconify-icon icon="cil:animal" ></iconify-icon><span>Manajemen Hewan</span></a>
                 <a href="/manajemen_user" class="<?= isActive('/manajemen_user') ?>"><iconify-icon icon="mingcute:user-4-line" ></iconify-icon><span>Manajemen User</span></a>

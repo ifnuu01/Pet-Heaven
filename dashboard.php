@@ -1,6 +1,6 @@
 <?php
 
-include 'template/header.php';
+include 'template-admin/header.php';
 ?>
 
 
@@ -39,6 +39,6 @@ include 'template/header.php';
 </div>
 
 
-<script src="/assets/js/pengaturan-dropdown.js"></script>
+<script src="assets/js/pengaturan-dropdown.js"></script>
 </body>
 </html>
