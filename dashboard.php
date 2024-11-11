@@ -16,7 +16,7 @@ $total_pengguna = total_pengguna($conn);
             <div class="logo"><iconify-icon icon="dashicons:money-alt"></iconify-icon></div>
             <div class="content">
                 <span>Jumlah Pendapatan</span>
-                <span>Rp<?= $total_pendapatan['total']?></span>
+                <span>Rp<?= number_format($total_pendapatan['total'],2)?></span>
             </div>
         </div>
         <div class="single-card">
