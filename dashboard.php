@@ -9,7 +9,7 @@ $total_pengguna = total_pengguna($conn);
 ?>
 
 
-<div class="container-content">
+<div class="container-content-dashboard">
     <div class="title">Selamat Datang di Dashboard <br> <span>Admin</span></div>
     <div class="container-card">
         <div class="single-card">

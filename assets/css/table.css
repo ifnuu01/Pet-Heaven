@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+.container {
+  position: relative;
+  top: 90px;
+  left: 20%;
+  width: %;
+  height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-container {
+  margin-top: 5em;
+  margin-bottom: 20px;
+  width: 70%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #a7a7a7;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #ffa500;
+}
+
+.table-container {
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px #73767a;
+  overflow: hidden;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th {
+  padding: 16px;
+  text-align: center;
+  font-weight: 600;
+  color: #212121;
+  border-bottom: 2px solid #a7a7a7;
+  font-size: 14px;
+  background-color: #ffffff;
+}
+
+td {
+  padding: 16px;
+  color: #212121;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f3f7;
+}
+
+tr:hover {
+  background-color: #f0f3f7;
+}
+
+.detail-btn {
+  background-color: #ffa500;
+  color: #ffffff;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.status {
+  text-align: center;
+}
+
+.status-confirmed {
+  background-color: #08a208;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+}
+
+.status-rejected {
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+}
+
+.container-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.detail-btn1 {
+  background-color: transparent;
+  color: red;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.detail-btn2 {
+  background-color: transparent;
+  color: #ffa500;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.detail-btn3 {
+  position: absolute;
+  right: 1em;
+  top: 13%;
+  background-color: #ffa500;
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.detail-btn3:hover {
+  background-color: #d87c00;
+}
+
+.address {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pagination {
+  display: flex;
+  align-self: flex-end;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-right: 1em;
+}
+
+.pagination .button {
+  padding: 8px 16px;
+  background-color: #ffffff;
+  border: 1px solid #f0f3f7;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #212121;
+}
+
+.pagination .nomor {
+  padding: 8px 16px;
+  background-color: #ffffff;
+  border: 1px solid #f0f3f7;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #212121;
+}
+
+.pagination .button.active {
+  background-color: #ffffff;
+}
+
+.proof-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.proof-icon {
+  width: 24px;
+  height: 24px;
+}

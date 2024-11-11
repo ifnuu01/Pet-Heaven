@@ -7,7 +7,7 @@
   font-family: "Inter", sans-serif;
 }
 
-.container-content {
+.container-content-dashboard {
   position: relative;
   top: 130px;
   left: 30%;
@@ -22,7 +22,7 @@
   margin-bottom: 2em;
 }
 
-.container-content .title {
+.container-content-dashboard .title {
   font-size: 3em;
   font-weight: bold;
   color: #212121;
@@ -30,7 +30,7 @@
   text-align: center;
 }
 
-.container-content .title span {
+.container-content-dashboard .title span {
   color: #ffa500;
 }
 
@@ -65,8 +65,8 @@
 }
 
 .single-card .content span:last-child {
-  font-size: 1.2em;
-  font-weight: bold;
+  font-size: 1em;
+  font-weight: 600;
   color: #212121;
 }
 

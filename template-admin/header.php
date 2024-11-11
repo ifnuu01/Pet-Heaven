@@ -43,8 +43,8 @@ function isActive($path) {
         ?>
     </title>
     <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/table.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
-    <link rel="stylesheet" href="assets/css/datapenjualan.css">
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
 <body>
@@ -71,7 +71,7 @@ function isActive($path) {
             <div class="sidebar-menu">
                 <a href="/dashboard" class="<?= isActive('/dashboard') ?>"><iconify-icon icon="clarity:dashboard-line" ></iconify-icon><span>Dashboard</span></a>
                 <a href="/data_penjualan" class="<?= isActive('/data_penjualan') ?>"><iconify-icon icon="ep:sell" ></iconify-icon><span>Data Penjualan</span></a>
-                <a href="/manajemen_hewan" class="<?= isActive('/manajemen_hewan') ?>"><iconify-icon icon="cil:animal" ></iconify-icon><span>Manajemen Hewan</span></a>
+                <a href="/hewan" class="<?= isActive('/hewan') ?>"><iconify-icon icon="cil:animal" ></iconify-icon><span>Manajemen Hewan</span></a>
                 <a href="/manajemen_user" class="<?= isActive('/manajemen_user') ?>"><iconify-icon icon="mingcute:user-4-line" ></iconify-icon><span>Manajemen User</span></a>
                 <a href="/konfirmasi_pembelian" class="<?= isActive('/konfirmasi_pembelian') ?>"><iconify-icon icon="fluent-mdl2:waitlist-confirm" ></iconify-icon><span>Konfirmasi Pembelian</span></a>
             </div>

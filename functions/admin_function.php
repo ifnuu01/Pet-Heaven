@@ -5,25 +5,6 @@ require 'connection.php';
 
 // ADMIN FUNCTION 
 
-function totalHewan($conn)
-{
-    $query = "SELECT COUNT(id) as total FROM hewan WHERE status = 1";
-    $result = $conn->query($query);
-
-    if ($result === false) {
-        return [
-            "status" => false,
-            "message" => $conn->error
-        ];
-    }
-
-    $total = $result->fetch_assoc();
-    return [
-        "status" => true,
-        "total" => $total['total']
-    ];
-}
-
 function getDataHewan($conn, $limit_bawah, $limit_atas)
 {
     $query = "
@@ -322,10 +303,12 @@ function total_pengguna($conn)
 function get_data_penjualan($conn, $limit_bawah, $limit_atas)
 {
     $query = "select t.no_pembelian, p.nama_depan, CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman
-    , t.bukti_pembayaran, t.waktu_pembayaran, t.status
+    , t.bukti_pembayaran, t.waktu_pembayaran, t.status, (t.biaya_pengiriman + t.pajak + h.harga) as total_pembelian
     from transaksi t 
     join pengguna p on t.id_pengguna = p.id
     join alamat a on p.id = a.id_pengguna
+    join hewan h on t.id_hewan = h.id
+    where t.status != 'Menunggu'
     LIMIT ?, ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ii", $limit_bawah, $limit_atas);
@@ -399,7 +382,7 @@ function detail_pembayaran($conn, $no_pembelian)
 
 function get_managemen_user($conn, $limit_bawah, $limit_atas)
 {
-    $query = "select p.nama_depan, p.email, p.nomor_hp, p.tanggal_lahir, p.jenis_kelamin, 
+    $query = "select p.id, p.nama_depan, p.email, p.nomor_hp, p.tanggal_lahir, p.jenis_kelamin, 
     CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman, p.tanggal_dibuat
     from pengguna p 
     join alamat a on p.id = a.id_pengguna
@@ -547,3 +530,151 @@ function ubah_password($conn, $newpass, $oldpass, $id)
     }
 }
 
+
+
+function search_data_penjualan($conn, $nama_pengguna, $limit_bawah, $limit_atas)
+{
+    $query = "select t.no_pembelian, p.nama_depan, CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman
+    , t.bukti_pembayaran, t.waktu_pembayaran, t.status, (t.biaya_pengiriman + t.pajak + h.harga) as total_pembelian
+    from transaksi t 
+    join pengguna p on t.id_pengguna = p.id
+    join alamat a on p.id = a.id_pengguna
+    join hewan h on t.id_hewan = h.id
+    where t.status != 'Menunggu' AND p.nama_depan LIKE ?
+    LIMIT ?, ?";
+    
+    $nama_pengguna = "%" . $nama_pengguna . "%";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("sii", $nama_pengguna, $limit_bawah, $limit_atas);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result === false) {
+        return [
+            "status" => false,
+            "message" => $conn->error
+        ];
+    }
+
+    $data_penjualan = [];
+
+    while ($row = $result->fetch_object()) {
+        $data_penjualan[] = $row;
+    }
+
+    return [
+        "status" => true,
+        "data" => $data_penjualan
+    ];
+}
+
+function search_manajemen_hewan($conn, $nama_hewan, $limit_bawah, $limit_atas)
+{
+    $query = "SELECT 
+    h.id,
+    h.nama_hewan,
+    h.path_poto,
+    h.tahapan_usia,
+    h.jenis_kelamin,
+    j.jenis_hewan,
+    h.harga,
+    h.tanggal_ditambahkan
+    FROM hewan h
+    JOIN jenis_hewan j ON h.jenis_hewan = j.id 
+    WHERE h.status = 1 AND h.nama_hewan LIKE ?
+    LIMIT ?, ?";
+    
+    $nama_hewan = "%" . $nama_hewan . "%";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("sii", $nama_hewan, $limit_bawah, $limit_atas);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result === false) {
+        return [
+            "status" => false,
+            "message" => $conn->error
+        ];
+    }
+
+    $hewanData = [];
+    while ($row = $result->fetch_object()) {
+        $hewanData[] = $row;
+    }
+
+    return [
+        "status" => true,
+        "data" => $hewanData
+    ];
+}
+
+function search_pengguna($conn, $nama_pengguna, $limit_bawah, $limit_atas)
+{
+    $query = "select p.id, p.nama_depan, p.email, p.nomor_hp, p.tanggal_lahir, p.jenis_kelamin, 
+    CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman, p.tanggal_dibuat
+    from pengguna p 
+    join alamat a on p.id = a.id_pengguna
+    where p.nama_depan LIKE ?
+    LIMIT ?, ?";
+
+    $nama_pengguna = "%" . $nama_pengguna . "%";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("sii", $nama_pengguna, $limit_bawah, $limit_atas);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    if ($result === false) {
+        return [
+            "status" => false,
+            "message" => $conn->error
+        ];
+    }
+
+    $manajemen_user = [];
+
+    while ($row = $result->fetch_object()) {
+        $manajemen_user[] = $row;
+    }
+
+    return [
+        "status" => true,
+        "data" => $manajemen_user
+    ];
+}
+
+function search_konfirmasi_pembelian($conn, $nama_pengguna, $limit_bawah, $limit_atas)
+{
+    $query = "select t.no_pembelian, p.nama_depan, p.path_poto, h.nama_hewan, CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman
+    , (t.biaya_pengiriman + t.pajak + h.harga) as total_pembelian , t.waktu_pembayaran
+    from transaksi t
+    join pengguna p on t.id_pengguna = p.id
+    join hewan h on t.id_hewan = h.id
+    join alamat a on p.id = a.id_pengguna
+    where t.status = 'Menunggu' AND p.nama_depan LIKE ?
+    LIMIT ?, ?";
+
+    $nama_pengguna = "%" . $nama_pengguna . "%";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("sii", $nama_pengguna, $limit_bawah, $limit_atas);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result === false) {
+        return [
+            "status" => false,
+            "message" => $conn->error
+        ];
+    }
+
+    $konfirmasi_pembelian = [];
+
+    while ($row = $result->fetch_object()) {
+        $konfirmasi_pembelian[] = $row;
+    }
+
+    return [
+        "status" => true,
+        "data" => $konfirmasi_pembelian
+    ];
+}

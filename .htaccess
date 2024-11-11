@@ -3,11 +3,11 @@ RewriteEngine On
 
 # Menangani URL tanpa ekstensi .php (untuk file di root atau direktori lain yang memenuhi syarat)
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^(.*)$ $1.php [L,QSA]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [L,QSA]
 
 # Tampilkan halaman 404 jika file atau halaman tidak ditemukan
-ErrorDocument 404 404.php
+ErrorDocument 404 /404.php
 
 # Nonaktifkan tampilan direktori (indexing) secara umum
 Options -Indexes
