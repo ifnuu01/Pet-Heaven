@@ -1,0 +1,49 @@
+/* Footer styles */
+.footer {
+  top: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffa500;
+  padding: 20px 50px;
+  color: white;
+  width: 100%;
+  position: relative; /* Fixes the footer position on the page */
+  bottom: 0; /* Places the footer at the bottom */
+  left: 0;
+  right: 0; /* Aligns it to the left edge */
+  z-index: 0; /* Ensures it stays on top of other elements */
+}
+
+.footer-section {
+  flex: 1;
+}
+
+.footer-section h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.footer-section p,
+.footer-section a {
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+  margin: 5px 0;
+  display: block;
+}
+
+.footer-section a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.footer-section p {
+  margin-top: 10px;
+  text-align: right;
+}

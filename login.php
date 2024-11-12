@@ -10,7 +10,7 @@ if (isset($_SESSION['user'])) {
     if ($_SESSION['user']['role'] == 'Admin') {
         echo "<script>location.href='dashboard';</script>";
     } else {
-        echo "<script>location.href='';</script>";
+        echo "<script>location.href='/';</script>";
     }
 }
 
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $message = login($conn, $username, $password);
     if ($message['status']) {
-        $url = $_SESSION['user']['role'] == 'Admin' ? 'dashboard' : '';
+        $url = $_SESSION['user']['role'] == 'Admin' ? 'dashboard' : '/';
         echo "<script>
             alertModal('{$url}', '{$message['message']}', 'Lanjut');
         </script>";

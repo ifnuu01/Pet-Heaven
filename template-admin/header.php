@@ -54,9 +54,15 @@ function isActive($path) {
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
 <body>
-    <?php 
-    include 'modal-confirm.php';
-    ?>
+<dialog id="confirmModal" class="admin">
+    <div class="modal-content">
+        <p id="modalMessage"></p>
+        <div class="btn-modal">
+            <button class="cancel" id="cancelBtn"></button>
+            <button class="confirm" id="confirmBtn"></button>
+        </div>
+    </div>
+</dialog>
     <nav>
         <button class="pengaturan"><iconify-icon icon="material-symbols-light:settings-outline"></iconify-icon><span>Pengaturan</span></button>
     </nav>

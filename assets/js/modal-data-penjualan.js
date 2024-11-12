@@ -1,6 +1,23 @@
 
 const modal_penjualan = document.getElementById('modal-pembayaran');
+
+console.log(modal_penjualan)
+
+modal_penjualan.addEventListener("click", (event) => {
+  const modalDimensions = modal_penjualan.getBoundingClientRect();
+  if (
+    event.clientX < modalDimensions.left ||
+    event.clientX > modalDimensions.right ||
+    event.clientY < modalDimensions.top ||
+    event.clientY > modalDimensions.bottom
+  ) {
+    console.log("hello")
+    modal_penjualan.close();
+  }
+});
+
 function openDetailPembayaran(data) {
+    const modal_penjualan = document.getElementById('modal-pembayaran');
     const animalImg = document.getElementById('animal-img');
     const animalName = document.getElementById('animal-name');
     const price = document.getElementById('price');
@@ -39,16 +56,3 @@ function openDetailPembayaran(data) {
 document.getElementById('back-button-pembayaran').addEventListener('click', () => {
 document.getElementById('modal-pembayaran').close();
 });
-
-
-modal_penjualan.addEventListener("click", (event) => {
-    const modalDimensions = modal_penjualan.getBoundingClientRect();
-    if (
-      event.clientX < modalDimensions.left ||
-      event.clientX > modalDimensions.right ||
-      event.clientY < modalDimensions.top ||
-      event.clientY > modalDimensions.bottom
-    ) {
-      modal.close();
-    }
-  });

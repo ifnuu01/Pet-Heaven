@@ -8,17 +8,16 @@ function openModal() {
 }
 
 
-function closeModal() {
-  modalForm.close(); 
-}
 
-closeButton.addEventListener("click", closeModal); 
+closeButton.addEventListener("click", function () {
+  modalForm.close(); 
+}); 
 
 
 
 modalForm.addEventListener("click", function (event) {
   if (event.target === modal) {
-    closeModal();
+    modalForm.close(); 
   }
 });
 

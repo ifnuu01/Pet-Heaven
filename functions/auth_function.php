@@ -2,71 +2,76 @@
 
 function registrasi($conn, $username, $nama_depan, $nama_belakang, $email, $password)
 {
+    
     if (empty($username) || empty($nama_depan) || empty($nama_belakang) || empty($email) || empty($password))
     {
         return [
             "status" => false,
             "message" => "Data tidak boleh kosong"
         ];
-        exit();
     }
 
-    $query = "SELECT * FROM pengguna WHERE username = ? or email = ?";
+    
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+    {
+        return [
+            "status" => false,
+            "message" => "Format email tidak valid"
+        ];
+    }
+
+    
+    $query = "SELECT * FROM pengguna WHERE username = ? OR email = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ss", $username, $email);
     $stmt->execute();
-
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
-    if ($row['username'] == $username)
-    {
-        return [
-            "status" => false,
-            "message" => "Username ini sudah terdaftar. Masukan username yang berbeda"
-        ];
-        exit();
+    if ($row) {
+        if ($row['username'] === $username) {
+            return [
+                "status" => false,
+                "message" => "Username ini sudah terdaftar. Masukan username yang berbeda"
+            ];
+        }
+        if ($row['email'] === $email) {
+            return [
+                "status" => false,
+                "message" => "Email ini sudah terdaftar. Masukan email yang berbeda"
+            ];
+        }
     }
 
-    if ($row['email'] == $email)
-    {
-        return [
-            "status" => false,
-            "message" => "Email ini sudah terdaftar. Masukan email yang berbeda"
-        ];
-        exit();
-    }
-
+    
     if (strlen($password) < 8)
     {
         return [
             "status" => false,
             "message" => "Password minimal 8 karakter"
         ];
-        exit();
     }
 
-    $password = password_hash($password, PASSWORD_DEFAULT);
+    
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    
     $query = "INSERT INTO pengguna (username, nama_depan, nama_belakang, email, password) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("sssss", $username, $nama_depan, $nama_belakang, $email, $password);
-    $stmt->execute();
-
-    if ($stmt->affected_rows > 0)
-    {
+    $stmt->bind_param("sssss", $username, $nama_depan, $nama_belakang, $email, $hashed_password);
+    if ($stmt->execute()) {
         return [
             "status" => true,
-            "message" => "Registrasi berhasil. Terimakasih telah mendaftar"
+            "message" => "Registrasi berhasil"
         ];
-        exit();
-    }else{
+    } else {
         return [
             "status" => false,
-            "message" => "Registrasi gagal pastikan data anda benar"
+            "message" => "Registrasi gagal. Silahkan coba lagi"
         ];
-        exit();
     }
 }
+
 
 function login($conn, $username, $password)
 {

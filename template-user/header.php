@@ -7,6 +7,8 @@ require_once 'functions/auth_function.php';
 
 if (isset($_POST['logout'])) {
     logout();   
+    header('location: login');
+    exit();
 }
 
 if (isset($_SESSION['user']['role'])){
@@ -46,8 +48,20 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     </title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/footer-user.css">
+    <link rel="stylesheet" href="assets/css/home-user.css">
+    <link rel="stylesheet" href="assets/css/modal-confirm.css">
 </head>
 <body>
+<dialog id="confirmModal">
+    <div class="modal-content">
+        <p id="modalMessage"></p>
+        <div class="btn-modal">
+            <button class="cancel" id="cancelBtn"></button>
+            <button class="confirm" id="confirmBtn"></button>
+        </div>
+    </div>
+</dialog>
     <nav>
         <ul class="content-nav-item">
             <li class="item1">
@@ -93,12 +107,18 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
                 <iconify-icon icon="gg:profile"></iconify-icon>
                 <span>Profile</span>
             </a>
-            <form action="/" method="post">
-                <button type="submit" name="logout">
-                    <iconify-icon icon="bxs:door-open"></iconify-icon>
-                    <span>Keluar</span>
-                </button>
+            <form action="/" method="post" id="logoutForm">
+                <input type="hidden" name="logout" value="1"></input>
             </form>
+            <button  class="actionBtn" 
+            data-action="logout" 
+            data-message="Apakah Anda yakin ingin keluar dari akun anda?" 
+            data-form="logoutForm"
+            data-cancel-text="Tidak"
+            data-confirm-text="Ya">
+                <iconify-icon icon="bxs:door-open"></iconify-icon>
+                <span>Keluar</span>
+            </button>
         </div>
     </div>
     <?php
