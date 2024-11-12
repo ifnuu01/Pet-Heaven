@@ -152,7 +152,7 @@ ul li strong {
 .buttons {
   display: flex;
   justify-content: space-between;
-  margin-top: 28px;
+  margin-top: 30px;
   gap: 1em;
 }
 
@@ -188,4 +188,8 @@ ul li strong {
 
 .back.confirm:hover {
   background-color: #ffff;
+}
+
+#pembayaran {
+  height: 600px;
 }

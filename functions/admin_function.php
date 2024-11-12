@@ -523,7 +523,7 @@ function konfirmasi_pembelian($conn, $no_pembelian, $status)
     if ($stmt->execute()) {
         return [
             "status" => true,
-            "message" => "Pembelian berhasil dikonfirmasi."
+            "message" => "Pembelian telah dikonfirmasi."
         ];
     } else {
         return [
