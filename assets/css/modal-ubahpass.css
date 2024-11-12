@@ -1,0 +1,62 @@
+.modal-ubah-pass {
+  position: fixed;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+
+.modal-ubah-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-ubah span {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #212121;
+}
+
+.form-group-pass {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group-pass label {
+  font-size: 1em;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: #212121;
+}
+
+.form-group-pass input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  border: 1px solid #a7a7a7;
+  outline: none;
+}
+
+.form-group-pass input:focus {
+  border: 1px solid #ffa500;
+}
+
+.btn-ubah-pass {
+  padding: 10px 20px;
+  background: #ffa500;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+}

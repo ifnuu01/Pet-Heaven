@@ -50,6 +50,7 @@ function isActive($path) {
     <link rel="stylesheet" href="assets/css/modal.css">
     <link rel="stylesheet" href="assets/css/alert.css">
     <link rel="stylesheet" href="assets/css/modal_detail_pembayaran.css">
+    <link rel="stylesheet" href="assets/css/modal-ubahpass.css">
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
 <body>
@@ -61,7 +62,7 @@ function isActive($path) {
     </nav>
     <div class="dropdown-pengaturan">
         <div class="dropdown-content">
-            <button><iconify-icon icon="mdi:password-outline"></iconify-icon><span>Ubah Password</span></button>
+            <button id="btn-ubahpass"><iconify-icon icon="mdi:password-outline"></iconify-icon><span>Ubah Password</span></button>
             <form action="/" method="post" id="logoutForm">
                 <input type="hidden" name="logout" value="1"></input>
             </form>
@@ -108,3 +109,44 @@ function isActive($path) {
 </dialog>
 <script src='assets/js/alert.js' ></script>
     
+
+<?php
+
+if (isset($_POST['password-lama']) && isset($_POST['password-baru'])) {
+    $password_lama = $_POST['password-lama'];
+    $password_baru = $_POST['password-baru'];
+    $user = $_SESSION['user']['id'];
+    $result = ubah_password($conn, $password_baru, $password_lama, $user);
+    if ($result['status']) {
+        echo "<script>alertModal('/', '{$result['message']}', 'Lanjut');</script>";
+    } else {
+        echo "<script>alertModal('/', '{$result['message']}', 'Lanjut');</script>";
+    }
+}
+
+?>
+
+<dialog class="modal-ubah-pass" id="modal-ubah-pass">
+        <div class="modal-ubah-content">
+            <div class="title-ubah">
+                <span>Ubah Password</span>
+            </div>
+            <form action="#" method="POST">
+                <div class="form-ubah">
+                    <div class="form-group-pass">
+                        <label for="password-lama">Password Lama</label>
+                        <input type="password" id="password-lama" name="password-lama">
+                    </div>
+                    <div class="form-group-pass">
+                        <label for="password-baru">Password Baru</label>
+                        <input type="password" id="password-baru" name="password-baru">
+                    </div>
+                    <div class="form-group-pass">
+                        <button type="submit" class="btn-ubah-pass" id="btn-ubah-pass">
+                            Ubah Password
+                        </button>
+                    </div>
+            </form>
+        </div>
+    </dialog>
+

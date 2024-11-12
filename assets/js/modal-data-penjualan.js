@@ -1,6 +1,6 @@
 
+const modal_penjualan = document.getElementById('modal-pembayaran');
 function openDetailPembayaran(data) {
-    const modal = document.getElementById('modal-pembayaran');
     const animalImg = document.getElementById('animal-img');
     const animalName = document.getElementById('animal-name');
     const price = document.getElementById('price');
@@ -33,7 +33,7 @@ function openDetailPembayaran(data) {
     paymentMethod.textContent = data.metode_pembayaran;
     purchaseNumber.textContent = data.no_pembelian;
 
-    modal.showModal();
+    modal_penjualan.showModal();
     }
 
 document.getElementById('back-button-pembayaran').addEventListener('click', () => {
@@ -41,8 +41,8 @@ document.getElementById('modal-pembayaran').close();
 });
 
 
-modal.addEventListener("click", (event) => {
-    const modalDimensions = modal.getBoundingClientRect();
+modal_penjualan.addEventListener("click", (event) => {
+    const modalDimensions = modal_penjualan.getBoundingClientRect();
     if (
       event.clientX < modalDimensions.left ||
       event.clientX > modalDimensions.right ||

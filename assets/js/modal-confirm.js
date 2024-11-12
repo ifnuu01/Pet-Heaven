@@ -25,17 +25,17 @@ document.querySelectorAll('.actionBtn').forEach(button => {
     });
 });
 
-// Menutup modal ketika tombol "Tidak" diklik
+
 cancelBtn.addEventListener('click', () => {
     modal.close();
 });
 
-// Mengirim form ketika tombol "Ya" diklik
+
 confirmBtn.addEventListener('click', () => {
     if (targetForm) {
-        targetForm.submit(); // Submit form yang ditargetkan
+        targetForm.submit(); 
     }
-    modal.close(); // Menutup modal
+    modal.close(); 
 });
 
 modal.addEventListener('click', (event) => {

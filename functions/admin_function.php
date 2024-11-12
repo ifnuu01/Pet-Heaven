@@ -559,6 +559,13 @@ function ubah_password($conn, $newpass, $oldpass, $id)
         ];
     }
 
+    if (strlen($newpass) < 8) {
+        return [
+            "status" => false,
+            "message" => "Password minimal 8 karakter."
+        ];
+    }
+
     $newpass = password_hash($newpass, PASSWORD_DEFAULT);
     $query = "UPDATE pengguna SET password = ? WHERE id = ?";
     $stmt = $conn->prepare($query);
