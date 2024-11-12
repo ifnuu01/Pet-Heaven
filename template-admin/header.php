@@ -45,21 +45,32 @@ function isActive($path) {
     <link rel="stylesheet" href="assets/css/sidebar.css">
     <link rel="stylesheet" href="assets/css/table.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/modal-confirm.css">
+    <link rel="stylesheet" href="assets/css/modal.css">
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
 <body>
+    <?php 
+    include 'modal-confirm.php';
+    ?>
     <nav>
         <button class="pengaturan"><iconify-icon icon="material-symbols-light:settings-outline"></iconify-icon><span>Pengaturan</span></button>
     </nav>
     <div class="dropdown-pengaturan">
         <div class="dropdown-content">
             <button><iconify-icon icon="mdi:password-outline"></iconify-icon><span>Ubah Password</span></button>
-            <form action="/" method="post">
-                <button type="submit" name="logout">
-                    <iconify-icon icon="bxs:door-open"></iconify-icon>
-                    <span>Keluar</span>
-                </button>
+            <form action="/" method="post" id="logoutForm">
+                <input type="hidden" name="logout" value="1"></input>
             </form>
+            <button class="actionBtn" 
+                    data-action="logout" 
+                    data-message="Apakah Anda yakin ingin keluar dari dashboard admin?" 
+                    data-form="logoutForm"
+                    data-cancel-text="Tidak"
+                    data-confirm-text="Ya">
+                <iconify-icon icon="bxs:door-open"></iconify-icon>
+                <span>Logout</span>
+            </button>
         </div>
     </div>
     <div class="sidebar">

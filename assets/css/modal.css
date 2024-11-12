@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+.modal-add {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  padding: 0;
+  width: 100%;
+  background: none;
+}
+
+.container-modal-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content-add {
+  padding: 20px;
+  outline: none;
+  border-radius: 5px;
+  width: 60%;
+  background-color: #fff; /* Warna latar belakang konten modal */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan sedikit bayangan */
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #212121;
+}
+
+.close-button {
+  color: #212121;
+  font-size: 1.5em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #ffa500;
+  text-decoration: none;
+}
+
+.modal-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.modal-form label {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.modal-form input,
+.modal-form select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal-form input:focus,
+.modal-form select:focus {
+  border-color: #ffa500;
+  outline: none;
+}
+
+.modal-form input:hover,
+.modal-form select:hover {
+  border-color: #ffa500;
+}
+
+.btn-primary {
+  background-color: #ffa500;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #e69500;
+}
+
+.radio-group {
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+  gap: 1em;
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.radio-item input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #ffa500;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+  background-color: #fff;
+}
+
+.radio-item input:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background-color: #ffa500;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.grid-3x3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 16px;
+}
+
+.grid-3x3 .form-group {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.grid-3x3 button.btn-primary {
+  grid-column: span 3;
+  grid-row: span 1;
+  font-size: 1em;
+  font-weight: bold;
+}

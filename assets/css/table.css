@@ -194,3 +194,7 @@ tr:hover {
   width: 24px;
   height: 24px;
 }
+
+button:focus {
+  outline: none;
+}

@@ -10,14 +10,30 @@ $limit_bawah = ($halaman - 1) * $limit_per_halaman;
 if (isset($_GET['search']) && $_GET['search'] !== '') {
     $nama_pengguna = $_GET['search'];
     $data = search_pengguna($conn, $nama_pengguna, $limit_bawah, $limit_per_halaman);
+    // Hitung total data untuk pagination
+    $total_data_search = $conn->query("SELECT COUNT(p.nama_depan) as total FROM pengguna p WHERE p.nama_depan LIKE '%$nama_pengguna%'");
+    $total_data = $total_data_search->fetch_assoc()['total'];
+    $total_halaman = ceil($total_data / $limit_per_halaman);
 } else {
     $data = get_managemen_user($conn, $limit_bawah, $limit_per_halaman);
+    // Hitung total data untuk pagination
+    $total_data_query = $conn->query("SELECT COUNT(*) as total FROM pengguna p JOIN alamat a ON p.id = a.id_pengguna");
+    $total_data = $total_data_query->fetch_assoc()['total'];
+    $total_halaman = ceil($total_data / $limit_per_halaman);
 }
 
-// Hitung total data untuk pagination
-$total_data_query = $conn->query("SELECT COUNT(*) as total FROM pengguna p JOIN alamat a ON p.id = a.id_pengguna");
-$total_data = $total_data_query->fetch_assoc()['total'];
-$total_halaman = ceil($total_data / $limit_per_halaman);
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['blokir'])) {
+    $id = $_POST['blokir'];
+    $status = blokir_user($conn, $id);
+    if ($status['status']) {
+        echo "<script>alert('User berhasil diblokir.');</script>";
+        echo "<script>window.location = 'manajemen_user.php';</script>";
+    } else {
+        echo "<script>alert('User gagal diblokir: {$status['message']}');</script>";
+    }
+}
+
+
 ?>
 
 <div class="container">
@@ -55,7 +71,19 @@ $total_halaman = ceil($total_data / $limit_per_halaman);
                             <td class="align-center"><?= $user->jenis_kelamin; ?></td>
                             <td><?= $user->alamat_pengiriman; ?></td>
                             <td class="align-center"><?= $user->tanggal_dibuat; ?></td>
-                            <td class="align-center"><button class="detail-btn1"><iconify-icon icon="mdi:trash-can-outline"></iconify-icon></button></td>
+                            <td class="align-center">
+                               <form action="#" method="POST" id="blokirUser-<?= $user->id; ?>">
+                                    <input type="hidden" name="blokir" value="<?= $user->id; ?>">
+                                </form>
+                                <button class="detail-btn1 actionBtn"
+                                data-action="blokir user" 
+                                data-message="Apakah Anda yakin ingin memblokir user ini?" 
+                                data-form="blokirUser-<?= $user->id; ?>"
+                                data-cancel-text="Tidak"
+                                data-confirm-text="Ya">
+                                <iconify-icon icon="mdi:trash-can-outline"></iconify-icon>
+                                </button>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -91,5 +119,6 @@ $total_halaman = ceil($total_data / $limit_per_halaman);
 </div>
 
 <script src="assets/js/pengaturan-dropdown.js"></script>
+<script src="assets/js/modal-confirm.js"></script>
 </body>
 </html>

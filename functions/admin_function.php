@@ -67,44 +67,52 @@ function getDataHewan($conn, $limit_bawah, $limit_atas)
 
 function tambahHewan($conn, $nama, $tahap_usia, $berat, $jenis_kelamin, $warna, $jenis, $harga_hewan, $file) 
 {
-    $target_dir = '/assets/img/hewan/';
-    $default_path = $target_dir . 'hewan.jpg';
+    $filename = basename($file['name']);
+    $target_dir = 'assets/img/hewan/';
+    $target_file = $target_dir . uniqid() . '_' . $filename;
 
-    if (isset($file['name']) && $file['name'] != "") {
-        $filename = basename($file['name']);
-        $target_file = $target_dir . uniqid() . '_' . $filename; 
-
-        $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        if (!in_array($file_type, ['jpg', 'jpeg', 'png'])) {
-            return [
-                "status" => false,
-                "message" => "Format file tidak didukung. Gunakan JPG atau PNG."
-            ];
-        }
-
-        if (!move_uploaded_file($file['tmp_name'], $target_file)) {
-            return [
-                "status" => false,
-                "message" => "Gagal mengunggah file foto."
-            ];
-        }
-
-        $path_poto = $target_file; 
-    } 
-
-    $query = "INSERT INTO hewan (nama_hewan, path_poto, tahapan_usia, berat, jenis_kelamin, warna, jenis_hewan, harga) 
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     
+    $max_size = 5 * 1024 * 1024; 
+    if ($file['size'] > $max_size) {
+        return [
+            "status" => false,
+            "message" => "Ukuran file terlalu besar. Maksimal 5MB."
+        ];
+    }
+
+    
+    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    if (!in_array($file_type, ['jpg', 'jpeg', 'png'])) {
+        return [
+            "status" => false,
+            "message" => "Format file tidak didukung. Gunakan JPG atau PNG."
+        ];
+    }
+
+    
+    if (!move_uploaded_file($file['tmp_name'], $target_file)) {
+        return [
+            "status" => false,
+            "message" => "Gagal mengunggah file foto."
+        ];
+    }
+
+    
+    $query = "INSERT INTO hewan (nama_hewan, path_poto, tahapan_usia, berat, jenis_kelamin, warna, jenis_hewan, harga) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("sssdssid", $nama, $path_poto, $tahap_usia, $berat, $jenis_kelamin, $warna, $jenis, $harga_hewan);
+
     
-    if ($stmt->execute()) {
+    $stmt->bind_param("sssdssdi", $nama, $target_file, $tahap_usia, $berat, $jenis_kelamin, $warna, $jenis, $harga_hewan);
+    $stmt->execute();
+
+    
+    if ($stmt->affected_rows > 0) {
         return [
             "status" => true,
             "message" => "Data hewan berhasil ditambahkan."
         ];
     } else {
-        return  [
+        return [
             "status" => false,
             "message" => "Gagal menambahkan data hewan: " . $stmt->error
         ];
@@ -205,8 +213,8 @@ function hapusHewan($conn, $id_hewan)
     $delete_stmt->execute();
 
     if ($delete_stmt->affected_rows > 0) {
-        if ($current_path_poto !== '/assets/img/hewan/hewan.jpg' && file_exists($current_path_poto)) {
-            unlink($current_path_poto); 
+        if (file_exists($current_path_poto)) {
+            unlink($current_path_poto);
         }
 
         return [
@@ -226,7 +234,8 @@ function get_jumlah_pendapatan($conn)
     $query = "select 
     sum(t.biaya_pengiriman + t.pajak + h.harga) as total_pendapatan
     from transaksi t
-    join hewan h on t.id_hewan = h.id";
+    join hewan h on t.id_hewan = h.id
+    where t.status = 'Dikonfirmasi'";
     $result = $conn->query($query);
     
     if ($result === false) {
@@ -386,6 +395,7 @@ function get_managemen_user($conn, $limit_bawah, $limit_atas)
     CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman, p.tanggal_dibuat
     from pengguna p 
     join alamat a on p.id = a.id_pengguna
+    where status = 'Aktif' and role = 'User'
     LIMIT ?, ?";
 
     $stmt = $conn->prepare($query);
@@ -415,11 +425,27 @@ function get_managemen_user($conn, $limit_bawah, $limit_atas)
 
 function blokir_user($conn, $id)
 {
+    // Cek apakah pengguna ada
+    $query = "SELECT id FROM pengguna WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 0) {
+        return [
+            "status" => false,
+            "message" => "Pengguna tidak ditemukan."
+        ];
+    }
+
+    // Update status pengguna menjadi "Tidak Aktif"
     $query = "UPDATE pengguna SET status = 'Tidak Aktif' WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id);
 
     if ($stmt->execute()) {
+        $conn->commit();  // Menyimpan perubahan pada database
         return [
             "status" => true,
             "message" => "Pengguna berhasil diblokir."
@@ -431,6 +457,7 @@ function blokir_user($conn, $id)
         ];
     }
 }
+
 
 function get_konfirmasi_pembelian($conn, $limit_bawah, $limit_atas)
 {

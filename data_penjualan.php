@@ -102,5 +102,6 @@ if (isset($_GET['search'])) {
 </div>
 
 <script src="assets/js/pengaturan-dropdown.js"></script>
+<script src="assets/js/modal-confirm.js"></script>
 </body>
 </html>

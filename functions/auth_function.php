@@ -70,7 +70,7 @@ function login($conn, $username, $password)
         exit();
     }
 
-    $query = "SELECT * FROM pengguna WHERE username = ?";
+    $query = "SELECT * FROM pengguna WHERE username = ? and status = 'Aktif'";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -82,7 +82,7 @@ function login($conn, $username, $password)
     {
         return[
             "status" => false,
-            "message" => "Username tidak ditemukan"
+            "message" => "Username tidak ditemukan atau akun anda diblokir"
         ];
         exit();
     }

@@ -45,5 +45,6 @@ $total_pengguna = total_pengguna($conn);
 
 
 <script src="assets/js/pengaturan-dropdown.js"></script>
+<script src="assets/js/modal-confirm.js"></script>
 </body>
 </html>
