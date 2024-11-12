@@ -21,3 +21,16 @@ modalForm.addEventListener("click", function (event) {
     closeModal();
   }
 });
+
+
+modalForm.addEventListener("click", (event) => {
+  const modalDimensions = modalForm.getBoundingClientRect();
+  if (
+    event.clientX < modalDimensions.left ||
+    event.clientX > modalDimensions.right ||
+    event.clientY < modalDimensions.top ||
+    event.clientY > modalDimensions.bottom
+  ) {
+    modalForm.close();
+  }
+});

@@ -55,16 +55,16 @@ foreign key (id_hewan) references hewan(id) on delete cascade on update cascade
 drop table notifikasi;
 drop table transaksi;
 
-create table alamat(
-id int auto_increment primary key,
-id_pengguna int not null,
-provinsi varchar(200) not null,
-kota_kabupaten varchar(200) not null,
-kecamatan varchar(200) not null,
-kelurahan varchar(200) not null,
-jalan varchar(255) not null,
-foreign key (id_pengguna) references pengguna(id) on delete cascade on update cascade 
-);
+    create table alamat(
+    id int auto_increment primary key,
+    id_pengguna int not null,
+    provinsi varchar(200) ,
+    kota_kabupaten varchar(200) ,
+    kecamatan varchar(200) ,
+    kelurahan varchar(200) ,
+    jalan varchar(255) ,
+    foreign key (id_pengguna) references pengguna(id) on delete cascade on update cascade 
+    );
 
 create table notifikasi(
 id int auto_increment primary key,
@@ -77,7 +77,21 @@ foreign key (no_pembelian) references transaksi(no_pembelian) on delete cascade 
 
 show tables;
 
+DELIMITER //
+
+CREATE TRIGGER after_insert_pengguna
+AFTER INSERT ON pengguna
+FOR EACH ROW
+BEGIN
+    INSERT INTO alamat (id_pengguna) 
+    VALUES (NEW.id);
+END //
+
+DELIMITER ;
+
 -- Triger untuk menambah no pembelian unik 10 digit cuy
+
+
 
 DELIMITER //
 CREATE TRIGGER before_insert_transaksi

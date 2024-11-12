@@ -28,8 +28,10 @@
   outline: none;
   border-radius: 5px;
   width: 60%;
-  background-color: #fff; /* Warna latar belakang konten modal */
+  background-color: #ffff; /* Warna latar belakang konten modal */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan sedikit bayangan */
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-header {
@@ -37,6 +39,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .modal-header h3 {

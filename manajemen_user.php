@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['blokir'])) {
                     <?php foreach ($data['data'] as $user): ?>
                         <tr>
                             <td class="align-center"><?= $user->nama_depan; ?></td>
-                            <td class="align-center"><img src="<?= $user->path_poto; ?>" alt="Foto User"></td>
+                            <td class="align-center"><img src="<?= $user->path_poto; ?>" alt="Foto User" width="40px" height="30px"></td>
                             <td class="align-center"><?= $user->email; ?></td>
                             <td class="align-center"><?= $user->nomor_hp; ?></td>
                             <td class="align-center"><?= $user->tanggal_lahir; ?></td>
