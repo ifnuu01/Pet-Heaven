@@ -19,11 +19,20 @@ function registrasi($conn, $username, $nama_depan, $nama_belakang, $email, $pass
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
-    if ($row)
+    if ($row['username'] == $username)
     {
         return [
             "status" => false,
-            "message" => "Username atau email sudah terdaftar"
+            "message" => "Username ini sudah terdaftar. Masukan username yang berbeda"
+        ];
+        exit();
+    }
+
+    if ($row['email'] == $email)
+    {
+        return [
+            "status" => false,
+            "message" => "Email ini sudah terdaftar. Masukan email yang berbeda"
         ];
         exit();
     }
@@ -47,13 +56,13 @@ function registrasi($conn, $username, $nama_depan, $nama_belakang, $email, $pass
     {
         return [
             "status" => true,
-            "message" => "Registrasi berhasil"
+            "message" => "Registrasi berhasil. Terimakasih telah mendaftar"
         ];
         exit();
     }else{
         return [
             "status" => false,
-            "message" => "Registrasi gagal"
+            "message" => "Registrasi gagal pastikan data anda benar"
         ];
         exit();
     }
@@ -70,7 +79,7 @@ function login($conn, $username, $password)
         exit();
     }
 
-    $query = "SELECT * FROM pengguna WHERE username = ? and status = 'Aktif'";
+    $query = "SELECT * FROM pengguna WHERE username = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -82,7 +91,16 @@ function login($conn, $username, $password)
     {
         return[
             "status" => false,
-            "message" => "Username tidak ditemukan atau akun anda diblokir"
+            "message" => "Username tidak ditemukan. Pastikan username anda benar"
+        ];
+        exit();
+    }
+
+    if ($row['status'] == "Tidak Aktif")
+    {
+        return [
+            "status" => false,
+            "message" => "Akun anda diblokir. Anda terdeteksi melakukan pelanggaran"
         ];
         exit();
     }
@@ -105,7 +123,7 @@ function login($conn, $username, $password)
     }else{
         return [
             "status" => false,
-            "message" => "Password salah"
+            "message" => "Password salah. Silahkan ingat kembali"
         ];
         exit();
     }
@@ -114,8 +132,6 @@ function login($conn, $username, $password)
 function logout()
 {
     session_destroy();
-    header('Location: /login');
-    exit();
 }
 
 ?>

@@ -10,7 +10,7 @@
 #confirmModal {
   position: fixed;
   top: 50%;
-  left: 50%;
+  left: 60%;
   transform: translate(-50%, -50%);
   width: 600px;
   height: 350px;
@@ -22,8 +22,8 @@
 }
 
 #confirmModal button {
-  width: 180px;
-  height: 75px;
+  width: 150px;
+  height: 60px;
   margin: 10px;
   border: none;
   border-radius: 5px;

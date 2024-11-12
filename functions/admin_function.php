@@ -9,16 +9,8 @@ function getDataHewan($conn, $limit_bawah, $limit_atas)
 {
     $query = "
             SELECT 
-                h.id,
-                h.nama_hewan,
-                h.path_poto,
-                h.tahapan_usia,
-                h.jenis_kelamin,
-                j.jenis_hewan,
-                h.harga,
-                h.tanggal_ditambahkan
-            FROM hewan h
-            JOIN jenis_hewan j ON h.jenis_hewan = j.id 
+                *
+            FROM hewan 
             WHERE status = 1
             LIMIT ?, ?";
     
@@ -142,10 +134,18 @@ function editHewan($conn, $id_hewan, $nama, $tahap_usia, $berat, $jenis_kelamin,
     $current_poto = $current_data['path_poto'];
     $path_poto = $current_poto;
 
-    if(isset($file['name']) && $file['name'] != "") {
+    if ($file['size'] > 0) {
         $filename = basename($file['name']);
-        $target_dir = $_SERVER['DOCUMENT_ROOT'] . '/assets/img/hewan/';
+        $target_dir = 'assets/img/hewan/';
         $target_file = $target_dir . uniqid() . '_' . $filename;
+
+        $max_size = 5 * 1024 * 1024; 
+        if ($file['size'] > $max_size) {
+            return [
+                "status" => false,
+                "message" => "Ukuran file terlalu besar. Maksimal 5MB."
+            ];
+        }
 
         $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
         if (!in_array($file_type, ['jpg', 'jpeg', 'png'])) {
@@ -160,10 +160,6 @@ function editHewan($conn, $id_hewan, $nama, $tahap_usia, $berat, $jenis_kelamin,
                 "status" => false,
                 "message" => "Gagal mengunggah file foto."
             ];
-        }
-
-        if (file_exists($current_poto)) {
-            unlink($current_poto);
         }
 
         $path_poto = $target_file;
@@ -185,6 +181,28 @@ function editHewan($conn, $id_hewan, $nama, $tahap_usia, $berat, $jenis_kelamin,
             "message" => "Gagal mengubah data hewan: " . $stmt->error
         ];
     }
+}
+
+function get_hewan_by_id($conn, $id_hewan)
+{
+    $query = "SELECT * FROM hewan WHERE id = ? AND status = 1";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $id_hewan);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 0) {
+        return [
+            "status" => false,
+            "message" => "Data hewan tidak ditemukan."
+        ];
+    }
+
+    $hewan = $result->fetch_assoc();
+    return [
+        "status" => true,
+        "data" => $hewan
+    ];
 }
 
 // Hapus hewna
@@ -311,12 +329,13 @@ function total_pengguna($conn)
 
 function get_data_penjualan($conn, $limit_bawah, $limit_atas)
 {
-    $query = "select t.no_pembelian, p.nama_depan, CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman
-    , t.bukti_pembayaran, t.waktu_pembayaran, t.status, (t.biaya_pengiriman + t.pajak + h.harga) as total_pembelian
+    $query = "select  p.nama_depan, CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman,
+	(t.biaya_pengiriman + t.pajak + h.harga) as total_pembelian, h.* , j.jenis_hewan as jenis, t.*
     from transaksi t 
     join pengguna p on t.id_pengguna = p.id
     join alamat a on p.id = a.id_pengguna
     join hewan h on t.id_hewan = h.id
+    join jenis_hewan j on h.jenis_hewan = j.id
     where t.status != 'Menunggu'
     LIMIT ?, ?";
     $stmt = $conn->prepare($query);
@@ -461,12 +480,13 @@ function blokir_user($conn, $id)
 
 function get_konfirmasi_pembelian($conn, $limit_bawah, $limit_atas)
 {
-    $query = "select t.no_pembelian, p.nama_depan, p.path_poto, h.nama_hewan, CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman
-    , (t.biaya_pengiriman + t.pajak + h.harga) as total_pembelian , t.waktu_pembayaran
-    from transaksi t
+    $query = "select t.*, p.nama_depan, CONCAT_WS(', ', a.jalan, a.kelurahan, a.kecamatan, a.kota_kabupaten, a.provinsi) AS alamat_pengiriman,
+	(t.biaya_pengiriman + t.pajak + h.harga) as total_pembelian, h.* , j.jenis_hewan as jenis, p.path_poto as poto_pengguna
+    from transaksi t 
     join pengguna p on t.id_pengguna = p.id
-    join hewan h on t.id_hewan = h.id
     join alamat a on p.id = a.id_pengguna
+    join hewan h on t.id_hewan = h.id
+    join jenis_hewan j on h.jenis_hewan = j.id
     where t.status = 'Menunggu'
     LIMIT ?, ?";
 

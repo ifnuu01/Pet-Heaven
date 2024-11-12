@@ -44,7 +44,7 @@ $total_pengguna = total_pengguna($conn);
 </div>
 
 
-<script src="assets/js/pengaturan-dropdown.js"></script>
-<script src="assets/js/modal-confirm.js"></script>
-</body>
-</html>
+<?php
+
+include 'template-admin/footer.php';
+?>

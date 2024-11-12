@@ -26,10 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['blokir'])) {
     $id = $_POST['blokir'];
     $status = blokir_user($conn, $id);
     if ($status['status']) {
-        echo "<script>alert('User berhasil diblokir.');</script>";
-        echo "<script>window.location = 'manajemen_user.php';</script>";
+        echo "<script>
+    alertModal('manajemen_user', '{$status['message']}', 'Lanjut');</script>";
     } else {
-        echo "<script>alert('User gagal diblokir: {$status['message']}');</script>";
+        echo "<script>
+    alertModal('manajemen_user', '{$status['message']}', 'Lanjut');</script>";
     }
 }
 
@@ -97,28 +98,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['blokir'])) {
 
     <div class="pagination">
         <?php if ($halaman > 1): ?>
-            <a class="button" href="?page=<?= $halaman - 1; ?><?= isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>">Sebelumnya</a>
+            <a class="button" href="?page=<?php echo $halaman - 1; ?><?php echo isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>">Sebelumnya</a>
         <?php else: ?>
-            <span class="button">Sebelumnya</span>
+            <span class="button red">Sebelumnya</span>
         <?php endif; ?>
 
-        <?php for ($i = 1; $i <= $total_halaman; $i++): ?>
+        <!-- Nomor Halaman -->
+        <?php
+        $start_page = max(1, $halaman - 2);
+        $end_page = min($total_halaman, $halaman + 2);
+        if ($end_page - $start_page < 4) {
+            $end_page = min($total_halaman, $start_page + 4);
+        }
+        if ($end_page - $start_page < 4) {
+            $start_page = max(1, $end_page - 4);
+        }
+        ?>
+
+        <?php for ($i = $start_page; $i <= $end_page; $i++): ?>
             <?php if ($i == $halaman): ?>
-                <strong class="nomor"><?= $i; ?></strong>
+                <strong class="nomor"><?php echo $i; ?></strong>
             <?php else: ?>
-                <a class="nomor" href="?page=<?= $i; ?><?= isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>"><?= $i; ?></a>
+                <a class="nomor" href="?page=<?php echo $i; ?><?php echo isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>"><?php echo $i; ?></a>
             <?php endif; ?>
         <?php endfor; ?>
 
         <?php if ($halaman < $total_halaman): ?>
-            <a class="button" href="?page=<?= $halaman + 1; ?><?= isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>">Selanjutnya</a>
+            <a class="button" href="?page=<?php echo $halaman + 1; ?><?php echo isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>">Selanjutnya</a>
         <?php else: ?>
             <span class="button">Selanjutnya</span>
         <?php endif; ?>
     </div>
 </div>
 
-<script src="assets/js/pengaturan-dropdown.js"></script>
-<script src="assets/js/modal-confirm.js"></script>
-</body>
-</html>
+
+
+
+<?php
+
+include 'template-admin/footer.php';
+
+?>

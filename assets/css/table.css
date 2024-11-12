@@ -127,10 +127,20 @@ tr:hover {
   font-size: 25px;
 }
 
+.search-container.hewan {
+  width: 100%;
+  display: grid;
+  grid-template-areas: "kosong search search tombol";
+  grid-template-columns: 150px 1fr 1fr 200px;
+  gap: 2em;
+}
+
+.search-container.hewan form {
+  grid-area: search;
+}
+
 .detail-btn3 {
-  position: absolute;
-  right: 1em;
-  top: 13%;
+  grid-area: tombol;
   background-color: #ffa500;
   color: #ffffff;
   border: none;
@@ -138,6 +148,7 @@ tr:hover {
   border-radius: 5px;
   cursor: pointer;
   font-size: 13px;
+  margin-right: 1em;
 }
 
 .detail-btn3:hover {

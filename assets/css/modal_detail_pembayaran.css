@@ -1,0 +1,191 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.container-modal-pembayaran {
+  position: fixed;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.container-pembayaran {
+  width: 100%;
+  max-width: 800px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+  color: #000;
+}
+
+.status {
+  background-color: #ffff;
+  color: #08a208;
+  border: 1px solid #08a208;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: default;
+}
+
+.card {
+  display: flex;
+  gap: 20px;
+}
+
+.left,
+.right {
+  flex: 1;
+}
+
+.transaction {
+  background-color: #eaf3fe;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+}
+
+.transaction-img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.right {
+  flex: 1;
+}
+
+.top-info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.animal-info {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.animal-img {
+  width: 50%;
+  border-radius: 5px;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+}
+
+.info-text h2 {
+  font-size: 16px;
+  color: #212121;
+}
+
+.info {
+  width: 50%;
+  color: #212121;
+}
+
+.info h2 {
+  font-size: 14px;
+  margin-top: 0;
+}
+
+.price {
+  font-size: 18px;
+  color: #212121;
+  font-weight: bold;
+  margin-bottom: 8px;
+  margin-top: 10px;
+}
+
+.date {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+  margin-top: 120px;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  font-size: 14px;
+}
+
+ul li {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+ul li strong {
+  font-weight: bold;
+}
+
+#payment-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
+  gap: 1em;
+}
+
+.konfirmasi-pembayaran,
+.back {
+  padding: 10px 150px;
+  text-align: center;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #ffa500;
+  border-color: #ffa500;
+  color: #ffff;
+}
+
+.konfirmasi-pembayaran {
+  padding: 10px 40px;
+  background-color: #ffa500;
+  border-color: #ffa500;
+  color: #ffff;
+}
+
+.back.confirm {
+  padding: 10px 40px;
+  background-color: #ffff;
+  color: #ffa500;
+  border: 1px solid #ffa500;
+}
+
+.back:hover {
+  background-color: #d87c00;
+}
+
+.back.confirm:hover {
+  background-color: #ffff;
+}
