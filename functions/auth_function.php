@@ -21,26 +21,32 @@ function registrasi($conn, $username, $nama_depan, $nama_belakang, $email, $pass
     }
 
     
-    $query = "SELECT * FROM pengguna WHERE username = ? OR email = ?";
+    $query = "SELECT * FROM pengguna WHERE username = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ss", $username, $email);
+    $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
     if ($row) {
-        if ($row['username'] === $username) {
-            return [
-                "status" => false,
-                "message" => "Username ini sudah terdaftar. Masukan username yang berbeda"
-            ];
-        }
-        if ($row['email'] === $email) {
-            return [
-                "status" => false,
-                "message" => "Email ini sudah terdaftar. Masukan email yang berbeda"
-            ];
-        }
+        return [
+            "status" => false,
+            "message" => "Username ini sudah terdaftar. Masukan username yang berbeda"
+        ];
+    }
+
+    $query = "SELECT * FROM pengguna WHERE email = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    if ($row) {
+        return [
+            "status" => false,
+            "message" => "Email ini sudah terdaftar. Masukan email yang berbeda"
+        ];
     }
 
     
