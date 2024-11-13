@@ -83,7 +83,7 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
                     <div class="profile">
                         <span><?php echo $_SESSION['user']['nama_depan'] ?></span>
                         <div class="profile-img">
-                            <img src="" alt="">
+                            <img src="assets/img/profiles/profile.jpg" alt="" width="100%">
                         </div>
                     </div>
                 <?php
