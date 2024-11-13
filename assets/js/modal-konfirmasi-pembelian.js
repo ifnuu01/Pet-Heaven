@@ -28,7 +28,7 @@ function openDetailKonfirmasi(data) {
     ageStage.textContent = data.tahapan_usia;
     color.textContent = data.warna;
     gender.textContent = data.jenis_kelamin;
-    weight.textContent = data.berat;
+    weight.textContent = `${data.berat} Kg`;
     adminTax.textContent = `Rp${data.pajak}`;
     shippingFee.textContent = `Rp${data.biaya_pengiriman}`;
     totalPayment.textContent = `Rp${data.total_pembelian}`;

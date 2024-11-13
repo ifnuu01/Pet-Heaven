@@ -33,6 +33,7 @@ function openDetailPembayaran(data) {
     const paymentMethod = document.getElementById('payment-method');
     const purchaseNumber = document.getElementById('purchase-number');
     const pembayaranImg = document.getElementById('pembayaran');
+    const status_konfirmasi = document.getElementById('status-konfirmasi');
 
     animalImg.src = data.path_poto;
     pembayaranImg.src = data.bukti_pembayaran;
@@ -43,12 +44,17 @@ function openDetailPembayaran(data) {
     ageStage.textContent = data.tahapan_usia;
     color.textContent = data.warna;
     gender.textContent = data.jenis_kelamin;
-    weight.textContent = data.berat;
+    weight.textContent = `${data.berat} Kg`;
     adminTax.textContent = `Rp${data.pajak}`;
     shippingFee.textContent = `Rp${data.biaya_pengiriman}`;
     totalPayment.textContent = `Rp${data.total_pembelian}`;
     paymentMethod.textContent = data.metode_pembayaran;
     purchaseNumber.textContent = data.no_pembelian;
+    status_konfirmasi.textContent = data.status;
+
+    if (data.status == "Ditolak") {
+        status_konfirmasi.classList.add('merah');
+    }
 
     modal_penjualan.showModal();
     }

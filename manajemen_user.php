@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['blokir'])) {
         <?php if ($halaman > 1): ?>
             <a class="button" href="?page=<?php echo $halaman - 1; ?><?php echo isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>">Sebelumnya</a>
         <?php else: ?>
-            <span class="button red">Sebelumnya</span>
+            <span class="button red" hidden>Sebelumnya</span>
         <?php endif; ?>
 
         <!-- Nomor Halaman -->
@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['blokir'])) {
         <?php if ($halaman < $total_halaman): ?>
             <a class="button" href="?page=<?php echo $halaman + 1; ?><?php echo isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>">Selanjutnya</a>
         <?php else: ?>
-            <span class="button">Selanjutnya</span>
+            <span class="button" hidden>Selanjutnya</span>
         <?php endif; ?>
     </div>
 </div>

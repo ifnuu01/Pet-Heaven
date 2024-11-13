@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
                         <td class="align-center"><img src="<?= $hewan->path_poto; ?>" alt="Foto Hewan" width="40px" height="30px"></td>
                         <td class="align-center"><?= $hewan->tahapan_usia; ?></td>
                         <td class="align-center"><?= $hewan->jenis_kelamin; ?></td>
-                        <td class="align-center"><?= $hewan->jenis_hewan; ?></td>
+                        <td class="align-center"><?= $hewan->jenis; ?></td>
                         <td class="align-center">Rp<?= number_format($hewan->harga, 2); ?></td>
                         <td class="align-center"><?= $hewan->tanggal_ditambahkan; ?></td>
                         <td class="container-btn">
@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
         <?php if ($halaman > 1): ?>
             <a class="button" href="?page=<?php echo $halaman - 1; ?><?php echo isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>">Sebelumnya</a>
         <?php else: ?>
-            <span class="button red">Sebelumnya</span>
+            <span class="button red" hidden>Sebelumnya</span>
         <?php endif; ?>
 
         <!-- Nomor Halaman -->
@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
 
         <?php for ($i = $start_page; $i <= $end_page; $i++): ?>
             <?php if ($i == $halaman): ?>
-                <strong class="nomor"><?php echo $i; ?></strong>
+                <strong class="nomor oren"><?php echo $i; ?></strong>
             <?php else: ?>
                 <a class="nomor" href="?page=<?php echo $i; ?><?php echo isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>"><?php echo $i; ?></a>
             <?php endif; ?>
@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
         <?php if ($halaman < $total_halaman): ?>
             <a class="button" href="?page=<?php echo $halaman + 1; ?><?php echo isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>">Selanjutnya</a>
         <?php else: ?>
-            <span class="button">Selanjutnya</span>
+            <span class="button" hidden>Selanjutnya</span>
         <?php endif; ?>
     </div>
 </div>
@@ -176,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
             <input type="text" id="nama-hewan" name="nama-hewan" required>
           </div>
           <div class="form-group">
-            <label for="berat">Berat</label>
+            <label for="berat">Berat (Kg)</label>
             <input type="number" id="berat" name="berat" min="1" required>
           </div>
           <div class="form-group">
@@ -244,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
             <input type="text" id="edit-nama-hewan" name="nama-hewan" required>
           </div>
           <div class="form-group">
-            <label for="edit-berat">Berat</label>
+            <label for="edit-berat">Berat (Kg)</label>
             <input type="number" id="edit-berat" name="berat" min="1" required>
           </div>
           <div class="form-group">

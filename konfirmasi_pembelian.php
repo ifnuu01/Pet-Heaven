@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'])) {
         <?php if ($halaman > 1): ?>
             <a class="button" href="?page=<?php echo $halaman - 1; ?><?php echo isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>">Sebelumnya</a>
         <?php else: ?>
-            <span class="button red">Sebelumnya</span>
+            <span class="button red" hidden>Sebelumnya</span>
         <?php endif; ?>
 
         <!-- Nomor Halaman -->
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'])) {
         <?php if ($halaman < $total_halaman): ?>
             <a class="button" href="?page=<?php echo $halaman + 1; ?><?php echo isset($_GET['search']) ? '&search=' . $_GET['search'] : ''; ?>">Selanjutnya</a>
         <?php else: ?>
-            <span class="button">Selanjutnya</span>
+            <span class="button" hidden>Selanjutnya</span>
         <?php endif; ?>
     </div>
 </div>
@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'])) {
         <div class="container-pembayaran" id="container-pembayaran">
             <div class="header" id="header-pembayaran">
                 <h1>Detail Pembayaran</h1>
-                <button class="status" id="status-konfirmasi">Dikonfirmasi</button>
+                <button class="status oren" id="status-konfirmasi">Menunggu</button>
             </div>
             <div class="card" id="card-pembayaran">
                 <div class="left" id="left-card">

@@ -124,9 +124,9 @@ if (isset($_POST['password-lama']) && isset($_POST['password-baru'])) {
     $user = $_SESSION['user']['id'];
     $result = ubah_password($conn, $password_baru, $password_lama, $user);
     if ($result['status']) {
-        echo "<script>alertModal('/', '{$result['message']}', 'Lanjut');</script>";
+        echo "<script>alertModal('#', '{$result['message']}', 'Lanjut');</script>";
     } else {
-        echo "<script>alertModal('/', '{$result['message']}', 'Lanjut');</script>";
+        echo "<script>alertModal('#', '{$result['message']}', 'Lanjut');</script>";
     }
 }
 

@@ -9,8 +9,9 @@ function getDataHewan($conn, $limit_bawah, $limit_atas)
 {
     $query = "
             SELECT 
-                *
-            FROM hewan 
+                h.*, j.jenis_hewan as jenis
+            FROM hewan h 
+            join jenis_hewan j on h.jenis_hewan = j.id
             WHERE status = 1
             LIMIT ?, ?";
     

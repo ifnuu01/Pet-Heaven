@@ -47,6 +47,20 @@
   cursor: default;
 }
 
+.status.oren {
+  color: #ffa500;
+  background-color: #ffff;
+  border: 1px solid #ffa500;
+  outline: none;
+}
+
+.status.merah {
+  color: #ff0000;
+  background-color: #ffff;
+  border: 1px solid #ff0000;
+  outline: none;
+}
+
 .card {
   display: flex;
   gap: 20px;

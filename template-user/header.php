@@ -67,7 +67,7 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
             <li class="item1">
                 <div>
                     <a href="/"><img src="assets/logo/logo.png" alt="" width="120px"></a>
-                    <a href="/"><iconify-icon icon="line-md:home"></iconify-icon></a>
+                    <a href="/" class="oren"><iconify-icon icon="line-md:home"></iconify-icon></a>
                     <span id="kategori">Kategori</span>
                 </div>
             </li>
