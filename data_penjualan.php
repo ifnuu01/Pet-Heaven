@@ -42,7 +42,6 @@ if (isset($_GET['search'])) {
                 <tr>
                     <th>No. Pembelian</th>
                     <th>Nama Pengguna</th>
-                    <th>Alamat Pengirim</th>
                     <th>Total Pembelian</th>
                     <th>Tanggal Pembayaran</th>
                     <th>Status</th>
@@ -55,7 +54,6 @@ if (isset($_GET['search'])) {
                 <tr>
                     <td class="align-center"><?= $penjualan->no_pembelian ?></td>
                     <td class="align-center"><?= $penjualan->nama_depan ?></td>
-                    <td><?= $penjualan->alamat_pengiriman ?></td>
                     <td class="align-center">Rp<?= number_format($penjualan->total_pembelian, 2) ?></td>
                     <td class="align-center"><?= $penjualan->waktu_pembayaran ?></td>
                     <td class="align-center">

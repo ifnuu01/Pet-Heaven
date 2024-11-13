@@ -42,7 +42,8 @@
   box-shadow: 0 1px 3px #73767a;
   overflow: hidden;
   margin-bottom: 20px;
-  width: 100%;
+  width: 80%;
+  border-radius: 5px;
 }
 
 table {
@@ -128,10 +129,10 @@ tr:hover {
 }
 
 .search-container.hewan {
-  width: 100%;
+  width: 80%;
   display: grid;
   grid-template-areas: "kosong search search tombol";
-  grid-template-columns: 150px 1fr 1fr 200px;
+  grid-template-columns: 30px 1fr 1fr 200px;
   gap: 2em;
 }
 
@@ -164,10 +165,9 @@ tr:hover {
 
 .pagination {
   display: flex;
-  align-self: flex-end;
-  justify-content: flex-end;
   gap: 8px;
-  margin-right: 1em;
+  width: 80%;
+  justify-content: flex-end;
 }
 
 .pagination .button {

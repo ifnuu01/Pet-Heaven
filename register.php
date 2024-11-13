@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container">
         <div class="registration-page">
             <form action="#" method="POST">
-                <a href="/" class="icon"><iconify-icon icon="uil:exit"></iconify-icon></a>
+                <a href="/" class="icon"><iconify-icon icon="line-md:home"></iconify-icon></a>
                 <h1>Daftar</h1>
                 <div class="input">
                     <input type="text" name="username" id="username" placeholder="Username" autocomplete="off" autofocus required>

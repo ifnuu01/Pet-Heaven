@@ -86,7 +86,7 @@ function isActive($path) {
 <div class="sidebar">
     <ul>
         <div class="logo">
-            <a href=""><img src="assets/logo/logo.png" alt="" width="150px"></a>
+            <a href=""><img src="assets/logo/logo.png" alt="" width="120px"></a>
             <div class="line"></div>
         </div>
         <div class="sidebar-menu">

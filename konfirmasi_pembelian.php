@@ -47,8 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'])) {
                     <th>No. Pembelian</th>
                     <th>Nama Pengguna</th>
                     <th>Foto User</th>
-                    <th>Nama Hewan</th>
-                    <th>Alamat Pengiriman</th>
                     <th>Total Pembelian</th>
                     <th>Tanggal Pembayaran</th>
                     <th>Aksi</th>
@@ -61,8 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'])) {
                         <td class="align-center"><?= $konfirmasi->no_pembelian; ?></td>
                         <td class="align-center"><?= $konfirmasi->nama_depan; ?></td>
                         <td><img src="<?= $konfirmasi->poto_pengguna; ?>" alt="Foto User" width="50"></td>
-                        <td class="align-center"><?= $konfirmasi->nama_hewan; ?></td>
-                        <td><?= $konfirmasi->alamat_pengiriman; ?></td>
                         <td class="align-center">Rp <?= number_format($konfirmasi->total_pembelian, 2); ?></td>
                         <td class="align-center"><?= $konfirmasi->waktu_pembayaran; ?></td>
                         <td class="align-center"><button onclick="openDetailKonfirmasi(<?= htmlspecialchars(json_encode($konfirmasi), ENT_QUOTES, 'UTF-8') ?>)" class="detail-btn" >Detail</button></td>

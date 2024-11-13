@@ -82,11 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
                 <tr>
                     <th>Nama Hewan</th>
                     <th>Foto</th>
-                    <th>Tahapan Usia</th>
-                    <th>Jenis Kelamin</th>
                     <th>Jenis Hewan</th>
                     <th>Harga Hewan</th>
-                    <th>Tanggal Ditambahkan</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -96,11 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
                     <tr>
                         <td class="align-center"><?= $hewan->nama_hewan; ?></td>
                         <td class="align-center"><img src="<?= $hewan->path_poto; ?>" alt="Foto Hewan" width="40px" height="30px"></td>
-                        <td class="align-center"><?= $hewan->tahapan_usia; ?></td>
-                        <td class="align-center"><?= $hewan->jenis_kelamin; ?></td>
                         <td class="align-center"><?= $hewan->jenis; ?></td>
                         <td class="align-center">Rp<?= number_format($hewan->harga, 2); ?></td>
-                        <td class="align-center"><?= $hewan->tanggal_ditambahkan; ?></td>
                         <td class="container-btn">
                             <button class="detail-btn2" onclick="openEditModal(<?= htmlspecialchars(json_encode($hewan), ENT_QUOTES, 'UTF-8'); ?>)"><iconify-icon icon="ph:note-pencil-bold"></iconify-icon></button>
                             <form action="#" method="POST" id="hapusHewan-<?= $hewan->id; ?>">

@@ -53,10 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['blokir'])) {
                     <th>Foto</th>
                     <th>Email</th>
                     <th>No. HP</th>
-                    <th>Tanggal Lahir</th>
-                    <th>Jenis Kelamin</th>
-                    <th>Alamat</th>
-                    <th>Tanggal Dibuat</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -68,10 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['blokir'])) {
                             <td class="align-center"><img src="<?= $user->path_poto; ?>" alt="Foto User" width="40px" height="30px"></td>
                             <td class="align-center"><?= $user->email; ?></td>
                             <td class="align-center"><?= $user->nomor_hp; ?></td>
-                            <td class="align-center"><?= $user->tanggal_lahir; ?></td>
-                            <td class="align-center"><?= $user->jenis_kelamin; ?></td>
-                            <td><?= $user->alamat_pengiriman; ?></td>
-                            <td class="align-center"><?= $user->tanggal_dibuat; ?></td>
                             <td class="align-center">
                                <form action="#" method="POST" id="blokirUser-<?= $user->id; ?>">
                                     <input type="hidden" name="blokir" value="<?= $user->id; ?>">
