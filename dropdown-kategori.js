@@ -3,7 +3,6 @@ const buttonKategori = document.getElementById('button-kategori');
 
 buttonKategori.addEventListener('click', () => {
     kategoriDropdown.classList.toggle('active');
-    buttonKategori.classList.toggle('active');
 });
 
 document.addEventListener('click', (event) => {

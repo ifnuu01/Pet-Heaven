@@ -20,17 +20,11 @@ if (isset($_SESSION['user']['role'])){
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/footer-user.css">
-    <link rel="stylesheet" href="assets/css/home-user.css">
-    <link rel="stylesheet" href="assets/css/modal-confirm.css">
-    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <title>
         <?php
         if ($url === '/') {
@@ -52,6 +46,11 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         }
         ?>
     </title>
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/footer-user.css">
+    <link rel="stylesheet" href="assets/css/home-user.css">
+    <link rel="stylesheet" href="assets/css/modal-confirm.css">
 </head>
 <body>
 <dialog id="confirmModal">
@@ -63,35 +62,41 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         </div>
     </div>
 </dialog>
-    <nav class="navbar-user">
-        <div class="menu-nav1">
-            <a href="/"><img src="logo.png" alt="" width="50px"></a>
-            <iconify-icon icon="line-md:home"></iconify-icon>
-            <span id="button-kategori">Kategori</span>
-        </div>
-        <div class="search">
-            <form action="">
-                <input type="text" name="search" placeholder="Cari hewan">
-            </form>
-        </div>
-        <div class="menu-nav">
-        <?php
-                if (isset($_SESSION['user'])){ ?>
-                <div class="profile">
-                    <span>Ifnu</span>
-                    <div class="img-profile">  
-                    </div>
+    <nav>
+        <ul class="content-nav-item">
+            <li class="item1">
+                <div>
+                    <a href="/"><img src="assets/logo/logo.png" alt="" width="120px"></a>
+                    <a href="/" class="oren"><iconify-icon icon="line-md:home"></iconify-icon></a>
+                    <span id="kategori">Kategori</span>
                 </div>
+            </li>
+            <li class="item2">
+                <form action="" method="get">
+                    <input type="text" name="search" id="search" placeholder="Mencari">
+                    <button type="submit" hidden >Cari</button>
+                </form>
+            </li>
+            <li class="item3">
+                <?php
+                if (isset($_SESSION['user'])){ ?>
+                    <div class="profile">
+                        <span><?php echo $_SESSION['user']['nama_depan'] ?></span>
+                        <div class="profile-img">
+                            <img src="assets/img/profiles/profile.jpg" alt="" width="100%">
+                        </div>
+                    </div>
                 <?php
                 }
                 else{ ?>
-                    <div class="menu-auth">
-                        <a href="login">Masuk</a>
+                    <div>
+                        <a href="/login">Masuk</a>
                         <div class="line"></div>
-                        <a href="register">Daftar</a>
+                        <a href="/register">Daftar</a>
                     </div>
-            <?php } ?>
-        </div>
+                <?php } ?>
+            </li>
+        </ul>
     </nav>
     <?php
     if (isset($_SESSION['user'])){
@@ -118,7 +123,7 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     </div>
     <?php
     }?>
-    <div class="container-kategori" id="container-kategori">
+    <div id="dropdown-kategori" class="">
         <div class="dropdown-content">
             <a href="/?kategori=1">Anjing</a>
             <a href="/?kategori=2">Kucing</a>
@@ -130,4 +135,3 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
             <a href="/?kategori=8">Ikan</a>
         </div>
     </div>
-
