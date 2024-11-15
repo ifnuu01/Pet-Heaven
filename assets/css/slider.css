@@ -14,7 +14,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6em 0em 2em 0em;
+  padding: 4em 0em 2em 0em;
 }
 
 .hero-1 .hero-1-content {
@@ -96,7 +96,7 @@ body {
   }
 
   .hero-1 .hero-1-content {
-    height: 550px;
+    height: 650px;
   }
 
   .content-hero-1 {
