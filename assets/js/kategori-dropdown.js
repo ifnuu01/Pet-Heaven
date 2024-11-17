@@ -9,5 +9,6 @@ buttonKategori.addEventListener('click', () => {
 document.addEventListener('click', (event) => {
     if (!kategoriDropdown.contains(event.target) && !buttonKategori.contains(event.target)) {
         kategoriDropdown.classList.remove('active');
+        buttonKategori.classList.remove('active');
     }
 });

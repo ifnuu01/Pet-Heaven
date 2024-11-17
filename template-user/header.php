@@ -101,6 +101,18 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
                 <iconify-icon icon="gg:profile"></iconify-icon>
                 <span>Profile</span>
             </a>
+            <a href="/alamat">
+                <iconify-icon icon="bx:bxs-map"></iconify-icon>
+                <span>Alamat</span>
+            </a>
+            <a href="/riwayat_pembelian">
+                <iconify-icon icon="bx:bxs-cart"></iconify-icon>
+                <span>Riwayat Pembelian</span>
+            </a>
+            <a href="/notifikasi">
+                <iconify-icon icon="bx:bxs-notification"></iconify-icon>
+                <span>Notifikasi</span>
+            </a>
             <form action="/" method="post" id="logoutForm">
                 <input type="hidden" name="logout" value="1"></input>
             </form>
