@@ -32,7 +32,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  padding: 2em;
 }
 
 .btn {
@@ -145,4 +144,19 @@ span {
 
 .icon iconify-icon:hover {
   color: #ffa500;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    border-radius: 0;
+  }
+
+  .btn {
+    height: 50px;
+    font-size: 1.2em;
+  }
+
+  form h1 {
+    font-size: 2em;
+  }
 }

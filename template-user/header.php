@@ -65,7 +65,7 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     <nav class="navbar-user">
         <div class="menu-nav1">
             <a href="/"><img src="logo.png" alt="" width="50px"></a>
-            <iconify-icon icon="line-md:home"></iconify-icon>
+            <a href="/"><iconify-icon icon="line-md:home"></iconify-icon></a>
             <span id="button-kategori">Kategori</span>
         </div>
         <div class="search">

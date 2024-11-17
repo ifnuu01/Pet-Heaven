@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
     <div class="modal-content-add">
       <div class="modal-header">
         <h3>Tambah Hewan</h3>
-        <span class="close-button"><iconify-icon icon="uil:exit"></iconify-icon></span>
+        <span class="close-button"><iconify-icon icon="line-md:close-small"></iconify-icon></span>
       </div>
       <div class="modal-body">
         <form class="modal-form grid-3x3" action="#" method="POST" enctype="multipart/form-data">
@@ -227,7 +227,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
     <div class="modal-content-edit">
       <div class="modal-header">
         <h3>Ubah Hewan</h3>
-        <span class="close-button-edit"><iconify-icon icon="uil:exit"></iconify-icon></span>
+        <span class="close-button-edit"><iconify-icon icon="line-md:close-small"></iconify-icon></span>
       </div>
       <div class="modal-body">
         <form class="modal-form grid-3x3" action="#" method="POST" enctype="multipart/form-data">

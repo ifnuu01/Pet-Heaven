@@ -626,17 +626,10 @@ function search_data_penjualan($conn, $nama_pengguna, $limit_bawah, $limit_atas)
 function search_manajemen_hewan($conn, $nama_hewan, $limit_bawah, $limit_atas)
 {
     $query = "SELECT 
-    h.id,
-    h.nama_hewan,
-    h.path_poto,
-    h.tahapan_usia,
-    h.jenis_kelamin,
-    j.jenis_hewan,
-    h.harga,
-    h.tanggal_ditambahkan
-    FROM hewan h
-    JOIN jenis_hewan j ON h.jenis_hewan = j.id 
-    WHERE h.status = 1 AND h.nama_hewan LIKE ?
+    h.*, j.jenis_hewan as jenis
+    FROM hewan h 
+    join jenis_hewan j on h.jenis_hewan = j.id
+    WHERE status = 1 AND h.nama_hewan LIKE ?
     LIMIT ?, ?";
     
     $nama_hewan = "%" . $nama_hewan . "%";

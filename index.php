@@ -201,6 +201,174 @@ include 'template-user/header.php';
                         </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="img">
+                        <img src="assets/img/hewan/gambar.png" alt="">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-text">
+                            <h3>Johnson</h3>
+                            <h1>Rp25.000</h1>
+                        </div>
+                        <div class="card-button">
+                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <img src="assets/img/hewan/gambar.png" alt="">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-text">
+                            <h3>Johnson</h3>
+                            <h1>Rp25.000</h1>
+                        </div>
+                        <div class="card-button">
+                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <img src="assets/img/hewan/gambar.png" alt="">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-text">
+                            <h3>Johnson</h3>
+                            <h1>Rp25.000</h1>
+                        </div>
+                        <div class="card-button">
+                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <img src="assets/img/hewan/gambar.png" alt="">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-text">
+                            <h3>Johnson</h3>
+                            <h1>Rp25.000</h1>
+                        </div>
+                        <div class="card-button">
+                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <img src="assets/img/hewan/gambar.png" alt="">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-text">
+                            <h3>Johnson</h3>
+                            <h1>Rp25.000</h1>
+                        </div>
+                        <div class="card-button">
+                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <img src="assets/img/hewan/gambar.png" alt="">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-text">
+                            <h3>Johnson</h3>
+                            <h1>Rp25.000</h1>
+                        </div>
+                        <div class="card-button">
+                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <img src="assets/img/hewan/gambar.png" alt="">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-text">
+                            <h3>Johnson</h3>
+                            <h1>Rp25.000</h1>
+                        </div>
+                        <div class="card-button">
+                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <img src="assets/img/hewan/gambar.png" alt="">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-text">
+                            <h3>Johnson</h3>
+                            <h1>Rp25.000</h1>
+                        </div>
+                        <div class="card-button">
+                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <img src="assets/img/hewan/gambar.png" alt="">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-text">
+                            <h3>Johnson</h3>
+                            <h1>Rp25.000</h1>
+                        </div>
+                        <div class="card-button">
+                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <img src="assets/img/hewan/gambar.png" alt="">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-text">
+                            <h3>Johnson</h3>
+                            <h1>Rp25.000</h1>
+                        </div>
+                        <div class="card-button">
+                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <img src="assets/img/hewan/gambar.png" alt="">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-text">
+                            <h3>Johnson</h3>
+                            <h1>Rp25.000</h1>
+                        </div>
+                        <div class="card-button">
+                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img">
+                        <img src="assets/img/hewan/gambar.png" alt="">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-text">
+                            <h3>Johnson</h3>
+                            <h1>Rp25.000</h1>
+                        </div>
+                        <div class="card-button">
+                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="muat">
                 <a href="#" class="btn-primary btn-muat">Muat Lainnya</a>
