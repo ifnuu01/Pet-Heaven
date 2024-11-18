@@ -24,9 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'])) {
     $no = $_POST['nomor_pembelian'];
     $status = konfirmasi_pembelian($conn, $no, $status);
     if($status['status']) {
-        echo "<script>alertModal('konfirmasi_pembelian', '{$status['message']}', 'Lanjut');</script>";
+        echo "<script>alertModal('konfirmasi_pembelian', '{$status['message']}', 'Lanjut', 'assets/logo/centang.png');</script>";
     }else{
-        echo "<script>alertModal('konfirmasi_pembelian', '{$status['message']}', 'Lanjut');</script>";
+        echo "<script>alertModal('konfirmasi_pembelian', '{$status['message']}', 'Lanjut', 'assets/logo/cancel.png');</script>";
     }
 }
 

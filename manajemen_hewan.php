@@ -23,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['hapus_hewan'])) {
     $id = $_POST['hapus_hewan'];
     $status = hapusHewan($conn, $id);
     if ($status['status']) {
-        echo "<script>alertModal('manajemen_hewan', '{$status['message']}', 'Lanjut');</script>";
+        echo "<script>alertModal('manajemen_hewan', '{$status['message']}', 'Lanjut', 'assets/logo/centang.png');</script>";
     } else {
-        echo "<script>alertModal('manajemen_hewan', '{$status['message']}', 'Lanjut');</script>";
+        echo "<script>alertModal('manajemen_hewan', '{$status['message']}', 'Lanjut', 'assets/logo/cancel.png');</script>";
     }
 }
 
@@ -41,9 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add'])) {
 
     $status = tambahHewan($conn, $nama_hewan, $tahapan_usia, $berat, $jenis_kelamin, $warna, $jenis, $harga, $foto);
     if ($status['status']) {
-        echo "<script>alertModal('manajemen_hewan', '{$status['message']}', 'Lanjut');</script>";
+        echo "<script>alertModal('manajemen_hewan', '{$status['message']}', 'Lanjut', 'assets/logo/centang.png');</script>";
     } else {
-        echo "<script>alertModal('manajemen_hewan', '{$status['message']}', 'Lanjut');</script>";
+        echo "<script>alertModal('manajemen_hewan', '{$status['message']}', 'Lanjut', 'assets/logo/cancel.png');</script>";
     }
 }
 
@@ -60,9 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
 
     $status = editHewan($conn, $id, $nama_hewan, $tahapan_usia, $berat, $jenis_kelamin, $warna, $jenis, $harga, $foto);
     if ($status['status']) {
-        echo "<script>alertModal('manajemen_hewan', '{$status['message']}', 'Lanjut');</script>";
+        echo "<script>alertModal('manajemen_hewan', '{$status['message']}', 'Lanjut', 'assets/logo/centang.png');</script>";
     } else {
-        echo "<script>alertModal('manajemen_hewan', '{$status['message']}', 'Lanjut');</script>";
+        echo "<script>alertModal('manajemen_hewan', '{$status['message']}', 'Lanjut', 'assets/logo/cancel.png');</script>";
     }
 }
 ?>

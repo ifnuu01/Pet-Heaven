@@ -27,10 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['blokir'])) {
     $status = blokir_user($conn, $id);
     if ($status['status']) {
         echo "<script>
-    alertModal('manajemen_user', '{$status['message']}', 'Lanjut');</script>";
+    alertModal('manajemen_user', '{$status['message']}', 'Lanjut', 'assets/logo/centang.png');</script>";
     } else {
         echo "<script>
-    alertModal('manajemen_user', '{$status['message']}', 'Lanjut');</script>";
+    alertModal('manajemen_user', '{$status['message']}', 'Lanjut', 'assets/logo/cancel.png');</script>";
     }
 }
 

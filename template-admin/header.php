@@ -105,6 +105,9 @@ function isActive($path) {
 
 <dialog id="alert-modal" class="admin">
     <div class="alert-modal-content">
+        <div class="logo" id="logo-alert">
+            <img src="" alt="">
+        </div>
         <div class="alert-modal-body">
             <p>Are you sure you want to delete this item?</p>
         </div>
@@ -124,9 +127,9 @@ if (isset($_POST['password-lama']) && isset($_POST['password-baru'])) {
     $user = $_SESSION['user']['id'];
     $result = ubah_password($conn, $password_baru, $password_lama, $user);
     if ($result['status']) {
-        echo "<script>alertModal('#', '{$result['message']}', 'Lanjut');</script>";
+        echo "<script>alertModal('#', '{$result['message']}', 'Lanjut', 'assets/logo/centang.png');</script>";
     } else {
-        echo "<script>alertModal('#', '{$result['message']}', 'Lanjut');</script>";
+        echo "<script>alertModal('#', '{$result['message']}', 'Lanjut', 'assets/logo/cancel.png');</script>";
     }
 }
 
