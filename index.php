@@ -1,6 +1,13 @@
 <?php
 
 include 'template-user/header.php';
+
+$limit_bawah = 0;
+$limit_atas = 5;
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$kategori = isset($_GET['kategori']) ? $_GET['kategori'] : '';
+$hewanData = getDataHewan($conn, $limit_bawah, $limit_atas, $search, $kategori);
+
 ?>
 <link rel="stylesheet" href="assets/css/slider.css">
 <link rel="stylesheet" href="assets/css/card.css">
@@ -32,347 +39,41 @@ include 'template-user/header.php';
             <div class="hero-2-title">
                 <h1>Hewan Peliharaan</h1>
             </div>
-            <div class="hero-2-card">
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="img">
-                        <img src="assets/img/hewan/gambar.png" alt="">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-text">
-                            <h3>Johnson</h3>
-                            <h1>Rp25.000</h1>
-                        </div>
-                        <div class="card-button">
-                            <a href="#" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
-                        </div>
-                    </div>
-                </div>
+            <div class="hero-2-card" id="hewan-container">
+                <?php
+                if ($hewanData['status']) {
+                    if (count($hewanData['data']) > 0) {
+                        foreach ($hewanData['data'] as $hewan) {
+                            echo '<div class="card">
+                                    <div class="img">
+                                        <img src="' . $hewan->path_poto . '" alt="">
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-text">
+                                            <h3>' . $hewan->nama_hewan . '</h3>
+                                            <h1>Rp' . number_format($hewan->harga, 0, ',', '.') . '</h1>
+                                        </div>
+                                        <div class="card-button">
+                                            <a href="detail-hewan?id=' . $hewan->id . '" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
+                                        </div>
+                                    </div>
+                                </div>';
+                        }
+                    } 
+                }
+                ?>
             </div>
-            <div class="muat">
-                <a href="#" class="btn-primary btn-muat">Muat Lainnya</a>
-            </div>
+            <?php
+            if ($hewanData['status'] && count($hewanData['data']) > 0) {
+                echo '<div class="muat">
+                <button class="btn-primary btn-muat" id="load-more">Muat Lainnya</button>
+            </div>';
+            }else {
+                echo '<div class="muat">
+                <button class="btn-primary btn-muat" id="load-more" disabled>Hewan tidak ada</button>
+            </div>';
+            }
+            ?>
         </div>
     </div>  
     <div class="hero-3">
@@ -424,5 +125,54 @@ include 'template-user/header.php';
     <script src="assets/js/profile-dropdown.js"></script>
     <script src="assets/js/modal-confirm.js"></script>
     <script src="assets/js/slider.js"></script>
+    <script>
+        let limitBawah = 0;
+        let limitAtas = 5;
+        const loadMoreBtn = document.getElementById('load-more');
+        const hewanContainer = document.getElementById('hewan-container');
+
+        loadMoreBtn.addEventListener('click', function() {
+            loadMoreBtn.textContent = 'Memuat...';
+            limitBawah += 5;
+            fetch(`/load_more_hewan.php?limit_bawah=${limitBawah}&limit_atas=${limitAtas}&search=${'<?php echo $search; ?>'}&kategori=${'<?php echo $kategori; ?>'}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status) {
+                        if (data.data.length > 0) {
+                            data.data.forEach(hewan => {
+                                const card = document.createElement('div');
+                                card.classList.add('card');
+                                card.innerHTML = `
+                                    <div class="img">
+                                        <img src="${hewan.path_poto}" alt="">
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-text">
+                                            <h3>${hewan.nama_hewan}</h3>
+                                            <h1>Rp${new Intl.NumberFormat('id-ID').format(hewan.harga)}</h1>
+                                        </div>
+                                        <div class="card-button">
+                                            <a href="detail-hewan?id=${hewan.id}" class="btn-primary"><iconify-icon icon="tdesign:cart-filled"></iconify-icon></a>
+                                        </div>
+                                    </div>
+                                `;
+                                hewanContainer.appendChild(card);
+                            });
+                            loadMoreBtn.textContent = 'Muat Lainnya';
+                        } else {
+                            loadMoreBtn.textContent = 'Hewan tidak ada';
+                            loadMoreBtn.disabled = true;
+                        }
+                    } else {
+                        loadMoreBtn.textContent = 'Hewan tidak ada';
+                        loadMoreBtn.disabled = true;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    loadMoreBtn.textContent = 'Muat Lainnya';
+                });
+        });
+    </script>
 </body>
 </html>

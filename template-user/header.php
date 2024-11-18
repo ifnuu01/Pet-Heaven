@@ -3,7 +3,7 @@ session_start();
 
 require_once 'functions/connection.php';
 require_once 'functions/auth_function.php';
-
+require_once 'functions/admin_function.php';
 
 if (isset($_POST['logout'])) {
     logout();   
@@ -19,7 +19,6 @@ if (isset($_SESSION['user']['role'])){
 
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +68,7 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
             <span id="button-kategori">Kategori</span>
         </div>
         <div class="search">
-            <form action="">
+            <form action="/" method="GET">
                 <input type="text" name="search" placeholder="Cari hewan">
             </form>
         </div>
@@ -131,14 +130,12 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     }?>
     <div class="container-kategori" id="container-kategori">
         <div class="dropdown-content">
-            <a href="/?kategori=1">Anjing</a>
-            <a href="/?kategori=2">Kucing</a>
-            <a href="/?kategori=3">Kelinci</a>
-            <a href="/?kategori=4">Hamster</a>
-            <a href="/?kategori=5">Sugar Glider</a>
-            <a href="/?kategori=6">Reptil</a>
-            <a href="/?kategori=7">Burung</a>
-            <a href="/?kategori=8">Ikan</a>
+            <a href="/?kategori=1">Kucing</a>
+            <a href="/?kategori=2">Anjing</a>
+            <a href="/?kategori=3">Ikan Hias</a>
+            <a href="/?kategori=4">Burung</a>
+            <a href="/?kategori=5">Reptil</a>
+            <a href="/?kategori=6">Hamster</a>
+            <a href="/?kategori=7">Serangga</a>
         </div>
     </div>
-

@@ -4,19 +4,49 @@ require 'connection.php';
 
 
 // ADMIN FUNCTION 
-
-function getDataHewan($conn, $limit_bawah, $limit_atas)
+function getDataHewan($conn, $limit_bawah, $limit_atas, $search = '', $kategori = '')
 {
     $query = "
             SELECT 
-                h.*, j.jenis_hewan as jenis
+                h.id,
+                h.nama_hewan,
+                h.jenis_hewan,
+                h.warna,
+                h.berat,
+                h.harga,
+                h.jenis_kelamin,
+                h.tahapan_usia,
+                h.path_poto,
+                h.status,
+                h.tanggal_ditambahkan,
+                j.jenis_hewan as jenis
             FROM hewan h 
-            join jenis_hewan j on h.jenis_hewan = j.id
-            WHERE status = 1
-            LIMIT ?, ?";
-    
+            JOIN jenis_hewan j ON h.jenis_hewan = j.id
+            WHERE h.status = 1";
+
+    if ($search) {
+        $query .= " AND h.nama_hewan LIKE ?";
+        $search = "%$search%";
+    }
+
+    if ($kategori) {
+        $query .= " AND h.jenis_hewan = ?";
+    }
+
+    $query .= " LIMIT ?, ?";
+
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ii", $limit_bawah, $limit_atas);
+
+    if ($search && $kategori) {
+        $stmt->bind_param("ssii", $search, $kategori, $limit_bawah, $limit_atas);
+    } elseif ($search) {
+        $stmt->bind_param("sii", $search, $limit_bawah, $limit_atas);
+    } elseif ($kategori) {
+        $stmt->bind_param("sii", $kategori, $limit_bawah, $limit_atas);
+    } else {
+        $stmt->bind_param("ii", $limit_bawah, $limit_atas);
+    }
+
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -37,6 +67,39 @@ function getDataHewan($conn, $limit_bawah, $limit_atas)
         "data" => $hewanData
     ];
 }
+
+// function getDataHewan($conn, $limit_bawah, $limit_atas)
+// {
+//     $query = "
+//             SELECT 
+//                 h.*, j.jenis_hewan as jenis
+//             FROM hewan h 
+//             join jenis_hewan j on h.jenis_hewan = j.id
+//             WHERE status = 1
+//             LIMIT ?, ?";
+    
+//     $stmt = $conn->prepare($query);
+//     $stmt->bind_param("ii", $limit_bawah, $limit_atas);
+//     $stmt->execute();
+//     $result = $stmt->get_result();
+
+//     if ($result === false) {
+//         return [
+//             "status" => false,
+//             "message" => $conn->error
+//         ];
+//     }
+
+//     $hewanData = [];
+//     while ($row = $result->fetch_object()) {
+//         $hewanData[] = $row;
+//     }
+
+//     return [
+//         "status" => true,
+//         "data" => $hewanData
+//     ];
+// }
 
 // Cara penggunaan function getDataHewan
 
