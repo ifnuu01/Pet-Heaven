@@ -8,12 +8,14 @@ closealert.addEventListener('click', () => {
 });
 
 
-function alertModal(url, pesan, buttonText){
+function alertModal(url, pesan, buttonText, gambar){
     console.log(url);
     urlAlert = url;
     const modalText = document.querySelector('.alert-modal-body p');
+    const iconAlert = document.querySelector('#logo-alert img');
     const modalButton = document.querySelector('.btn-alert');
     modalText.innerHTML = pesan;
+    iconAlert.src = gambar;
     modalButton.innerHTML = buttonText;
     modalAlert.showModal();
 }

@@ -10,12 +10,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   border: none;
-  padding: 0;
-  width: 30%;
   background: none;
+  width: 30%;
   background-color: #ffff;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  justify-items: center;
 }
 
 #alert-modal.admin {
@@ -23,13 +23,14 @@
 }
 
 .alert-modal-content {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 60px;
-  gap: 2em;
+  padding: 20px;
+  gap: 1em;
+  /* background-color: #ffa500; */
 }
 
 .alert-modal-body p {
@@ -55,8 +56,19 @@
   background-color: #8f6002;
 }
 
+.alert-modal-content .logo {
+  /* background-color: #ffa500; */
+  width: 100px;
+  height: 100px;
+}
+
+.alert-modal-content .logo img {
+  width: 100%;
+  height: 100%;
+}
+
 @media screen and (max-width: 768px) {
   #alert-modal {
-    width: 80%;
+    width: 60%;
   }
 }

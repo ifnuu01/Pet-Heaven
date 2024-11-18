@@ -23,11 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($message['status']) {
         $url = $_SESSION['user']['role'] == 'Admin' ? 'dashboard' : '/';
         echo "<script>
-            alertModal('{$url}', '{$message['message']}', 'Lanjut');
+            alertModal('{$url}', '{$message['message']}', 'Lanjut', 'assets/logo/centang.png');
         </script>";
     } else {
         echo "<script>
-            alertModal('login', '{$message['message']}', 'Lanjut');
+            alertModal('login', '{$message['message']}', 'Lanjut', 'assets/logo/cancel.png');
         </script>";
     }
 }

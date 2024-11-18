@@ -10,13 +10,16 @@
 </head>
 <body>
 <dialog id="alert-modal">
-    <div class="alert-modal-content">
-        <div class="alert-modal-body">
-            <p>Are you sure you want to delete this item?</p>
+        <div class="alert-modal-content">
+            <div class="logo" id="logo-alert">
+                <img src="" alt="">
+            </div>
+            <div class="alert-modal-body">
+                <p>Are you sure you want to delete this item?</p>
+            </div>
+            <div class="alert-modal-footer">
+                <button class="btn btn-alert">Lanjut</button>
+            </div>
         </div>
-        <div class="alert-modal-footer">
-            <button class="btn btn-alert">Lanjut</button>
-        </div>
-    </div>
-</dialog>
+    </dialog>
 <script src='assets/js/alert.js' ></script>
