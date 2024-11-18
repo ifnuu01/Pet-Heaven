@@ -76,7 +76,7 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         <?php
                 if (isset($_SESSION['user'])){ ?>
                 <div class="profile">
-                    <span>Ifnu</span>
+                    <span><?= $_SESSION['user']['username'] ?></span>
                     <div class="img-profile">  
                     </div>
                 </div>
