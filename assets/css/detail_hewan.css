@@ -1,0 +1,219 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+body {
+  background-color: #f0f3f7;
+}
+
+.container-detail-hewan {
+  width: 100%;
+  padding-top: 8.5em;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-detail-hewan .detail-hewan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: #ffff;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.content-detail-hewan {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-hewan {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.img-hewan img {
+  width: 300px;
+}
+
+.detail-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.detail-text .name h2 {
+  font-size: 1.5em;
+  font-weight: 400;
+  color: #212121;
+}
+
+.detail-text .harga h1 {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #212121;
+}
+
+.detail-hewan-text {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.detail-hewan-text .text-hewan {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1em;
+}
+
+.detail-hewan-text .text-hewan .strong {
+  font-weight: 600;
+}
+
+.button-detail-hewan {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+  gap: 20px;
+}
+
+.button-detail-hewan .btn {
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #ffa500;
+  background-color: #ffff;
+  width: 150px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.button-detail-hewan .btn.btn-primary {
+  background-color: #ffa500;
+  color: #ffff;
+}
+
+.button-detail-hewan .btn.btn-secondary {
+  background-color: #ffff;
+  color: #ffa500;
+  border: 1px solid #ffa500;
+}
+
+@media screen and (min-width: 1200px) {
+  .container-detail-hewan {
+    padding-top: 70px;
+    height: 100vh;
+  }
+
+  .container-detail-hewan .detail-hewan {
+    width: 70%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  .content-detail-hewan {
+    width: 100%;
+    /* background-color: #ffa500; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 0 20px;
+  }
+
+  .img-hewan {
+    /* background-color: aqua; */
+    justify-content: flex-start;
+  }
+
+  .img-hewan img {
+    width: 450px;
+  }
+
+  .detail-text {
+    /* background-color: aqua; */
+    height: 100%;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .detail-text .name h2 {
+    /* background-color: aqua; */
+    font-size: 1.5em;
+    font-weight: 400;
+    color: #212121;
+  }
+
+  .detail-text .harga h1 {
+    font-size: 2em;
+    font-weight: 700;
+    color: #212121;
+  }
+
+  .detail-hewan-text {
+    /* background-color: aqua; */
+    margin-top: 30px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .detail-hewan-text .text-hewan {
+    /* background-color: aqua; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1em;
+  }
+
+  .detail-hewan-text .text-hewan .strong {
+    font-weight: 600;
+  }
+
+  .button-detail-hewan {
+    /* background-color: black; */
+    height: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .button-detail-hewan .btn {
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #ffa500;
+    background-color: #ffff;
+    width: 150px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+}

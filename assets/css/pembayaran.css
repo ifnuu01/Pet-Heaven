@@ -1,0 +1,465 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f0f3f7;
+}
+
+.container-pembayaran {
+  padding-top: 8.5em;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  /* background-color: aqua; */
+}
+
+.container-pembayaran .detail-hewan-bayar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 0;
+  background-color: #ffff;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.detail-hewan-bayar .title {
+  font-size: 1em;
+  font-weight: 500;
+  color: #212121;
+}
+
+.detail-hewan-bayar .img {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.detail-hewan-bayar .img img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.detail-hewan-bayar .header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-hewan-bayar .header-text h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #212121;
+}
+
+.detail-hewan-bayar .header-text h1 {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #212121;
+}
+
+.content-detail-hewan {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: aqua; */
+  gap: 5px;
+}
+
+.content-detail-hewan .content {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: #ffa500; */
+}
+
+.content-detail-hewan .content .title {
+  font-size: 1em;
+  font-weight: 600;
+  color: #212121;
+  padding: 5px 0;
+}
+
+.content-detail-hewan .content .value {
+  font-size: 1em;
+  font-weight: 500;
+  color: #212121;
+}
+
+.detail-pembayaran {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffff;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.detail-pembayaran .title {
+  font-size: 1em;
+  font-weight: 500;
+  color: #212121;
+  padding: 10px 0;
+}
+
+.detail-pembayaran .content-detail-pembayaran {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-pembayaran .content-detail-pembayaran .content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-pembayaran .content-detail-pembayaran .content .title {
+  font-size: 1em;
+  font-weight: 600;
+  color: #212121;
+}
+
+.detail-pembayaran .content-detail-pembayaran .line {
+  padding: 1px;
+  width: 100%;
+  background-color: #212121;
+}
+
+.detail-pembayaran .content-detail-pembayaran .content .value {
+  font-size: 1em;
+  font-weight: 500;
+  color: #212121;
+}
+
+.rekening {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffff;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.rekening .title {
+  font-size: 1em;
+  font-weight: 500;
+  color: #212121;
+  padding: 10px 0;
+}
+
+.rekening .content {
+  width: 90%;
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rekening .content .title {
+  font-size: 1em;
+  font-weight: 600;
+  color: #212121;
+}
+
+.rekening .content-title {
+  width: 90%;
+}
+
+.rekening .content-title .title {
+  font-size: 1em;
+  font-weight: 600;
+  color: #212121;
+}
+
+.metode-pembayaran-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: #ffff;
+  margin-top: 5px;
+}
+
+.metode-pembayaran-container .title {
+  font-size: 1em;
+  font-weight: 500;
+  color: #212121;
+  padding: 10px;
+}
+
+.metode-pembayaran {
+  width: 90%;
+  grid-template-columns: repeat(2, 1fr);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.metode-pembayaran .radio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: aquamarine; */
+  gap: 10px;
+}
+
+.metode-pembayaran .radio input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid orange;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.metode-pembayaran .radio input[type="radio"]:checked {
+  background-color: orange;
+  background-clip: content-box;
+  padding: 3px;
+}
+
+.radio label img {
+  width: 75px;
+  height: 20px;
+  background-size: cover;
+  background-position: center;
+}
+
+.button {
+  width: 100%;
+  margin-top: 5px;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button .bukti-pembayaran {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.button .bukti-pembayaran label {
+  display: flex;
+  background-color: #ffff;
+  border: 1px solid #ffa500;
+  color: #ffa500;
+  width: 90%;
+  justify-content: center;
+  padding: 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button .bukti-pembayaran input[type="file"] {
+  display: none;
+}
+
+.button .bukti-pembayaran label:hover {
+  background-color: #ffa500;
+  color: #ffff;
+}
+
+.button .btn-action {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.button .btn-action .btn {
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #ffa500;
+  background-color: #ffff;
+  width: 150px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #ffa500;
+}
+
+@media screen and (min-width: 1100px) {
+  .container-pembayaran {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 100px 0.5fr 100px 0.2fr 100px;
+    padding: 3em 8em 2em 8em;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #ffa500; */
+  }
+
+  .container-pembayaran .detail-hewan-bayar {
+    width: 90%;
+    height: 100%;
+    grid-column: 1;
+    grid-row: 2/6;
+    border-radius: 5px;
+    align-items: flex-start;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+  }
+
+  .container-pembayaran .detail-hewan-bayar .img {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .container-pembayaran .detail-hewan-bayar .header-text {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .container-pembayaran .detail-hewan-bayar .header-text h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #212121;
+  }
+
+  .container-pembayaran .detail-hewan-bayar .header-text h1 {
+    font-size: 2em;
+    font-weight: bold;
+    color: #212121;
+  }
+
+  .container-pembayaran .detail-hewan-bayar .content-detail-hewan {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #ffa500; */
+  }
+
+  .container-pembayaran .detail-pembayaran {
+    width: 100%;
+    height: 100%;
+    grid-column: 2;
+    grid-row: 2/3;
+    border-radius: 5px;
+    margin-top: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
+
+  .content-detail-hewan .content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: #ffa500; */
+  }
+
+  .content-detail-hewan .content .title {
+    font-size: 1em;
+    font-weight: 600;
+    color: #212121;
+    padding: 0;
+  }
+
+  .container-pembayaran .rekening {
+    width: 100%;
+    height: 100%;
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 1.5%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
+
+  .container-pembayaran .metode-pembayaran-container {
+    width: 100%;
+    height: 85%;
+    grid-column: 2;
+    grid-row: 4;
+    border-radius: 5px;
+    margin-top: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
+
+  .metode-pembayaran {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .button {
+    width: 100%;
+    height: 100%;
+    grid-column: 2;
+    grid-row: 5;
+    /* background-color: #ffa500; */
+    padding: 0;
+    margin-top: 5px;
+    justify-content: space-between;
+  }
+
+  .container-pembayaran .button .bukti-pembayaran {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* background-color: #f0f3f7; */
+    margin-top: 0;
+  }
+
+  .container-pembayaran .button .bukti-pembayaran label {
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
+
+  .container-pembayaran .button .btn-action {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-top: 0px;
+    /* background-color: aqua; */
+  }
+
+  .button .btn-action .btn {
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
+}

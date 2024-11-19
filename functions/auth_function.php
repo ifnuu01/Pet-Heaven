@@ -124,7 +124,8 @@ function login($conn, $username, $password)
             "nama_depan" => $row['nama_depan'],
             "nama_belakang" => $row['nama_belakang'],
             "email" => $row['email'],
-            "role" => $row['role']
+            "role" => $row['role'],
+            "poto" => $row['path_poto']
         ];
         return [
             "status" => true,

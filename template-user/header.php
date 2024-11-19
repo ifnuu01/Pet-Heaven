@@ -26,8 +26,8 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/home-user.css">
     <link rel="stylesheet" href="assets/css/modal-confirm.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <title>
         <?php
@@ -77,7 +77,8 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
                 if (isset($_SESSION['user'])){ ?>
                 <div class="profile">
                     <span><?= $_SESSION['user']['username'] ?></span>
-                    <div class="img-profile">  
+                    <div class="img-profile"> 
+                        <img src="<?= $_SESSION['user']['poto'] ?>" alt=""> 
                     </div>
                 </div>
                 <?php
