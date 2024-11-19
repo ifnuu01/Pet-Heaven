@@ -1,11 +1,22 @@
 <?php
 
-include 'template-user/header.php'
+include 'template-user/header.php';
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $data = get_hewan_by_id($conn, $id);
+}
+
 
 ?>
 
 <link rel="stylesheet" href="assets/css/detail_hewan.css">
 
+<?php
+
+if ($data["status"]){
+    $hewan = $data["data"];
+?>
 <div class="container-detail-hewan">
         <div class="detail-hewan">
             <div class="title-detail">
@@ -13,45 +24,48 @@ include 'template-user/header.php'
             </div>
             <div class="content-detail-hewan">
                 <div class="img-hewan">
-                    <img src="assets/img/hewan/gambar.png" alt=   "">
+                    <img src="<?= htmlspecialchars($hewan['path_poto']) ?>" alt=   "">
                 </div>
                 <div class="detail-text">
                     <div class="name">
-                        <h2>Johnson</h2>
+                        <h2><?= htmlspecialchars($hewan['nama_hewan']) ?></h2>
                     </div>
                     <div class="harga">
-                        <h1>Rp25.000</h1>
+                        <h1>Rp<?= htmlspecialchars(number_format($hewan['harga'])) ?></h1>
                     </div>
                     <div class="detail-hewan-text">
                         <div class="text-hewan">
                             <span class="strong">Jenis Hewan</span>
-                            <span>Hamster</span>
+                            <span><?= htmlspecialchars($hewan['jenis'])?></span>
                         </div>
                         <div class="text-hewan">
                             <span class="strong">Tahapan Usia</span>
-                            <span>Bayi</span>
+                            <span><?= htmlspecialchars($hewan['tahapan_usia']) ?></span>
                         </div>
                         <div class="text-hewan">
                             <span class="strong">Warna</span>
-                            <span>Putih</span>
+                            <span><?= htmlspecialchars($hewan['warna']) ?></span>
                         </div>
                         <div class="text-hewan">
                             <span class="strong">Jenis Kelamin</span>
-                            <span>Jantan</span>
+                            <span><?= htmlspecialchars($hewan['jenis_kelamin']) ?></span>
                         </div>
                         <div class="text-hewan">
                             <span class="strong">Berat</span>
-                            <span>0.5kg</span>
+                            <span><?= htmlspecialchars($hewan['berat'])?> Kg</span>
                         </div>
                     </div>
                     <div class="button-detail-hewan">
-                        <button class="btn btn-secondary">Kembali</button>
-                        <button class="btn btn-primary">Beli Sekarang</button>
+                        <a href="/" class="btn btn-secondary">Kembali</a>
+                        <a href="pembayaran?id=<?= $hewan['id']?>" class="btn btn-primary">Beli Sekarang</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<?php
+} 
+?>
 
     <?php
     include 'template-user/footer.php';

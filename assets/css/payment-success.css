@@ -68,7 +68,7 @@ body {
   /* background-color: aqua; */
 }
 
-.container-hasil .btn button {
+.container-hasil .btn a {
   width: 100%;
   padding: 10px;
   border: none;
@@ -77,14 +77,15 @@ body {
   border-radius: 5px;
   cursor: pointer;
   text-align: center;
+  text-decoration: none;
 }
 
-.btn button.lihat-riwayat {
+.btn a.lihat-riwayat {
   background-color: #ffa500;
   color: #ffff;
 }
 
-.btn button.menu {
+.btn a.menu {
   border: 1px solid #ffa500;
   background-color: #ffff;
   color: #ffa500;
@@ -108,15 +109,15 @@ body {
     font-size: 1.2em;
   }
 
-  .container-hasil .btn button {
+  .container-hasil .btn a {
     font-size: 1.2em;
   }
 
-  .container-hasil .btn button.lihat-riwayat {
+  .container-hasil .btn a.lihat-riwayat {
     padding: 15px;
   }
 
-  .container-hasil .btn button.menu {
+  .container-hasil .btn a.menu {
     padding: 15px;
   }
 }

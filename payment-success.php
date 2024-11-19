@@ -12,16 +12,15 @@
             <div class="title"><h1>Pembelian Berhasil Dilakukan</h1></div>
             <div class="text-content"><p>Pesanan anda sedang menunggu konfirmasi dari pihak kami <br>silahkan tunggu notifikasi selanjutnya</p></div>
             <div class="btn">
-                <button class="lihat-riwayat">
+                <a href="" class="lihat-riwayat">
                     Lihat Riwayat Pembelian
-                </button>
-                <button class="menu">
+                </a>
+                <a href="/" class="menu">
                     Menu Utama
-                </button>
+                </a>
             </div>
         </div>
     </div>
-
     
     <?php
     include 'template-user/footer.php';

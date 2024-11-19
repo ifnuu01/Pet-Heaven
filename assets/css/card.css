@@ -110,6 +110,17 @@ body {
   cursor: pointer;
 }
 
+.card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease-in-out;
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media screen and (min-width: 650px) {
   .hero-2 {
     display: flex;

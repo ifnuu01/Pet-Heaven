@@ -25,10 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = registrasi($conn, $username, $nama_depan, $nama_belakang, $email, $password);
     if ($message['status']) {
         echo "<script>
-    alertModal('login', '{$message['message']}', 'Lanjut');</script>";
+    alertModal('login', '{$message['message']}', 'Lanjut', 'assets/logo/centang.png');</script>";
 } else {
         echo "<script>
-    alertModal('register', '{$message['message']}', 'Lanjut');</script>";
+    alertModal('register', '{$message['message']}', 'Lanjut', 'assets/logo/cancel.png');</script>";
     }
 }
 

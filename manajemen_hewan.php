@@ -91,19 +91,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
             <?php if ($data['status'] && count($data['data']) > 0): ?>
                 <?php foreach ($data['data'] as $hewan): ?>
                     <tr>
-                        <td class="align-center"><?= $hewan->nama_hewan; ?></td>
-                        <td class="align-center"><img src="<?= $hewan->path_poto; ?>" alt="Foto Hewan" width="40px" height="30px"></td>
-                        <td class="align-center"><?= $hewan->jenis; ?></td>
-                        <td class="align-center">Rp<?= number_format($hewan->harga, 2); ?></td>
+                        <td class="align-center"><?= htmlspecialchars($hewan->nama_hewan); ?></td>
+                        <td class="align-center"><img src="<?= htmlspecialchars($hewan->path_poto); ?>" alt="Foto Hewan" width="40px" height="30px"></td>
+                        <td class="align-center"><?= htmlspecialchars($hewan->jenis); ?></td>
+                        <td class="align-center">Rp<?= htmlspecialchars(number_format($hewan->harga, 2)); ?></td>
                         <td class="container-btn">
                             <button class="detail-btn2" onclick="openEditModal(<?= htmlspecialchars(json_encode($hewan), ENT_QUOTES, 'UTF-8'); ?>)"><iconify-icon icon="ph:note-pencil-bold"></iconify-icon></button>
-                            <form action="#" method="POST" id="hapusHewan-<?= $hewan->id; ?>">
-                                <input type="hidden" name="hapus_hewan" value="<?= $hewan->id; ?>">
+                            <form action="#" method="POST" id="hapusHewan-<?= htmlspecialchars($hewan->id); ?>">
+                                <input type="hidden" name="hapus_hewan" value="<?= htmlspecialchars($hewan->id); ?>">
                             </form>
                             <button class="detail-btn1 actionBtn"
                             data-action="hapus hewan" 
                             data-message="Apakah Anda yakin ingin menghapus hewan ini?" 
-                            data-form="hapusHewan-<?= $hewan->id; ?>"
+                            data-form="hapusHewan-<?= htmlspecialchars($hewan->id); ?>"
                             data-cancel-text="Tidak"
                             data-confirm-text="Ya">
                             <iconify-icon icon="mdi:trash-can-outline"></iconify-icon>

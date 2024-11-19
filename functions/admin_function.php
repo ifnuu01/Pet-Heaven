@@ -249,7 +249,23 @@ function editHewan($conn, $id_hewan, $nama, $tahap_usia, $berat, $jenis_kelamin,
 
 function get_hewan_by_id($conn, $id_hewan)
 {
-    $query = "SELECT * FROM hewan WHERE id = ? AND status = 1";
+    $query = "
+            SELECT 
+                h.id,
+                h.nama_hewan,
+                h.jenis_hewan,
+                h.warna,
+                h.berat,
+                h.harga,
+                h.jenis_kelamin,
+                h.tahapan_usia,
+                h.path_poto,
+                h.status,
+                h.tanggal_ditambahkan,
+                j.jenis_hewan as jenis
+            FROM hewan h 
+            JOIN jenis_hewan j ON h.jenis_hewan = j.id
+            WHERE h.status = 1 AND h.id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id_hewan);
     $stmt->execute();
@@ -268,6 +284,10 @@ function get_hewan_by_id($conn, $id_hewan)
         "data" => $hewan
     ];
 }
+
+// Dokumentasi hewan by 
+
+
 
 // Hapus hewna
 function hapusHewan($conn, $id_hewan) 

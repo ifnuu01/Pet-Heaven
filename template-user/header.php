@@ -28,6 +28,7 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/modal-confirm.css">
     <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/alert.css">
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <title>
         <?php
@@ -105,7 +106,7 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
                 <iconify-icon icon="bx:bxs-map"></iconify-icon>
                 <span>Alamat</span>
             </a>
-            <a href="/riwayat_pembelian">
+            <a href="/riwayat-pembelian">
                 <iconify-icon icon="bx:bxs-cart"></iconify-icon>
                 <span>Riwayat Pembelian</span>
             </a>

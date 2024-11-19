@@ -56,11 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status'])) {
             <?php if ($data['status'] && count($data['data']) > 0): ?>
                 <?php foreach ($data['data'] as $konfirmasi): ?>
                     <tr>
-                        <td class="align-center"><?= $konfirmasi->no_pembelian; ?></td>
-                        <td class="align-center"><?= $konfirmasi->nama_depan; ?></td>
-                        <td><img src="<?= $konfirmasi->poto_pengguna; ?>" alt="Foto User" width="50"></td>
-                        <td class="align-center">Rp <?= number_format($konfirmasi->total_pembelian, 2); ?></td>
-                        <td class="align-center"><?= $konfirmasi->waktu_pembayaran; ?></td>
+                        <td class="align-center"><?= htmlspecialchars($konfirmasi->no_pembelian); ?></td>
+                        <td class="align-center"><?= htmlspecialchars($konfirmasi->nama_depan); ?></td>
+                        <td><img src="<?= htmlspecialchars($konfirmasi->poto_pengguna); ?>" alt="Foto User" width="50"></td>
+                        <td class="align-center">Rp <?= htmlspecialchars(number_format($konfirmasi->total_pembelian, 2)); ?></td>
+                        <td class="align-center"><?= htmlspecialchars($konfirmasi->waktu_pembayaran); ?></td>
                         <td class="align-center"><button onclick="openDetailKonfirmasi(<?= htmlspecialchars(json_encode($konfirmasi), ENT_QUOTES, 'UTF-8') ?>)" class="detail-btn" >Detail</button></td>
                     </tr>
                 <?php endforeach; ?>

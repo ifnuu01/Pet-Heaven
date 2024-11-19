@@ -52,15 +52,15 @@ if (isset($_GET['search'])) {
             <?php if ($data['status'] && count($data['data']) > 0): ?>
                 <?php foreach ($data['data'] as $penjualan): ?>
                 <tr>
-                    <td class="align-center"><?= $penjualan->no_pembelian ?></td>
-                    <td class="align-center"><?= $penjualan->nama_depan ?></td>
-                    <td class="align-center">Rp<?= number_format($penjualan->total_pembelian, 2) ?></td>
-                    <td class="align-center"><?= $penjualan->waktu_pembayaran ?></td>
+                    <td class="align-center"><?= htmlspecialchars($penjualan->no_pembelian) ?></td>
+                    <td class="align-center"><?= htmlspecialchars($penjualan->nama_depan) ?></td>
+                    <td class="align-center">Rp<?= htmlspecialchars(number_format($penjualan->total_pembelian, 2)) ?></td>
+                    <td class="align-center"><?= htmlspecialchars($penjualan->waktu_pembayaran) ?></td>
                     <td class="align-center">
                         <?php if ($penjualan->status == 'Dikonfirmasi'): ?>
-                            <span class="status-confirmed"><?= $penjualan->status ?></span>
+                            <span class="status-confirmed"><?= htmlspecialchars($penjualan->status )?></span>
                         <?php else : ?>
-                            <span class="status-rejected"><?= $penjualan->status ?></span>
+                            <span class="status-rejected"><?= htmlspecialchars($penjualan->status) ?></span>
                         <?php endif; ?>
                     </td>
                     <td class="align-center"><button class="detail-btn" onclick="openDetailPembayaran(<?= htmlspecialchars(json_encode($penjualan), ENT_QUOTES, 'UTF-8') ?>)" >Detail</button></td>

@@ -60,18 +60,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['blokir'])) {
                 <?php if ($data['status'] && count($data['data']) > 0): ?>
                     <?php foreach ($data['data'] as $user): ?>
                         <tr>
-                            <td class="align-center"><?= $user->nama_depan; ?></td>
-                            <td class="align-center"><img src="<?= $user->path_poto; ?>" alt="Foto User" width="40px" height="30px"></td>
-                            <td class="align-center"><?= $user->email; ?></td>
-                            <td class="align-center"><?= $user->nomor_hp; ?></td>
+                            <td class="align-center"><?= htmlspecialchars($user->nama_depan); ?></td>
+                            <td class="align-center"><img src="<?= htmlspecialchars($user->path_poto); ?>" alt="Foto User" width="40px" height="30px"></td>
+                            <td class="align-center"><?= htmlspecialchars($user->email); ?></td>
+                            <td class="align-center"><?= htmlspecialchars($user->nomor_hp); ?></td>
                             <td class="align-center">
-                               <form action="#" method="POST" id="blokirUser-<?= $user->id; ?>">
-                                    <input type="hidden" name="blokir" value="<?= $user->id; ?>">
+                               <form action="#" method="POST" id="blokirUser-<?= htmlspecialchars($user->id); ?>">
+                                    <input type="hidden" name="blokir" value="<?= htmlspecialchars($user->id); ?>">
                                 </form>
                                 <button class="detail-btn1 actionBtn"
                                 data-action="blokir user" 
                                 data-message="Apakah Anda yakin ingin memblokir user ini?" 
-                                data-form="blokirUser-<?= $user->id; ?>"
+                                data-form="blokirUser-<?= htmlspecialchars($user->id); ?>"
                                 data-cancel-text="Tidak"
                                 data-confirm-text="Ya">
                                 <iconify-icon icon="mdi:trash-can-outline"></iconify-icon>
