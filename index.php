@@ -66,11 +66,11 @@ $hewanData = getDataHewan($conn, $limit_bawah, $limit_atas, $search, $kategori);
         <?php
         if ($hewanData['status'] && count($hewanData['data']) > 0) {
             echo '<div class="muat">
-            <button class="btn-primary btn-muat" id="load-more">Muat Lainnya</button>
+            <button class="btn-primary btn-muat" id="load-more">Muat Lainnya 😼</button>
         </div>';
         } else {
             echo '<div class="muat">
-            <button class="btn-primary btn-muat" id="load-more" disabled>Hewan tidak ada</button>
+            <button class="btn-primary btn-muat" id="load-more" disabled>Hewan tidak ada 🙀</button>
         </div>';
         }
         ?>
@@ -112,7 +112,7 @@ include 'template-user/footer.php';
     };
 
     loadMoreBtn.addEventListener('click', function() {
-        loadMoreBtn.textContent = 'Memuat...';
+        loadMoreBtn.textContent = 'Memuat...😺';
         limitBawah += 5;
         fetch(`/load_more_hewan.php?limit_bawah=${limitBawah}&limit_atas=${limitAtas}&search=${'<?php echo $search; ?>'}&kategori=${'<?php echo $kategori; ?>'}`)
             .then(response => response.json())
@@ -139,19 +139,19 @@ include 'template-user/footer.php';
                             hewanContainer.appendChild(card);
                         });
                         observeCards();
-                        loadMoreBtn.textContent = 'Muat Lainnya';
+                        loadMoreBtn.textContent = 'Muat Lainnya 😼';
                     } else {
-                        loadMoreBtn.textContent = 'Hewan tidak ada';
+                        loadMoreBtn.textContent = 'Hewan tidak ada 🙀';
                         loadMoreBtn.disabled = true;
                     }
                 } else {
-                    loadMoreBtn.textContent = 'Hewan tidak ada';
+                    loadMoreBtn.textContent = 'Hewan tidak ada 🙀';
                     loadMoreBtn.disabled = true;
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                loadMoreBtn.textContent = 'Muat Lainnya';
+                loadMoreBtn.textContent = 'Muat Lainnya 😼';
             });
     });
 

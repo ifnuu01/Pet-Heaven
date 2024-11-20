@@ -90,7 +90,7 @@ if (isset($_POST['hapus_semua_notifikasi'])) {
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p class="kosong-notif">Tidak ada notifikasi untuk saat ini 😭</p>
+                <p class="kosong-notif">Tidak ada notifikasi untuk saat ini 😼</p>
             <?php endif; ?>
            </div>
         </div>

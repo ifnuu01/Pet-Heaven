@@ -57,7 +57,17 @@ if ($data["status"]){
                     </div>
                     <div class="button-detail-hewan">
                         <a href="/" class="btn btn-secondary">Kembali</a>
+                        <?php
+                        if (isset($_SESSION['user'])) {
+                        ?>
                         <a href="pembayaran?id=<?= $hewan['id']?>" class="btn btn-primary">Beli Sekarang</a>
+                        <?php
+                        } else {
+                        ?>
+                        <a href="login" class="btn btn-primary">Beli? Login 😸</a>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
