@@ -3,6 +3,14 @@
 include 'template-user/header.php';
 require 'functions/user_function.php';
 
+if (!isset($_GET['no_pembelian']) or empty($_GET['no_pembelian'])) {
+    header('Location: riwayat-pembelian');
+}
+
+if (!isset($_SESSION['user'])) {
+    header('Location: /');
+}
+
 $no_pembelian = $_GET['no_pembelian'];
 $detail = detail_riwayat_pembelian($conn, $no_pembelian);
 

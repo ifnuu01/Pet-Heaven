@@ -3,6 +3,14 @@
 include 'template-user/header.php';
 require_once 'functions/user_function.php';
 
+if (!isset($_SESSION['user'])) {
+    header('Location: /');
+}
+
+if (!isset($_GET['id']) or empty($_GET['id'])) {
+    header('Location: /');
+}
+
 ?>
 
 <dialog id="alert-modal">

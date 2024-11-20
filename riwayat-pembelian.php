@@ -4,6 +4,11 @@ include 'template-user/header.php';
 
 require_once 'functions/user_function.php';
 
+
+if (!isset($_SESSION['user'])) {
+    header('Location: /');
+}
+
 $id_pengguna = $_SESSION['user']['id'];
 $riwayat = riwayat_pembelian($conn, $id_pengguna);
 

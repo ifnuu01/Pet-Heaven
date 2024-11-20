@@ -1,6 +1,10 @@
 <?php
 
     include 'template-user/header.php';
+    
+    if (!isset($_SESSION['user'])) {
+        header('Location: /');
+    }
 ?>
 <link rel="stylesheet" href="assets/css/payment-success.css">
 
@@ -12,7 +16,7 @@
             <div class="title"><h1>Pembelian Berhasil Dilakukan</h1></div>
             <div class="text-content"><p>Pesanan anda sedang menunggu konfirmasi dari pihak kami <br>silahkan tunggu notifikasi selanjutnya</p></div>
             <div class="btn">
-                <a href="" class="lihat-riwayat">
+                <a href="riwayat-pembelian" class="lihat-riwayat">
                     Lihat Riwayat Pembelian
                 </a>
                 <a href="/" class="menu">

@@ -3,6 +3,11 @@
 include 'template-user/header.php';
 require 'functions/user_function.php';
 
+
+if (!isset($_SESSION['user'])) {
+    header('Location: /');
+}
+
 ?>
 
 <link rel="stylesheet" href="assets/css/alert.css">
