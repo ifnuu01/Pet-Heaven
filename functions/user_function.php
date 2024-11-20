@@ -198,4 +198,43 @@ function hapus_semua_notifikasi($conn, $id_pengguna) {
     return $stmt->affected_rows > 0;
 }
 
+function riwayat_pembelian($conn, $id_pengguna) {
+    $query = "    
+    select t.id_pengguna, t.id_hewan, t.no_pembelian, t.status, j.jenis_hewan, h.nama_hewan, h.harga, h.path_poto
+    from transaksi t 
+    join hewan h on t.id_hewan = h.id
+    join jenis_hewan j on j.id = h.jenis_hewan where t.id_pengguna = ?";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $id_pengguna);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    $data = [];
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+    return $data;
+}
+
+function detail_riwayat_pembelian ($conn, $nomor_pembelian)
+{
+    $query ="
+    select h.nama_hewan, h.path_poto, h.harga, h.berat, h.jenis_kelamin, h.warna, h.tahapan_usia, j.jenis_hewan
+    , t.biaya_pengiriman, t.pajak, (h.harga + t.biaya_pengiriman + t.pajak) as total_pembayaran, t.metode_pembayaran,
+    t.status, t.waktu_pembayaran
+    from transaksi t
+    join hewan h on t.id_hewan = h.id
+    join jenis_hewan j on h.jenis_hewan = j.id
+    where t.no_pembelian = ?";
+
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $nomor_pembelian);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $data = $result->fetch_assoc();
+
+    return $data;
+}
+
 ?>
