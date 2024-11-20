@@ -3,7 +3,7 @@
 include 'template-user/header.php';
 
 $limit_bawah = 0;
-$limit_atas = 5;
+$limit_atas = 12;
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $kategori = isset($_GET['kategori']) ? $_GET['kategori'] : '';
 $hewanData = getDataHewan($conn, $limit_bawah, $limit_atas, $search, $kategori);
@@ -85,7 +85,7 @@ include 'template-user/footer.php';
 <script src="assets/js/slider.js"></script>
 <script>
     let limitBawah = 0;
-    let limitAtas = 5;
+    let limitAtas = 12;
     const loadMoreBtn = document.getElementById('load-more');
     const hewanContainer = document.getElementById('hewan-container');
 
@@ -113,7 +113,7 @@ include 'template-user/footer.php';
 
     loadMoreBtn.addEventListener('click', function() {
         loadMoreBtn.textContent = 'Memuat...😺';
-        limitBawah += 5;
+        limitBawah += 12;
         fetch(`/load_more_hewan.php?limit_bawah=${limitBawah}&limit_atas=${limitAtas}&search=${'<?php echo $search; ?>'}&kategori=${'<?php echo $kategori; ?>'}`)
             .then(response => response.json())
             .then(data => {

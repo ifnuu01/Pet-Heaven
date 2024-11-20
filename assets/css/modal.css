@@ -121,8 +121,16 @@
 
 .radio-item {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
+  text-align: center;
+}
+
+.radio-item label {
+  margin-top: 5px;
+  cursor: pointer;
+  text-align: center;
 }
 
 .radio-item input {

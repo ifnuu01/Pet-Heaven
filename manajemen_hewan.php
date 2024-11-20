@@ -206,11 +206,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
             <label>Jenis Kelamin</label>
             <div class="radio-group">
               <div class="radio-item">
-                <input type="radio" id="kelamin" name="jenis-kelamin" value="Jantan" required>
+                <input type="radio" id="Jantan" name="jenis-kelamin" value="Jantan" required>
                 <label for="Jantan">Jantan</label>
               </div>
               <div class="radio-item">
-                <input type="radio" id="kelamin" name="jenis-kelamin" value="Betina" styles="" required>
+                <input type="radio" id="Betina" name="jenis-kelamin" value="Betina" styles="" required>
                 <label for="Betina">Betina</label>
               </div>
             </div>
