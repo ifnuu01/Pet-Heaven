@@ -61,6 +61,7 @@ body {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+  min-height: 400px;
 }
 
 .purchase-history {
@@ -162,6 +163,7 @@ body {
 .stats-card {
   background: var(--main-color);
   padding: 15px;
+  width: 40%;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
@@ -239,5 +241,9 @@ body {
   }
   .purchase-price {
     flex-direction: row;
+  }
+
+  .stats-card {
+    width: 100%;
   }
 }
