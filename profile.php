@@ -32,6 +32,10 @@ $id_pengguna = $_SESSION['user']['id'];
 
 $data = get_akun($conn, $id_pengguna);
 
+$tanggal_lahir = $data['tanggal_lahir'] ? date('Y-m-d', strtotime($data['tanggal_lahir'])) : 'Belum terisi😿';
+$jenis_kelamin = $data['jenis_kelamin'] ? $data['jenis_kelamin'] : 'Belum terisi😿';
+$nomor_hp = $data['nomor_hp'] ? $data['nomor_hp'] : 'Belum terisi😿';
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['ubah_gender'])) {
@@ -296,11 +300,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button class="ubah" id="btn-form-nama">Ubah</button>
                 </div>
                 <div class="field">
-                    <div>Tanggal Lahir <span><?= htmlspecialchars($data['tanggal_lahir']) ?></span></div> 
+                    <div>Tanggal Lahir <span><?= htmlspecialchars($tanggal_lahir) ?></span></div> 
                     <button class="ubah" id="btn-form-tgl_lahir">Ubah</button>
                 </div>
                 <div class="field">
-                    <div>Jenis Kelamin <span><?= htmlspecialchars($data['jenis_kelamin']) ?></span></div> 
+                    <div>Jenis Kelamin <span><?= htmlspecialchars($jenis_kelamin) ?></span></div> 
                     <button class="ubah" id="btn-form-jenis_kelamin">Ubah</button>
                 </div>
 
@@ -310,7 +314,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button class="ubah" id="btn-form-email">Ubah</button>
                 </div>
                 <div class="field">
-                    <div>Nomor HP <span><?= htmlspecialchars($data['nomor_hp']) ?></span></div> 
+                    <div>Nomor HP <span><?= htmlspecialchars($nomor_hp) ?></span></div> 
                     <button class="ubah" id="btn-form-nomor-hp">Ubah</button>
                 </div>
 

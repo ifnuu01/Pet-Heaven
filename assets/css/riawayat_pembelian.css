@@ -60,7 +60,7 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-between;
+  justify-content: space-evenly;
   min-height: 400px;
 }
 
@@ -191,6 +191,12 @@ body {
 .stat-value {
   font-weight: 500;
   color: var(--second-color);
+}
+
+.kosong {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 500;
 }
 
 @media screen and (max-width: 650px) {

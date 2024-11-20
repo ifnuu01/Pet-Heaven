@@ -71,7 +71,7 @@ $pembelian_tertunda = count(array_filter($riwayat, function($item) { return $ite
             </div>
         <?php endforeach; ?>
             <?php else: ?>
-                <p>Tidak ada riwayat pembelian untuk saat ini.</p>
+                <p class="kosong">Tidak ada riwayat pembelian untuk saat ini 😺</p>
         <?php endif; ?>
         </div>
     </div>
