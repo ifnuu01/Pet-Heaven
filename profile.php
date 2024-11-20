@@ -1,9 +1,31 @@
 <?php
 
 include 'template-user/header.php';
+require_once 'functions/user_function.php';
+?>
 
-$id_pengguna = $_SESSION['id_pengguna'];
-$message = '';
+<link rel="stylesheet" href="assets/css/alert.css">
+<dialog id="alert-modal">
+        <div class="alert-modal-content">
+            <div class="logo" id="logo-alert">
+                <img src="" alt="">
+            </div>
+            <div class="alert-modal-body">
+                <p>Are you sure you want to delete this item?</p>
+            </div>
+            <div class="alert-modal-footer">
+                <button class="btn btn-alert">Lanjut</button>
+            </div>
+        </div>
+    </dialog>
+<script src='assets/js/alert.js' ></script>
+
+<?php
+
+$id_pengguna = $_SESSION['user']['id'];
+
+$data = get_akun($conn, $id_pengguna);
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['ubah_gender'])) {
@@ -12,9 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare($query);
         $stmt->bind_param("si", $jenis_kelamin, $id_pengguna);
         if ($stmt->execute()) {
-            $message = "Jenis kelamin berhasil diubah.";
+            echo "<script> alertModal('profile', 'Berhasil mengubah jenis kelamin', 'Lanjut', 'assets/logo/centang.png') </script>";
         } else {
-            $message = "Gagal mengubah jenis kelamin.";
+            echo "<script> alertModal('profile', 'Gagal mengubah jenis kelamin', 'Lanjut', 'assets/logo/cancel.png') </script>";
         }
     } elseif (isset($_POST['ubah_name'])) {
         $nama_depan = $_POST['nama_depan'];
@@ -23,9 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare($query);
         $stmt->bind_param("ssi", $nama_depan, $nama_belakang, $id_pengguna);
         if ($stmt->execute()) {
-            $message = "Nama berhasil diubah.";
+            echo "<script> alertModal('profile', 'Berhasil mengubah nama', 'Lanjut', 'assets/logo/centang.png') </script>";
         } else {
-            $message = "Gagal mengubah nama.";
+            echo "<script> alertModal('profile', 'Gagal mengubah nama', 'Lanjut', 'assets/logo/cancel.png') </script>";
         }
     } elseif (isset($_POST['ubah_nomor_hp'])) {
         $nomor_hp = $_POST['nomor_hp'];
@@ -33,30 +55,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare($query);
         $stmt->bind_param("si", $nomor_hp, $id_pengguna);
         if ($stmt->execute()) {
-            $message = "Nomor HP berhasil diubah.";
+            echo "<script> alertModal('profile', 'Berhasil mengubah nomor HP', 'Lanjut', 'assets/logo/centang.png') </script>";
         } else {
-            $message = "Gagal mengubah nomor HP.";
+            echo "<script> alertModal('profile', 'Gagal mengubah nomor HP', 'Lanjut', 'assets/logo/cancel.png') </script>";
         }
     } elseif (isset($_POST['ubah_pass'])) {
         $password = $_POST['password'];
-        $new_password = password_hash($_POST['new-password'], PASSWORD_BCRYPT);
-        $query = "SELECT password FROM pengguna WHERE id = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("i", $id_pengguna);
-        $stmt->execute();
-        $stmt->bind_result($hashed_password);
-        $stmt->fetch();
-        if (password_verify($password, $hashed_password)) {
-            $query = "UPDATE pengguna SET password = ? WHERE id = ?";
-            $stmt = $conn->prepare($query);
-            $stmt->bind_param("si", $new_password, $id_pengguna);
-            if ($stmt->execute()) {
-                $message = "Password berhasil diubah.";
-            } else {
-                $message = "Gagal mengubah password.";
-            }
+        $new_password = $_POST['new-password'];
+        if (strlen($new_password) < 8) {
+            echo "<script> alertModal('profile', 'Password baru harus 8 karakter atau lebih', 'Lanjut', 'assets/logo/cancel.png') </script>";
         } else {
-            $message = "Password lama salah.";
+            $new_password_hashed = password_hash($new_password, PASSWORD_BCRYPT);
+            $query = "SELECT password FROM pengguna WHERE id = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $id_pengguna);
+            $stmt->execute();
+            $stmt->bind_result($hashed_password);
+            $stmt->fetch();
+            if (password_verify($password, $hashed_password)) {
+                $query = "UPDATE pengguna SET password = ? WHERE id = ?";
+                $stmt = $conn->prepare($query);
+                $stmt->bind_param("si", $new_password_hashed, $id_pengguna);
+                if ($stmt->execute()) {
+                    echo "<script> alertModal('profile', 'Berhasil mengubah password', 'Lanjut', 'assets/logo/centang.png') </script>";
+                } else {
+                    echo "<script> alertModal('profile', 'Gagal mengubah password', 'Lanjut', 'assets/logo/cancel.png') </script>";
+                } 
+            } else {
+                echo "<script> alertModal('profile', 'Password lama tidak cocok', 'Lanjut', 'assets/logo/cancel.png') </script>";
+            }
         }
     } elseif (isset($_POST['ubah_tgl'])) {
         $tgl_lahir = $_POST['tgl_lahir'];
@@ -64,10 +91,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare($query);
         $stmt->bind_param("si", $tgl_lahir, $id_pengguna);
         if ($stmt->execute()) {
-            $message = "Tanggal lahir berhasil diubah.";
+            echo "<script> alertModal('profile', 'Berhasil mengubah tanggal lahir', 'Lanjut', 'assets/logo/centang.png') </script>";
         } else {
-            $message = "Gagal mengubah tanggal lahir.";
-        }
+            echo "<script> alertModal('profile', 'Gagal mengubah tanggal lahir', 'Lanjut', 'assets/logo/cancel.png') </script>";
+        } 
     } elseif (isset($_POST['ubah_email'])) {
         $email_lama = $_POST['email_lama'];
         $email_baru = $_POST['email_baru'];
@@ -82,47 +109,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $conn->prepare($query);
             $stmt->bind_param("si", $email_baru, $id_pengguna);
             if ($stmt->execute()) {
-                $message = "Email berhasil diubah.";
+                echo "<script> alertModal('profile', 'Berhasil mengubah email', 'Lanjut', 'assets/logo/centang.png') </script>";
             } else {
-                $message = "Gagal mengubah email.";
-            }
+                echo "<script> alertModal('profile', 'Gagal mengubah email', 'Lanjut', 'assets/logo/cancel.png') </script>";
+            } 
         } else {
-            $message = "Email lama tidak cocok.";
+            echo "<script> alertModal('profile', 'Email lama tidak cocok', 'Lanjut', 'assets/logo/cancel.png') </script>";
         }
-    } elseif (isset($_FILES['photo'])) {
-        $file = $_FILES['photo'];
-        $file_name = $file['name'];
-        $file_tmp = $file['tmp_name'];
-        $file_size = $file['size'];
-        $file_error = $file['error'];
-        $file_ext = explode('.', $file_name);
-        $file_ext = strtolower(end($file_ext));
-        $allowed = ['jpg', 'jpeg', 'png'];
-        if (in_array($file_ext, $allowed)) {
-            if ($file_error === 0) {
-                if ($file_size <= 2097152) {
-                    $file_name_new = uniqid('', true) . '.' . $file_ext;
-                    $file_destination = 'assets/img/profiles/' . $file_name_new;
-                    if (move_uploaded_file($file_tmp, $file_destination)) {
-                        $query = "UPDATE pengguna SET path_poto = ? WHERE id = ?";
-                        $stmt = $conn->prepare($query);
-                        $stmt->bind_param("si", $file_name_new, $id_pengguna);
-                        if ($stmt->execute()) {
-                            $message = "Foto berhasil diubah.";
-                        } else {
-                            $message = "Gagal mengubah foto.";
-                        }
-                    } else {
-                        $message = "Gagal mengunggah foto.";
-                    }
-                } else {
-                    $message = "Ukuran file terlalu besar.";
-                }
-            } else {
-                $message = "Terjadi kesalahan saat mengunggah foto.";
-            }
+    } elseif (isset($_POST['ubah_photo'])) {
+        $result = uploadPhoto($_FILES['photo'], $id_pengguna, $conn);
+        if ($result['status']) {
+            echo "<script> alertModal('profile', '{$result['message']}', 'Lanjut', 'assets/logo/centang.png') </script>";
         } else {
-            $message = "Format file tidak didukung.";
+            echo "<script> alertModal('profile', '{$result['message']}', 'Lanjut', 'assets/logo/cancel.png') </script>";
         }
     }
 }
@@ -141,11 +140,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-body">
                 <div class="form-group gender">
                     <div class="input-gender">
-                        <input type="radio" name="jenis_kelamin" id="pria" value="Pria" required>
+                        <input type="radio" name="jenis_kelamin" id="pria" value="Pria" <?= $data['jenis_kelamin'] === 'Pria' ? 'checked' : '' ?> required>
                         <label for="pria">Pria</label>
                     </div>
                     <div class="input-gender">
-                        <input type="radio" name="jenis_kelamin" id="wanita" value="Wanita" required>
+                        <input type="radio" name="jenis_kelamin" id="wanita" value="Wanita" <?= $data['jenis_kelamin'] === 'Wanita' ? 'checked' : '' ?> required>
                         <label for="wanita">Wanita</label>
                     </div>
                 </div>
@@ -272,37 +271,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="inner-container">
             <!-- Left Section -->
             <div class="info-section">
-                <img src="assets/img/profiles/profile.jpg" alt="Profile Photo">
-                <form action="" method="POST" enctype="multipart/form-data">
-                    <label for="photo">Pilih Foto</label>
-                    <input type="file" name="photo" id="photo" hidden accept="image/*">
+                <img src="<?= htmlspecialchars($data['path_poto']) ?>" alt="Profile Photo">
+                <form method="POST" enctype="multipart/form-data" id="photo-form">
+                    <label for="photo" id="pilih_poto" >Pilih Foto</label>
+                    <input type="file" name="photo" id="photo" accept="image/*" hidden required>
+                    <button type="submit" name="ubah_photo" class="unggah">Unggah Foto</button>
                 </form>
                 <p>Ukuran maksimal foto 2 Mb, format file JPG, JPEG, PNG</p>
             </div>
+
+
 
             <!-- Right Section -->
             <div class="info-section2">
                 <h3>Ubah Biodata Diri</h3>
                 <div class="field">
-                    <div>Nama <span>Ucup Ajaaa </span></div> 
+                    <div>Nama <span><?= htmlspecialchars($data['nama_depan']), " ", htmlspecialchars($data['nama_belakang']) ?> </span></div> 
                     <button class="ubah" id="btn-form-nama">Ubah</button>
                 </div>
                 <div class="field">
-                    <div>Tanggal Lahir <span>2004-08-25</span></div> 
+                    <div>Tanggal Lahir <span><?= htmlspecialchars($data['tanggal_lahir']) ?></span></div> 
                     <button class="ubah" id="btn-form-tgl_lahir">Ubah</button>
                 </div>
                 <div class="field">
-                    <div>Jenis Kelamin <span>Pria</span></div> 
+                    <div>Jenis Kelamin <span><?= htmlspecialchars($data['jenis_kelamin']) ?></span></div> 
                     <button class="ubah" id="btn-form-jenis_kelamin">Ubah</button>
                 </div>
 
                 <h3>Ubah Kontak</h3>
                 <div class="field">
-                    <div>Email <span>Ucup@gmail.com </span></div> 
+                    <div>Email <span><?= htmlspecialchars($data['email']) ?> </span></div> 
                     <button class="ubah" id="btn-form-email">Ubah</button>
                 </div>
                 <div class="field">
-                    <div>Nomor HP <span>089501603099 </span></div> 
+                    <div>Nomor HP <span><?= htmlspecialchars($data['nomor_hp']) ?></span></div> 
                     <button class="ubah" id="btn-form-nomor-hp">Ubah</button>
                 </div>
 
@@ -316,7 +318,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="assets/js/modal-confirm.js"></script>
     <script src="assets/js/slider.js"></script>
     <script src="assets/js/form-profile.js"></script>
-
 <?php
 
 include 'template-user/footer.php';

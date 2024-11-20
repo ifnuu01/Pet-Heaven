@@ -1,0 +1,338 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: #f0f3f7;
+}
+
+.container {
+  width: 60%;
+  height: 100%;
+  margin: 9em auto 6em auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: white;
+}
+.header img {
+  height: 40px;
+}
+.header .search-bar {
+  flex-grow: 1;
+  margin: 0 20px;
+}
+.header .search-bar input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #a7a7a7;
+  border-radius: 5px;
+}
+.header .user-info {
+  display: flex;
+  align-items: center;
+}
+.header .user-info img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.header .user-info span {
+  font-weight: 500;
+}
+
+.header .delete-btn {
+  background-color: #fff;
+  border: 1px solid red;
+  color: red;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 8px 20px;
+}
+
+.header-notif {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  border-bottom: 1px solid #a7a7a7;
+  padding: 0 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.header-notif a {
+  padding: 15px 10px;
+  text-decoration: none;
+  color: #212121;
+}
+.header-notif a:hover {
+  color: #ea8800;
+}
+
+.header-notif a.active {
+  color: #f5a623;
+}
+
+.header-notif h3 {
+  font-size: 1.5em;
+}
+
+.header h2 {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #212121;
+}
+
+.container h2 {
+  margin-top: 0;
+}
+.notification {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #a7a7a7;
+  border-radius: 5px;
+  position: relative;
+  margin: 20px;
+}
+
+.notification .delete-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.notification-container {
+  background-color: #ffff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding-bottom: 20px;
+  min-height: 340px;
+}
+
+.user-notif {
+  color: #ffa500;
+}
+
+.kosong-notif {
+  font-size: 2em;
+  color: #212121;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 50px;
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    padding: 0;
+    font-size: 12px;
+  }
+
+  .header-notif {
+    /* background-color: #ea8800; */
+    padding: 0 12px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 22px;
+    background-color: #fff;
+    border-bottom: 1px solid #a7a7a7;
+    border-radius: 2px;
+  }
+
+  .header h1 {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .header a {
+    color: #212121;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .header button {
+    background-color: #fff;
+    border: 1px solid red;
+    color: red;
+    border-radius: 3px;
+    padding: 5px;
+  }
+
+  .notification-container {
+    padding: 0;
+    background-color: #ffff;
+    padding-bottom: 1em;
+    align-items: center;
+  }
+
+  .notification {
+    background-color: #fff;
+    border: 1px solid #a7a7a7;
+    border-radius: 5px;
+    margin: 10px !important;
+    padding: 15px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .notification .delete-btn {
+    display: block;
+    background-color: red;
+    color: #fff;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 3px;
+    font-size: 11px;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .notification p {
+    font-size: 14px;
+    margin: 5px 0;
+    color: #212121;
+  }
+
+  .notification strong {
+    font-size: 16px;
+    color: #212121;
+  }
+
+  .container {
+    width: 100%;
+    margin-top: 11.3 em;
+    margin-bottom: 0;
+    box-shadow: none;
+    /* padding-bottom: 10em; */
+  }
+
+  .kosong-notif {
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 50px;
+  }
+}
+
+/* Tablet */
+@media screen and (max-width: 900px) and (min-width: 500px) {
+  body {
+    padding: 0;
+    font-size: 12px;
+    background-color: #f5f5f5;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #a7a7a7;
+  }
+
+  .header h1 {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .header .search-bar input {
+    padding: 8px;
+    width: 70%;
+    border-radius: 5px;
+    border: 1px solid #a7a7a7;
+  }
+
+  .header .user-info img {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .header .user-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .header .delete-btn {
+    background-color: #fff;
+    border: 1px solid red;
+    color: red;
+    border-radius: 3px;
+    padding: 6px 15px;
+    font-size: 12px;
+  }
+
+  .notification-container {
+    padding: 10px;
+    background-color: #ffff;
+  }
+
+  .notification {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background-color: #ffff;
+    padding: 15px;
+    border: 1px solid #ffff;
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .notification .delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  .notification p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .notification strong {
+    font-size: 16px;
+  }
+
+  .container {
+    width: 80%;
+    /* padding: 10px 20px; */
+  }
+}

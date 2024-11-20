@@ -1,109 +1,172 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Input Alamat</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form Input Alamat</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    </head>
 
-<body>
+    <body>
 
-    <h2>Form Input Alamat</h2>
-    <form method="POST">
-        <label for="provinsi">Provinsi:</label>
-        <select id="provinsi" name="provinsi" required>
-            <option value="">Pilih Provinsi</option>
-        </select>
-        <br><br>
+        <button id="ubah-alamat">Ubah Alamat</button>
+        <dialog class="form-ubah-alamat">
+            <div class="header">
+                <h1>Form Input Alamat</h1>
+                <div class="close-buttons"><iconify-icon icon="line-md:close-small"></iconify-icon></div>
+            </div>
+            <form method="POST" id="form-alamat">
+                <div class="item 1">
+                    <label for="provinsi">Provinsi</label>
+                    <select class="myselect" id="provinsi" name="provinsi" required>
+                        <option value="">Pilih Provinsi</option>
+                    </select>
+                </div>
+        
+                <div class="item 2">
+                    <label for="kota">Kota/Kabupaten</label>
+                    <select class="myselect" id="kota" name="kota" required>
+                        <option value="">Pilih Kota/Kabupaten</option>
+                    </select>
+                </div>
+                <div class="item 3">
+                    <label for="kecamatan">Kecamatan</label>
+                    <select class="myselect" id="kecamatan" name="kecamatan" required>
+                        <option value="">Pilih Kecamatan</option>
+                    </select>
+                </div>
+                <div class="item 4">
+                    <label for="kelurahan">Kelurahan</label>
+                    <select class="myselect" id="kelurahan" name="kelurahan" required>
+                        <option value="">Pilih Kelurahan</option>
+                    </select>
+                </div>
+                <div class="item 5">
+                    <label for="jalan">Jalan</label>
+                    <input type="text" id="jalan" name="jalan" required>
+                </div>
 
-        <label for="kota">Kota/Kabupaten:</label>
-        <select id="kota" name="kota" required>
-            <option value="">Pilih Kota/Kabupaten</option>
-        </select>
-        <br><br>
+                <div class="item 6">
+                    <label for="tempat">tempat</label>
+                    <select name="tempat" id="tempat" class="myselect">
+                        <option value="Rumah">Rumah</option>
+                        <option value="Kantor">Kantor</option>
+                        <option value="Sekolah">Sekolah</option>
+                        <option value="Hotel">Hotel</option>
+                    </select>
+                </div>
+        
+                <button type="submit" name="ubah_alamat">Submit</button>
+            </form>
+        </dialog>
 
-        <label for="kecamatan">Kecamatan:</label>
-        <select id="kecamatan" name="kecamatan" required>
-            <option value="">Pilih Kecamatan</option>
-        </select>
-        <br><br>
 
-        <label for="kelurahan">Kelurahan:</label>
-        <select id="kelurahan" name="kelurahan" required>
-            <option value="">Pilih Kelurahan</option>
-        </select>
-        <br><br>
-
-        <button type="submit">Submit</button>
-    </form>
-
-    <script>
-        // Fetch data provinsi saat halaman dimuat
-        fetch('https://ibnux.github.io/data-indonesia/provinsi.json')
-            .then(response => response.json())
-            .then(data => {
-                let provinsiSelect = document.getElementById('provinsi');
-                data.forEach(provinsi => {
-                    let option = document.createElement('option');
-                    option.value = provinsi.id;
-                    option.textContent = provinsi.nama;
-                    provinsiSelect.appendChild(option);
-                });
+        <script>
+            // Tampilkan dialog saat tombol ubah alamat diklik
+            document.getElementById('ubah-alamat').addEventListener('click', function () {
+                document.querySelector('.form-ubah-alamat').showModal();
             });
 
-        // Fetch data kota berdasarkan provinsi yang dipilih
-        document.getElementById('provinsi').addEventListener('change', function () {
-            let provinsiId = this.value;
-            fetch(`https://ibnux.github.io/data-indonesia/kabupaten/${provinsiId}.json`)
+            // Tutup dialog saat tombol close diklik
+            document.querySelector('.close-buttons').addEventListener('click', function () {
+                document.querySelector('.form-ubah-alamat').close();
+            });
+
+            // Tutup dialog saat diluar dialog diklik
+            document.querySelector('.form-ubah-alamat').addEventListener('click', function (event) {
+                if (event.target === this) {
+                    this.close();
+                }
+            });
+
+            // Kirim data form saat tombol submit diklik
+            document.getElementById('form-alamat').addEventListener('submit', function (event) {
+                event.preventDefault();
+                let formData = new FormData(this);
+                fetch('https://api.example.com/ubah-alamat', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Alamat berhasil diubah');
+                            document.querySelector('.form-ubah-alamat').close();
+                        } else {
+                            alert('Gagal mengubah alamat');
+                        }
+                    });
+            });
+        </script>
+
+        <script>
+            // Fetch data provinsi saat halaman dimuat
+            fetch('https://ibnux.github.io/data-indonesia/provinsi.json')
                 .then(response => response.json())
                 .then(data => {
-                    let kotaSelect = document.getElementById('kota');
-                    kotaSelect.innerHTML = '<option value="">Pilih Kota/Kabupaten</option>';
-                    data.forEach(kota => {
+                    let provinsiSelect = document.getElementById('provinsi');
+                    data.forEach(provinsi => {
                         let option = document.createElement('option');
-                        option.value = kota.id;
-                        option.textContent = kota.nama;
-                        kotaSelect.appendChild(option);
+                        option.value = provinsi.id;
+                        option.textContent = provinsi.nama;
+                        provinsiSelect.appendChild(option);
                     });
                 });
-        });
 
-        // Fetch data kecamatan berdasarkan kota yang dipilih
-        document.getElementById('kota').addEventListener('change', function () {
-            let kotaId = this.value;
-            fetch(`https://ibnux.github.io/data-indonesia/kecamatan/${kotaId}.json`)
-                .then(response => response.json())
-                .then(data => {
-                    let kecamatanSelect = document.getElementById('kecamatan');
-                    kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
-                    data.forEach(kecamatan => {
-                        let option = document.createElement('option');
-                        option.value = kecamatan.id;
-                        option.textContent = kecamatan.nama;
-                        kecamatanSelect.appendChild(option);
+            // Fetch data kota berdasarkan provinsi yang dipilih
+            document.getElementById('provinsi').addEventListener('change', function () {
+                let provinsiId = this.value;
+                fetch(`https://ibnux.github.io/data-indonesia/kabupaten/${provinsiId}.json`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let kotaSelect = document.getElementById('kota');
+                        kotaSelect.innerHTML = '<option value="">Pilih Kota/Kabupaten</option>';
+                        data.forEach(kota => {
+                            let option = document.createElement('option');
+                            option.value = kota.id;
+                            option.textContent = kota.nama;
+                            kotaSelect.appendChild(option);
+                        });
                     });
-                });
-        });
+            });
 
-        // Fetch data kelurahan berdasarkan kecamatan yang dipilih
-        document.getElementById('kecamatan').addEventListener('change', function () {
-            let kecamatanId = this.value;
-            fetch(`https://ibnux.github.io/data-indonesia/kelurahan/${kecamatanId}.json`)
-                .then(response => response.json())
-                .then(data => {
-                    let kelurahanSelect = document.getElementById('kelurahan');
-                    kelurahanSelect.innerHTML = '<option value="">Pilih Kelurahan</option>';
-                    data.forEach(kelurahan => {
-                        let option = document.createElement('option');
-                        option.value = kelurahan.id;
-                        option.textContent = kelurahan.nama;
-                        kelurahanSelect.appendChild(option);
+            // Fetch data kecamatan berdasarkan kota yang dipilih
+            document.getElementById('kota').addEventListener('change', function () {
+                let kotaId = this.value;
+                fetch(`https://ibnux.github.io/data-indonesia/kecamatan/${kotaId}.json`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let kecamatanSelect = document.getElementById('kecamatan');
+                        kecamatanSelect.innerHTML = '<option value="">Pilih Kecamatan</option>';
+                        data.forEach(kecamatan => {
+                            let option = document.createElement('option');
+                            option.value = kecamatan.id;
+                            option.textContent = kecamatan.nama;
+                            kecamatanSelect.appendChild(option);
+                        });
                     });
-                });
-        });
-    </script>
+            });
 
-</body>
+            // Fetch data kelurahan berdasarkan kecamatan yang dipilih
+            document.getElementById('kecamatan').addEventListener('change', function () {
+                let kecamatanId = this.value;
+                fetch(`https://ibnux.github.io/data-indonesia/kelurahan/${kecamatanId}.json`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let kelurahanSelect = document.getElementById('kelurahan');
+                        kelurahanSelect.innerHTML = '<option value="">Pilih Kelurahan</option>';
+                        data.forEach(kelurahan => {
+                            let option = document.createElement('option');
+                            option.value = kelurahan.id;
+                            option.textContent = kelurahan.nama;
+                            kelurahanSelect.appendChild(option);
+                        });
+                    });
+            });
+        </script>
 
-</html>
+    </body>
+
+    </html>
