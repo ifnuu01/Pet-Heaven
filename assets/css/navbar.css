@@ -40,7 +40,7 @@ body {
 
 .navbar-user {
   position: fixed;
-  top: 0;
+  top: -10px;
   left: 0;
   width: 100%;
   display: grid;
@@ -48,7 +48,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #fff;
-  padding: 5px 10px;
+  padding: 10px 10px 10px 10px;
   z-index: 1000;
 }
 
@@ -275,7 +275,7 @@ body {
   .navbar-user {
     display: grid;
     grid-template-columns: 300px 1fr 200px;
-    height: 100px;
+    height: 120px;
     gap: 2em;
   }
   .menu-nav {

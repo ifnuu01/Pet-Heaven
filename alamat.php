@@ -63,26 +63,34 @@ if (isset($_POST['ubah_alamat'])) {
             <form method="POST" id="form-ubah-alamat-form">
                 <div class="item 1">
                     <label for="provinsi">Provinsi</label>
-                    <select class="myselect" id="provinsi" name="provinsi" required>
+                    <select class="myselect" id="provinsi" name="provinsi" 
+                    onmousedown="if(this.options.length>10){this.size=10;}"  
+                    onchange='this.size=0;' required>
                         <option value="">Pilih Provinsi</option>
                     </select>
                 </div>
         
                 <div class="item 2">
                     <label for="kota">Kota/Kabupaten</label>
-                    <select class="myselect" id="kota" name="kota" required>
+                    <select class="myselect" id="kota" name="kota" 
+                    onmousedown="if(this.options.length>10){this.size=10;}"  
+                    onchange='this.size=0;' required>
                         <option value="">Pilih Kota/Kabupaten</option>
                     </select>
                 </div>
                 <div class="item 3">
                     <label for="kecamatan">Kecamatan</label>
-                    <select class="myselect" id="kecamatan" name="kecamatan" required>
+                    <select class="myselect" id="kecamatan" name="kecamatan" 
+                    onmousedown="if(this.options.length>10){this.size=10;}"  
+                    onchange='this.size=0;' required>
                         <option value="">Pilih Kecamatan</option>
                     </select>
                 </div>
                 <div class="item 4">
                     <label for="kelurahan">Kelurahan</label>
-                    <select class="myselect" id="kelurahan" name="kelurahan" required>
+                    <select class="myselect" id="kelurahan" name="kelurahan" 
+                    onmousedown="if(this.options.length>10){this.size=10;}"  
+                    onchange='this.size=0;' required>
                         <option value="">Pilih Kelurahan</option>
                     </select>
                 </div>
@@ -91,7 +99,7 @@ if (isset($_POST['ubah_alamat'])) {
                     <input type="text" id="jalan" name="jalan" required>
                 </div>
 
-                <div class="item 6">
+                <div class="item 10">
                     <label for="tempat">tempat</label>
                     <select name="tempat" id="tempat" class="myselect">
                         <option value="Rumah">Rumah</option>

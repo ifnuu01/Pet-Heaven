@@ -84,6 +84,9 @@ body {
   font-weight: 500;
   color: #212121;
   outline: none;
+  max-height: 150px; /* Atur tinggi maksimal dropdown */
+  overflow-y: auto; /* Tambahkan scroll jika tinggi melebihi batas */
+  display: block;
 }
 
 #form-ubah-alamat-form select:focus {
@@ -91,7 +94,7 @@ body {
 }
 
 #form-ubah-alamat-form option {
-  font-size: 14px;
+  font-size: 10px;
   font-weight: 400;
   color: #212121;
 }
@@ -111,5 +114,9 @@ body {
 @media screen and (min-width: 768px) {
   .form-ubah-alamat {
     width: 50%;
+  }
+
+  #form-ubah-alamat-form option {
+    font-size: 16px;
   }
 }

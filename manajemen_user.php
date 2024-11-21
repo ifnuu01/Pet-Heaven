@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['blokir'])) {
                             <td class="align-center"><?= htmlspecialchars($user->nama_depan); ?></td>
                             <td class="align-center"><img src="<?= htmlspecialchars($user->path_poto); ?>" alt="Foto User" width="40px" height="30px"></td>
                             <td class="align-center"><?= htmlspecialchars($user->email); ?></td>
-                            <td class="align-center"><?= htmlspecialchars($user->nomor_hp); ?></td>
+                            <td class="align-center"><?= htmlspecialchars($user->nomor_hp ? $user->nomor_hp : "" ); ?></td>
                             <td class="align-center">
                                <form action="#" method="POST" id="blokirUser-<?= htmlspecialchars($user->id); ?>">
                                     <input type="hidden" name="blokir" value="<?= htmlspecialchars($user->id); ?>">

@@ -22,7 +22,7 @@ body {
   width: 90%;
   height: 200px;
   margin-top: 3em;
-  overflow: hidden; /* Menghindari gambar overflow */
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,6 +97,8 @@ body {
   }
 
   .hero-1 .hero-1-content {
+    width: 63%;
+    /* background-color: #f0f3f7; */
     height: 600px;
   }
 
@@ -105,7 +107,7 @@ body {
   }
 
   .content-hero-1 .text-content {
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
 
   .button-content {
@@ -113,7 +115,25 @@ body {
   }
 
   .button-content a {
-    font-size: 1.5em;
+    font-size: 1.2em;
     padding: 10px;
+  }
+
+  .hero-1-content {
+    width: 60%;
+    height: 100px;
+    /* background-color: #ffa500; */
+  }
+
+  .hero-1-content .slide {
+    /* background-color: #ffa500; */
+    top: 50px;
+    height: 80%;
+    border-radius: 5px;
+  }
+
+  .hero-1-content .slide img {
+    height: 100%;
+    /* border-radius: ; */
   }
 }
