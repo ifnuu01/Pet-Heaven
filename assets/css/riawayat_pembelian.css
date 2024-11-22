@@ -255,7 +255,10 @@ body {
   .purchase-group {
     flex-direction: column;
     width: 100%;
-    gap: 12px;
+    /* background-color: #08a208; */
+    height: auto;
+    gap: 0px;
+    margin-bottom: 20px;
   }
   .purchase-info {
     width: 100%;
