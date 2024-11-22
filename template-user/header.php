@@ -134,12 +134,12 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     }?>
     <div class="container-kategori" id="container-kategori">
         <div class="dropdown-content">
-            <a href="/?kategori=1">Kucing</a>
-            <a href="/?kategori=2">Anjing</a>
-            <a href="/?kategori=3">Ikan Hias</a>
-            <a href="/?kategori=4">Burung</a>
-            <a href="/?kategori=5">Reptil</a>
-            <a href="/?kategori=6">Hamster</a>
-            <a href="/?kategori=7">Serangga</a>
+            <a href="/?kategori=1"><iconify-icon icon="mdi:cat"></iconify-icon> Kucing</a>
+            <a href="/?kategori=2"><iconify-icon icon="mdi:dog"></iconify-icon> Anjing</a>
+            <a href="/?kategori=3"><iconify-icon icon="tdesign:fish-filled"></iconify-icon> Ikan Hias</a>
+            <a href="/?kategori=4"><iconify-icon icon="mdi:bird"></iconify-icon> Burung</a>
+            <a href="/?kategori=5"><iconify-icon icon="mdi:reptile"></iconify-icon> Reptil</a>
+            <a href="/?kategori=6"><iconify-icon icon="emojione-monotone:hamster-face"></iconify-icon> Hamster</a>
+            <a href="/?kategori=7"><iconify-icon icon="mdi:spider"></iconify-icon> Serangga</a>
         </div>
     </div>

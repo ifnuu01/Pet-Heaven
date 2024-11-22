@@ -193,7 +193,11 @@ body {
   outline: none;
   border: 1px solid #a7a7a7;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .dropdown-content a:hover {

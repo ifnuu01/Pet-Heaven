@@ -123,11 +123,11 @@ if (isset($data) && $data["status"]) {
             </div>
             <div class="content">
                 <span class="title">Biaya Pengiriman</span>
-                <span class="value">Rp20.000</span>
+                <span class="value">Rp20,000</span>
             </div>
             <div class="content">
                 <span class="title">Pajak Admin</span>
-                <span class="value">Rp2000</span>
+                <span class="value">Rp2,000</span>
             </div>
             <div class="line"></div>
             <div class="content">
