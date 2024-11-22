@@ -138,9 +138,6 @@ if (isset($data) && $data["status"]) {
     </div>
 
     <div class="rekening">
-        <div class="title">
-            <h3>Tujuan Pembayaran</h3>
-        </div>
         <div class="content">
             <span class="title">Nomor Rekening</span>
             <span class="value">6521977123661</span>
@@ -162,7 +159,7 @@ if (isset($data) && $data["status"]) {
             </div>
             <div class="radio">
                 <input type="radio" name="metode-pembayaran" id="BRI" value="BRI" required> 
-                <label for="BRI"><img src="assets/logo/BRI.jpg" alt="" width="50px"></label>
+                <label for="BRI"><img src="assets/logo/BRI.png" alt="" width="50px"></label>
             </div>
             <div class="radio">
                 <input type="radio" name="metode-pembayaran" id="Mandiri" value="Mandiri" required> 
@@ -173,11 +170,11 @@ if (isset($data) && $data["status"]) {
 
     <div class="button">
         <div class="bukti-pembayaran">
-            <label for="bukti_pembayaran">Upload Bukti Pembayaran</label>
+            <label for="bukti_pembayaran" id="upload-bukti">Upload Bukti Pembayaran</label>
             <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" accept="image/*" required>
         </div>
         <div class="btn-action">
-            <a href="detail-hewan?id=<?= $hewan['id']?>"><button type="button" class="btn">Kembali</button></a>
+            <a href="detail-hewan?id=<?= $hewan['id']?>" class="btn">Kembali</a>
             <button type="submit" class="btn">Konfirmasi</button>
         </div>
     </div>
@@ -194,3 +191,4 @@ include 'template-user/footer.php';
 <script src="assets/js/kategori-dropdown.js"></script>
 <script src="assets/js/profile-dropdown.js"></script>
 <script src="assets/js/modal-confirm.js"></script>
+<script src="assets/js/pembayaran.js"></script>

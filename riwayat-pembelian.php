@@ -64,8 +64,8 @@ $pembelian_tertunda = count(array_filter($riwayat, function($item) { return $ite
                         <p class="item-category"><?= htmlspecialchars($item['jenis_hewan']) ?></p>
                     </div>
                     <div class="purchase-price">
-                        <a href="detail_riwayat?no_pembelian=<?= $item['no_pembelian'] ?>" class="detail-button">Detail</a>
                         <p class="price">Rp<?= htmlspecialchars(number_format($item['harga'])) ?></p>
+                        <a href="detail_riwayat?no_pembelian=<?= $item['no_pembelian'] ?>" class="detail-button">Detail</a>
                     </div>
                 </div>
             </div>

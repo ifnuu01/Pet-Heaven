@@ -297,25 +297,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h3>Ubah Biodata Diri</h3>
                 <div class="field">
                     <div>Nama <span><?= htmlspecialchars($data['nama_depan']), " ", htmlspecialchars($data['nama_belakang']) ?> </span></div> 
-                    <button class="ubah" id="btn-form-nama">Ubah</button>
+                    <button class="ubah" id="btn-form-nama"><iconify-icon icon="ph:note-pencil-bold"></iconify-icon></button>
                 </div>
                 <div class="field">
                     <div>Tanggal Lahir <span><?= htmlspecialchars($tanggal_lahir) ?></span></div> 
-                    <button class="ubah" id="btn-form-tgl_lahir">Ubah</button>
+                    <button class="ubah" id="btn-form-tgl_lahir"><iconify-icon icon="ph:note-pencil-bold"></iconify-icon></button>
                 </div>
                 <div class="field">
                     <div>Jenis Kelamin <span><?= htmlspecialchars($jenis_kelamin) ?></span></div> 
-                    <button class="ubah" id="btn-form-jenis_kelamin">Ubah</button>
+                    <button class="ubah" id="btn-form-jenis_kelamin"><iconify-icon icon="ph:note-pencil-bold"></iconify-icon></button>
                 </div>
 
                 <h3>Ubah Kontak</h3>
                 <div class="field">
                     <div>Email <span><?= htmlspecialchars($data['email']) ?> </span></div> 
-                    <button class="ubah" id="btn-form-email">Ubah</button>
+                    <button class="ubah" id="btn-form-email"><iconify-icon icon="ph:note-pencil-bold"></iconify-icon></button>
                 </div>
                 <div class="field">
                     <div>Nomor HP <span><?= htmlspecialchars($nomor_hp) ?></span></div> 
-                    <button class="ubah" id="btn-form-nomor-hp">Ubah</button>
+                    <button class="ubah" id="btn-form-nomor-hp"><iconify-icon icon="ph:note-pencil-bold"></iconify-icon></button>
                 </div>
 
                 <button class="change-password-btn" id="btn-ubahpass">Ubah Password</button>

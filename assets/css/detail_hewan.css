@@ -53,6 +53,10 @@ body {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
 
+.title-detail {
+  color: #212121;
+}
+
 .detail-text {
   display: flex;
   flex-direction: column;
@@ -81,6 +85,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 5px;
+  color: #212121;
 }
 
 .detail-hewan-text .text-hewan {
@@ -89,10 +94,12 @@ body {
   justify-content: space-between;
   align-items: center;
   font-size: 1em;
+  color: #212121;
 }
 
 .detail-hewan-text .text-hewan .strong {
   font-weight: 600;
+  color: #212121;
 }
 
 .button-detail-hewan {
@@ -225,5 +232,9 @@ body {
     border: none;
     cursor: pointer;
     text-align: center;
+  }
+
+  .title-detail {
+    padding-left: 20px;
   }
 }

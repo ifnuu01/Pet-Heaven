@@ -60,12 +60,14 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-evenly;
+  justify-content: space-between;
   min-height: 400px;
+  /* background-color: #08a208; */
 }
 
 .purchase-history {
   border-radius: 8px;
+  /* background-color: #08a208; */
 }
 
 .title {
@@ -77,9 +79,11 @@ body {
 .purchase-card {
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
   border-radius: 8px;
   margin-bottom: 18px;
   gap: 10px;
+  /* background-color: #08a208; */
 }
 
 .purchase-image {
@@ -93,6 +97,7 @@ body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  /* background-color: #08a208; */
 }
 
 .purchase-group {
@@ -107,18 +112,21 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /* background-color: #ff0000; */
+  align-items: flex-end;
 }
 
 .status-badge {
-  padding: 4px 12px;
   border-radius: 15px;
   font-size: 12px;
   font-weight: 500;
   color: var(--main-color);
   margin-bottom: 8px;
-  display: inline-block;
-  text-align: center;
-  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 20px;
 }
 
 .status-success {
@@ -134,6 +142,7 @@ body {
 }
 
 .item-name {
+  padding-left: 5px;
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 4px;
@@ -141,23 +150,27 @@ body {
 }
 
 .item-category {
+  padding-left: 5px;
   color: var(--second-color);
   margin-bottom: 8px;
 }
 
 .price {
-  font-weight: 500;
+  font-weight: bold;
   color: var(--second-color);
 }
 
 .detail-button {
-  padding: 6px 12px;
-  background: white;
+  width: 100px;
+  height: 30px;
+  background: #ffff;
   border: 1px solid var(--third-color);
   color: var(--third-color);
   border-radius: 4px;
   cursor: pointer;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
   font-size: 14px;
 }

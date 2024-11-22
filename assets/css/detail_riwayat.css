@@ -149,7 +149,6 @@ body {
 }
 
 .title-detail {
-  font-size: 1em;
   font-weight: 600;
   color: #212121;
   text-align: center;
@@ -354,5 +353,9 @@ body {
     border: none;
     cursor: pointer;
     text-align: center;
+  }
+
+  .title-detail {
+    padding-left: 30px;
   }
 }

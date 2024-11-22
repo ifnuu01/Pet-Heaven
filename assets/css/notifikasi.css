@@ -76,9 +76,6 @@ body {
   text-decoration: none;
   color: #212121;
 }
-.header-notif a:hover {
-  color: #ea8800;
-}
 
 .header-notif a.active {
   color: #f5a623;
