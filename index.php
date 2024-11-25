@@ -27,7 +27,7 @@ $hewanData = getDataHewan($conn, $limit_bawah, $limit_atas, $search, $kategori);
                 <p><span>Selamat datang</span> di website <span>pet heaven</span>, website <br> layanan hewan peliharaan untuk <span>anda.</span></p>
             </div>
             <div class="button-content">
-                <a href="#" class="btn-primary">Panduan</a>
+                <a href="panduan" class="btn-primary">Panduan</a>
             </div>
         </div>
     </div>

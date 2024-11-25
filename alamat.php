@@ -132,7 +132,7 @@ if (isset($_POST['ubah_alamat'])) {
                 </div>
                 <p class="phone"><?= htmlspecialchars($alamat['nomor_hp']) ?></p>
                 <p class="address">
-                    <?= htmlspecialchars($alamat['alamat_pengiriman']) ?>
+                    <?= htmlspecialchars($alamat['alamat_pengiriman'] ? $alamat['alamat_pengiriman'] : "Alamat belum terisi😺" ) ?>
                 </p>
             </div>
         </div>
