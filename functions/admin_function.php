@@ -22,7 +22,7 @@ function getDataHewan($conn, $limit_bawah, $limit_atas, $search = '', $kategori 
                 j.jenis_hewan as jenis
             FROM hewan h 
             JOIN jenis_hewan j ON h.jenis_hewan = j.id
-            WHERE h.status = 1";
+            WHERE h.status = 1 order by h.tanggal_ditambahkan desc";
 
     if ($search) {
         $query .= " AND h.nama_hewan LIKE ?";
@@ -421,6 +421,7 @@ function get_data_penjualan($conn, $limit_bawah, $limit_atas)
     join hewan h on t.id_hewan = h.id
     join jenis_hewan j on h.jenis_hewan = j.id
     where t.status != 'Menunggu'
+    order by t.waktu_pembayaran desc
     LIMIT ?, ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ii", $limit_bawah, $limit_atas);
@@ -499,6 +500,7 @@ function get_managemen_user($conn, $limit_bawah, $limit_atas)
     from pengguna p 
     join alamat a on p.id = a.id_pengguna
     where status = 'Aktif' and role = 'User'
+    order by p.tanggal_dibuat desc
     LIMIT ?, ?";
 
     $stmt = $conn->prepare($query);
@@ -572,6 +574,7 @@ function get_konfirmasi_pembelian($conn, $limit_bawah, $limit_atas)
     join hewan h on t.id_hewan = h.id
     join jenis_hewan j on h.jenis_hewan = j.id
     where t.status = 'Menunggu'
+    order by t.waktu_pembayaran desc
     LIMIT ?, ?";
 
     $stmt = $conn->prepare($query);

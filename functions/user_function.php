@@ -170,7 +170,7 @@ function get_notifikasi($conn, $id_pengguna) {
     $query = "SELECT n.id, n.message, p.username
               FROM notifikasi n
               JOIN pengguna p ON n.id_pengguna = p.id
-              WHERE n.id_pengguna = ?";
+              WHERE n.id_pengguna = ? ORDER BY n.id desc";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id_pengguna);
     $stmt->execute();
@@ -203,7 +203,7 @@ function riwayat_pembelian($conn, $id_pengguna) {
     select t.id_pengguna, t.id_hewan, t.no_pembelian, t.status, j.jenis_hewan, h.nama_hewan, h.harga, h.path_poto
     from transaksi t 
     join hewan h on t.id_hewan = h.id
-    join jenis_hewan j on j.id = h.jenis_hewan where t.id_pengguna = ?";
+    join jenis_hewan j on j.id = h.jenis_hewan where t.id_pengguna = ? ORDER BY t.waktu_pembayaran DESC";
 
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id_pengguna);

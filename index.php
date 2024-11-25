@@ -83,7 +83,7 @@ include 'template-user/footer.php';
 <script src="assets/js/modal-confirm.js"></script>
 <script src="assets/js/slider.js"></script>
 <script>
-    let limitBawah = 0;
+let limitBawah = 0;
     let limitAtas = 12;
     const loadMoreBtn = document.getElementById('load-more');
     const hewanContainer = document.getElementById('hewan-container');
@@ -157,7 +157,6 @@ include 'template-user/footer.php';
     document.addEventListener('DOMContentLoaded', () => {
         observeCards();
     });
-
 </script>
 </body>
 </html>
