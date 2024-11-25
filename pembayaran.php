@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($id_hewan && $metode_pembayaran && $file_bukti_pembayaran) {
         $result = pembayaran($conn, $id_pengguna, $id_hewan, $metode_pembayaran, $file_bukti_pembayaran);
         if ($result['status']) {
+            echo "<script> localStorage.setItem('paymentResult', 'success');</script>";
             echo "<script>alertModal('payment-success', '{$result['message']}', 'Lanjut', 'assets/logo/centang.png');</script>";
         } else {
             echo "<script>alertModal('', '{$result['message']}', 'Lanjut', 'assets/logo/cancel.png');</script>";

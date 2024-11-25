@@ -32,3 +32,13 @@
     <script src="assets/js/kategori-dropdown.js"></script>
     <script src="assets/js/profile-dropdown.js"></script>
     <script src="assets/js/modal-confirm.js"></script>
+    <script>
+        let paymentResult = localStorage.getItem('paymentResult');
+
+        if (!paymentResult) {
+            window.location.href = '/';
+        }
+        window.addEventListener('beforeunload', function() {
+            localStorage.removeItem('paymentResult');
+        });
+    </script>

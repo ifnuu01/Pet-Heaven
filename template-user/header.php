@@ -38,18 +38,20 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
             echo 'Home';
         } elseif ($url === '/profile') {
             echo 'Profile';
-        } elseif ($url === '/riwayat_pembelian') {
+        } elseif ($url === '/riwayat-pembelian') {
             echo 'Riwayat Pembelian';
         } elseif ($url === '/notifikasi') {
             echo 'Notifikasi';
         } elseif ($url === '/alamat') {
             echo 'Alamat';
-        } elseif ($url === '/detail_hewan') {
+        } elseif ($url === '/detail-hewan') {
             echo 'Detail Hewan';
         } elseif ($url === '/pembayaran') {
             echo 'Pembayaran';
         } elseif ($url === '/konfirmasi_pembayaran') {
             echo 'Konfirmasi Pembayaran';
+        } elseif ($url == '/payment-success'){
+            echo 'Pembayaran Berhasil';
         }
         ?>
     </title>
