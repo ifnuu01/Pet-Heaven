@@ -70,3 +70,29 @@
 button:focus {
   outline: none;
 }
+
+@media screen and (max-width: 600px) {
+  #confirmModal {
+    width: 90%;
+    height: fit-content;
+    padding: 20px;
+  }
+
+  #confirmModal.admin {
+    left: 50%;
+  }
+
+  .modal-content {
+    gap: 10px;
+  }
+
+  #confirmModal button {
+    width: 100px;
+    height: 50px;
+    font-size: 1em;
+  }
+
+  #modalMessage {
+    font-size: 1em;
+  }
+}

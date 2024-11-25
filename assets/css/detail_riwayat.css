@@ -47,7 +47,7 @@ body {
 }
 
 .img-hewan img {
-  width: 300px;
+  width: 50%;
   height: 200px;
   background-size: cover;
   background-position: center;
@@ -89,19 +89,19 @@ body {
 }
 
 .detail-text .name h2 {
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 600;
   color: #212121;
 }
 
 .detail-text .harga h1 {
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 600;
   color: #212121;
 }
 
 .detail-text .btn {
-  grid-column: 1 / 3;
+  grid-column: 1 / 4;
   width: 100%;
   font-size: 16px;
   font-weight: 600;
@@ -133,7 +133,7 @@ body {
   grid-column: 1 / 3;
   grid-row: 3;
   text-align: center;
-  font-size: 1em;
+  font-size: 14px;
   font-weight: 500;
   color: #212121;
   /* background-color: #ffa500; */
@@ -159,7 +159,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1em;
+  font-size: 14px;
 }
 
 .detail-hewan-text .text-hewan .strong {
@@ -274,21 +274,29 @@ body {
   }
 
   .img-hewan {
+    height: 100%;
     /* background-color: aqua; */
-    justify-content: flex-start;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 50px;
+    justify-content: center;
   }
 
   .img-hewan img {
-    width: 450px;
+    grid-row: 1;
+    width: 95%;
     height: 350px;
+    margin-top: 15px;
     border-radius: 5px;
   }
 
   .img-hewan .no_pembelian {
+    grid-row: 2;
     width: 95%;
     padding: 20px;
     font-size: 1.2em;
     font-weight: bold;
+    height: 100%;
+    /* height: 100%; */
   }
 
   .detail-text {
@@ -313,10 +321,10 @@ body {
 
   .detail-hewan-text {
     /* background-color: aqua; */
-    margin-top: 30px;
+    margin-top: 10px;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 15px;
+    gap: 10px;
   }
 
   .detail-hewan-text .text-hewan {

@@ -142,7 +142,6 @@ body {
 @media screen and (max-width: 500px) {
   body {
     padding: 0;
-    font-size: 12px;
   }
 
   .header-notif {
@@ -242,7 +241,6 @@ body {
 @media screen and (max-width: 900px) and (min-width: 500px) {
   body {
     padding: 0;
-    font-size: 12px;
     background-color: #f5f5f5;
   }
 

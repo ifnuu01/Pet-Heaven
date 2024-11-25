@@ -61,7 +61,7 @@ if (isset($_POST['hapus_semua_notifikasi'])) {
                     if (!empty($notifikasi)) {
                         echo '<button class="delete-btn actionBtn"
                         data-action="hapus_semua"
-                        data-message="Apakah Anda yakin ingin menghapus semua notifikasi?"
+                        data-message="Apakah anda yakin ingin menghapus semua notifikasi?"
                         data-form="hapusSemuaForm"
                         data-cancel-text="Tidak"
                         data-confirm-text="Ya">Hapus Semua</button>';
@@ -79,7 +79,7 @@ if (isset($_POST['hapus_semua_notifikasi'])) {
                         <p><?= htmlspecialchars($notif['message']) ?></p>
                         <button class="delete-btn actionBtn"
                                 data-action="hapus"
-                                data-message="Apakah Anda yakin ingin menghapus notifikasi ini?"
+                                data-message="Apakah anda yakin ingin menghapus notifikasi ini?"
                                 data-form="hapusForm<?= $notif['id'] ?>"
                                 data-cancel-text="Tidak"
                                 data-confirm-text="Ya">Hapus</button>

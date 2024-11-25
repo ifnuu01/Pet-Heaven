@@ -174,8 +174,8 @@ if (isset($data) && $data["status"]) {
             <input type="file" name="bukti_pembayaran" id="bukti_pembayaran" accept="image/*" required>
         </div>
         <div class="btn-action">
-            <a href="detail-hewan?id=<?= $hewan['id']?>" class="btn">Kembali</a>
-            <button type="submit" class="btn">Konfirmasi</button>
+            <button type="submit" class="btn konfirmasi">Konfirmasi</button>
+            <a href="detail-hewan?id=<?= $hewan['id']?>" class="btn kembali">Kembali</a>
         </div>
     </div>
 </form>
