@@ -1,19 +1,21 @@
 <?php
 
-function pembayaran($conn, $id_pengguna, $id_hewan, $metode_pembayaran, $file_bukti_pembayaran){
-
+function pembayaran($conn, $id_pengguna, $id_hewan, $metode_pembayaran, $file_bukti_pembayaran) {
+    
     $filename = basename($file_bukti_pembayaran['name']);
     $target_dir = "assets/img/pembayaran/";
-    $target_file = $target_dir . uniqid() .'_'. $filename;
+    $target_file = $target_dir . uniqid() . '_' . $filename;
 
-    $max_size = 5 * 1024 * 1024; // 5MB
-    if ($_FILES["bukti_pembayaran"]["size"] > $max_size) {
+    
+    $max_size = 5 * 1024 * 1024; 
+    if ($file_bukti_pembayaran["size"] > $max_size) {
         return [
             "status" => false,
             "message" => "Ukuran file bukti pembayaran terlalu besar. Maksimal 5MB"
         ];
     }
 
+    
     $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
     if (!in_array($file_type, ['jpg', 'jpeg', 'png'])) {
         return [
@@ -22,19 +24,46 @@ function pembayaran($conn, $id_pengguna, $id_hewan, $metode_pembayaran, $file_bu
         ];
     }
 
-    if (!move_uploaded_file($_FILES["bukti_pembayaran"]["tmp_name"], $target_file)) {
+    
+    if (!move_uploaded_file($file_bukti_pembayaran["tmp_name"], $target_file)) {
         return [
             "status" => false,
             "message" => "Gagal mengunggah bukti pembayaran."
         ];
     }
 
-    $query = "INSERT INTO transaksi (id_pengguna, id_hewan, metode_pembayaran, bukti_pembayaran) VALUES (?, ?, ?, ?)";
+    
+    do {
+        $random_no = str_pad(mt_rand(0, 999999999), 10, '0', STR_PAD_LEFT); 
+        $query_check = "SELECT 1 FROM transaksi WHERE no_pembelian = ?";
+        $stmt_check = $conn->prepare($query_check);
+        $stmt_check->bind_param("s", $random_no);
+        $stmt_check->execute();
+        $stmt_check->store_result();
+        $is_unique = $stmt_check->num_rows === 0;
+    } while (!$is_unique);
+
+    
+    $query = "INSERT INTO transaksi (id_pengguna, id_hewan, metode_pembayaran, bukti_pembayaran, no_pembelian) 
+              VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("iiss", $id_pengguna, $id_hewan, $metode_pembayaran, $target_file);
+    $stmt->bind_param("iisss", $id_pengguna, $id_hewan, $metode_pembayaran, $target_file, $random_no);
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
+        
+        $query_update = "UPDATE hewan SET status = 0 WHERE id = ?";
+        $stmt_update = $conn->prepare($query_update);
+        $stmt_update->bind_param("i", $id_hewan);
+        $stmt_update->execute();
+
+        
+        $message = "Pembelian anda sedang diproses ID PEMBELIAN $random_no";
+        $query_notifikasi = "INSERT INTO notifikasi (id_pengguna, no_pembelian, message) VALUES (?, ?, ?)";
+        $stmt_notifikasi = $conn->prepare($query_notifikasi);
+        $stmt_notifikasi->bind_param("iss", $id_pengguna, $random_no, $message);
+        $stmt_notifikasi->execute();
+
         return [
             "status" => true,
             "message" => "Pembayaran berhasil dilakukan."
@@ -46,6 +75,7 @@ function pembayaran($conn, $id_pengguna, $id_hewan, $metode_pembayaran, $file_bu
         ];
     }
 }
+
 
 function get_akun($conn, $id_pengguna){
     $query = "SELECT * FROM pengguna WHERE id = ?";
@@ -81,7 +111,7 @@ function uploadPhoto($file, $id_pengguna, $conn) {
     $file_name_new = uniqid('', true) . '.' . $file_ext;
     $file_destination = 'assets/img/profiles/' . $file_name_new;
 
-    // Get the current photo path
+    
     $query = "SELECT path_poto FROM pengguna WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("i", $id_pengguna);
@@ -90,17 +120,17 @@ function uploadPhoto($file, $id_pengguna, $conn) {
     $stmt->fetch();
     $stmt->close();
 
-    // Move the new file
+    
     if (!move_uploaded_file($file_tmp, $file_destination)) {
         return ['status' => false, 'message' => 'Terjadi kesalahan saat mengunggah foto'];
     }
 
-    // Delete the old file if it exists
+    
     if ($current_photo_path && file_exists($current_photo_path)) {
         unlink($current_photo_path);
     }
 
-    // Update the database with the new file path
+    
     $query = "UPDATE pengguna SET path_poto = ? WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("si", $file_destination, $id_pengguna);

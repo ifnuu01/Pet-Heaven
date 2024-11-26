@@ -22,38 +22,46 @@ function getDataHewan($conn, $limit_bawah, $limit_atas, $search = '', $kategori 
                 j.jenis_hewan as jenis
             FROM hewan h 
             JOIN jenis_hewan j ON h.jenis_hewan = j.id
-            WHERE h.status = 1 order by h.tanggal_ditambahkan desc";
+            WHERE h.status = 1";
+
+    $params = [];
+    $types = '';
 
     if ($search) {
         $query .= " AND h.nama_hewan LIKE ?";
         $search = "%$search%";
+        $params[] = $search;
+        $types .= 's';
     }
 
     if ($kategori) {
         $query .= " AND h.jenis_hewan = ?";
+        $params[] = $kategori;
+        $types .= 's';
     }
 
-    $query .= " LIMIT ?, ?";
+    $query .= " ORDER BY h.tanggal_ditambahkan DESC LIMIT ?, ?";
+    $params[] = $limit_bawah;
+    $params[] = $limit_atas;
+    $types .= 'ii';
 
     $stmt = $conn->prepare($query);
 
-    if ($search && $kategori) {
-        $stmt->bind_param("ssii", $search, $kategori, $limit_bawah, $limit_atas);
-    } elseif ($search) {
-        $stmt->bind_param("sii", $search, $limit_bawah, $limit_atas);
-    } elseif ($kategori) {
-        $stmt->bind_param("sii", $kategori, $limit_bawah, $limit_atas);
-    } else {
-        $stmt->bind_param("ii", $limit_bawah, $limit_atas);
+    if ($stmt === false) {
+        return [
+            "status" => false,
+            "message" => $conn->error
+        ];
     }
 
+    $stmt->bind_param($types, ...$params);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result === false) {
         return [
             "status" => false,
-            "message" => $conn->error
+            "message" => $stmt->error
         ];
     }
 
@@ -600,25 +608,81 @@ function get_konfirmasi_pembelian($conn, $limit_bawah, $limit_atas)
         "data" => $konfirmasi_pembelian
     ];
 }
-
 function konfirmasi_pembelian($conn, $no_pembelian, $status)
 {
-    $query = "UPDATE transaksi SET status = ? WHERE no_pembelian = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("ss", $status, $no_pembelian);
+    // Mulai transaksi
+    $conn->begin_transaction();
 
-    if ($stmt->execute()) {
+    try {
+        // Ambil data transaksi terkait
+        $query_select = "SELECT id_pengguna, id_hewan FROM transaksi WHERE no_pembelian = ?";
+        $stmt_select = $conn->prepare($query_select);
+        $stmt_select->bind_param("s", $no_pembelian);
+        $stmt_select->execute();
+        $result = $stmt_select->get_result();
+
+        if ($result->num_rows === 0) {
+            throw new Exception("Transaksi tidak ditemukan.");
+        }
+
+        $transaksi = $result->fetch_assoc();
+        $id_pengguna = $transaksi['id_pengguna'];
+        $id_hewan = $transaksi['id_hewan'];
+
+        // Update status transaksi
+        $query_update = "UPDATE transaksi SET status = ? WHERE no_pembelian = ?";
+        $stmt_update = $conn->prepare($query_update);
+        $stmt_update->bind_param("ss", $status, $no_pembelian);
+        $stmt_update->execute();
+
+        if ($stmt_update->affected_rows === 0) {
+            throw new Exception("Gagal memperbarui status transaksi.");
+        }
+
+        // Jika status transaksi "Ditolak"
+        if ($status === "Ditolak") {
+            // Update status hewan menjadi 1
+            $query_update_hewan = "UPDATE hewan SET status = 1 WHERE id = ?";
+            $stmt_update_hewan = $conn->prepare($query_update_hewan);
+            $stmt_update_hewan->bind_param("i", $id_hewan);
+            $stmt_update_hewan->execute();
+
+            // Tambahkan notifikasi untuk status Ditolak
+            $message = "Pembelian anda ditolak oleh kami silahkan lakukan pembelian lainnya dengan benar ID PEMBELIAN $no_pembelian";
+            $query_insert_notif = "INSERT INTO notifikasi (id_pengguna, no_pembelian, message) VALUES (?, ?, ?)";
+            $stmt_insert_notif = $conn->prepare($query_insert_notif);
+            $stmt_insert_notif->bind_param("iss", $id_pengguna, $no_pembelian, $message);
+            $stmt_insert_notif->execute();
+        }
+
+        // Jika status transaksi "Dikonfirmasi"
+        if ($status === "Dikonfirmasi") {
+            // Tambahkan notifikasi untuk status Dikonfirmasi
+            $message = "Pembelian anda berhasil dikonfirmasi oleh kami ID PEMBELIAN $no_pembelian";
+            $query_insert_notif = "INSERT INTO notifikasi (id_pengguna, no_pembelian, message) VALUES (?, ?, ?)";
+            $stmt_insert_notif = $conn->prepare($query_insert_notif);
+            $stmt_insert_notif->bind_param("iss", $id_pengguna, $no_pembelian, $message);
+            $stmt_insert_notif->execute();
+        }
+
+        // Commit transaksi
+        $conn->commit();
+
         return [
             "status" => true,
             "message" => "Pembelian telah dikonfirmasi."
         ];
-    } else {
+    } catch (Exception $e) {
+        // Rollback jika terjadi kesalahan
+        $conn->rollback();
+
         return [
             "status" => false,
-            "message" => "Gagal mengkonfirmasi pembelian: " . $stmt->error
+            "message" => "Gagal mengkonfirmasi pembelian: " . $e->getMessage()
         ];
     }
 }
+
 
 
 function ubah_password($conn, $newpass, $oldpass, $id)
