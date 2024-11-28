@@ -1,23 +1,23 @@
 <?php
 include 'template-admin/header.php';
 
-// Set batas per halaman
+
 $limit_per_halaman = 5;
 $halaman = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $limit_bawah = ($halaman - 1) * $limit_per_halaman;
 
-// Jika ada filter pencarian
+
 if (isset($_GET['search']) && $_GET['search'] !== '') {
     $nama_pengguna = $_GET['search'];
     $data = search_pengguna($conn, $nama_pengguna, $limit_bawah, $limit_per_halaman);
-    // Hitung total data untuk pagination
-    $total_data_search = $conn->query("SELECT COUNT(p.nama_depan) as total FROM pengguna p WHERE p.nama_depan LIKE '%$nama_pengguna%'");
+    
+    $total_data_search = $conn->query("SELECT COUNT(p.nama_depan) as total FROM pengguna p WHERE p.nama_depan LIKE '%$nama_pengguna%' and p.role = 'User' and p.status = 'Aktif'");
     $total_data = $total_data_search->fetch_assoc()['total'];
     $total_halaman = ceil($total_data / $limit_per_halaman);
 } else {
     $data = get_managemen_user($conn, $limit_bawah, $limit_per_halaman);
-    // Hitung total data untuk pagination
-    $total_data_query = $conn->query("SELECT COUNT(*) as total FROM pengguna p JOIN alamat a ON p.id = a.id_pengguna");
+    
+    $total_data_query = $conn->query("SELECT COUNT(*) as total FROM pengguna p JOIN alamat a ON p.id = a.id_pengguna where p.role = 'User' and p.status = 'Aktif'");
     $total_data = $total_data_query->fetch_assoc()['total'];
     $total_halaman = ceil($total_data / $limit_per_halaman);
 }

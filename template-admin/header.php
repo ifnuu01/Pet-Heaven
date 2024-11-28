@@ -56,6 +56,7 @@ function isActive($path) {
 <body>
 <dialog id="confirmModal" class="admin">
     <div class="modal-content">
+        <img src="assets/logo/confirm.png" alt="logo" width="100px" height="120px">
         <p id="modalMessage"></p>
         <div class="btn-modal">
             <button class="cancel" id="cancelBtn"></button>

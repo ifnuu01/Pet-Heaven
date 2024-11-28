@@ -153,10 +153,23 @@ span {
 
   .btn {
     height: 50px;
-    font-size: 1.2em;
+    font-size: 1em;
+  }
+
+  .login,
+  .regis {
+    font-size: 12px;
+  }
+
+  span {
+    font-size: 12px;
+  }
+
+  input {
+    font-size: 12px;
   }
 
   form h1 {
-    font-size: 2em;
+    font-size: 1.5em;
   }
 }

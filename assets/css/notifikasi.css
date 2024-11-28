@@ -144,6 +144,10 @@ body {
     padding: 0;
   }
 
+  .container {
+    margin-top: 8.5em;
+  }
+
   .header-notif {
     /* background-color: #ea8800; */
     padding: 0 12px;
@@ -159,7 +163,6 @@ body {
     align-items: center;
     padding: 10px 22px;
     background-color: #fff;
-    border-bottom: 1px solid #a7a7a7;
     border-radius: 2px;
   }
 

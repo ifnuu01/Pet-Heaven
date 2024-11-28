@@ -61,6 +61,7 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 <body>
 <dialog id="confirmModal">
     <div class="modal-content">
+        <img src="assets/logo/confirm.png" alt="logo" width="100px" height="120px">
         <p id="modalMessage"></p>
         <div class="btn-modal">
             <button class="cancel" id="cancelBtn"></button>
