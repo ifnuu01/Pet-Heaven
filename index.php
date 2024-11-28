@@ -12,6 +12,9 @@ $hewanData = getDataHewan($conn, $limit_bawah, $limit_atas, $search, $kategori);
 <link rel="stylesheet" href="assets/css/home-user.css">
 <link rel="stylesheet" href="assets/css/slider.css">
 <link rel="stylesheet" href="assets/css/card.css">
+<link rel="stylesheet" href="assets/css/btntotop.css">
+
+<button id="scrollToTopBtn">↑</button>
 
 <div class="hero-1">
     <div class="hero-1-content">
@@ -82,6 +85,7 @@ include 'template-user/footer.php';
 <script src="assets/js/profile-dropdown.js"></script>
 <script src="assets/js/modal-confirm.js"></script>
 <script src="assets/js/slider.js"></script>
+<script src="assets/js/btntotop.js"></script>
 <script>
 let limitBawah = 0;
     let limitAtas = 12;
