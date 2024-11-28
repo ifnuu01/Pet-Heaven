@@ -35,6 +35,7 @@ $data = get_akun($conn, $id_pengguna);
 $tanggal_lahir = $data['tanggal_lahir'] ? date('Y-m-d', strtotime($data['tanggal_lahir'])) : 'Belum terisi😿';
 $jenis_kelamin = $data['jenis_kelamin'] ? $data['jenis_kelamin'] : 'Belum terisi😿';
 $nomor_hp = $data['nomor_hp'] ? $data['nomor_hp'] : 'Belum terisi😿';
+$email = maskEmail($data['email']);
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -82,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute();
             $stmt->bind_result($hashed_password);
             $stmt->fetch();
+            $stmt->close();
             if (password_verify($password, $hashed_password)) {
                 $query = "UPDATE pengguna SET password = ? WHERE id = ?";
                 $stmt = $conn->prepare($query);
@@ -90,7 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo "<script> alertModal('profile', 'Berhasil mengubah password', 'Lanjut', 'assets/logo/centang.png') </script>";
                 } else {
                     echo "<script> alertModal('profile', 'Gagal mengubah password', 'Lanjut', 'assets/logo/cancel.png') </script>";
-                } 
+                }
+                $stmt->close();
             } else {
                 echo "<script> alertModal('profile', 'Password lama tidak cocok', 'Lanjut', 'assets/logo/cancel.png') </script>";
             }
@@ -310,7 +313,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <h3>Ubah Kontak</h3>
                 <div class="field">
-                    <div>Email <span><?= htmlspecialchars($data['email']) ?> </span></div> 
+                    <div>Email <span><?= htmlspecialchars($email) ?> </span></div> 
                     <button class="ubah" id="btn-form-email"><iconify-icon icon="ph:note-pencil-bold"></iconify-icon></button>
                 </div>
                 <div class="field">

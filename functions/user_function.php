@@ -267,4 +267,11 @@ function detail_riwayat_pembelian ($conn, $nomor_pembelian)
     return $data;
 }
 
+
+function maskEmail($email) {
+    list($username, $domain) = explode('@', $email);
+    $maskedUsername = substr($username, 0, 2) . str_repeat('*', strlen($username) - 2);
+    return $maskedUsername . '@' . $domain;
+}
+
 ?>
