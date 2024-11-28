@@ -6,6 +6,10 @@ include 'template-user/header.php';
 ?>
 
 <link rel="stylesheet" href="assets/css/panduan.css">
+<link rel="stylesheet" href="assets/css/btntotop.css">
+
+<button id="scrollToTopBtn">↑</button>
+
 <div class="container-panduan">
     <div class="header">
         <div class="title">
@@ -142,6 +146,7 @@ include 'template-user/header.php';
 <script src="assets/js/kategori-dropdown.js"></script>
 <script src="assets/js/profile-dropdown.js"></script>
 <script src="assets/js/modal-confirm.js"></script>
+<script src="assets/js/btntotop.js"></script>
 <?php
 
 include 'template-user/footer.php';
