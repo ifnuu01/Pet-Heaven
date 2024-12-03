@@ -177,7 +177,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
             <label for="jenis">Jenis</label>
             <select id="jenis" name="jenis" required>
               <option value="">Pilih jenis</option>
-              <option value="1" selected>Kucing</option>
+              <option value="1">Kucing</option>
               <option value="2">Anjing</option>
               <option value="3">Ikan Hias</option>
               <option value="4">Burung</option>
@@ -188,7 +188,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
           </div>
           <div class="form-group">
             <label for="tahapan-usia">Tahapan Usia</label>
-            <input type="text" id="tahapan-usia" name="tahapan-usia" required>
+            <select id="tahapan-usia" name="tahapan-usia" required>
+              <option value="">Pilih tahapan usia</option>
+              <option value="Bibit">Bibit</option>
+              <option value="Anak">Anak</option>
+              <option value="Remaja">Remaja</option>
+              <option value="Dewasa">Dewasa</option>
+              <option value="Tua">Tua</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="warna">Warna</label>
@@ -256,7 +263,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit'])) {
           </div>
           <div class="form-group">
             <label for="edit-tahapan-usia">Tahapan Usia</label>
-            <input type="text" id="edit-tahapan-usia" name="tahapan-usia" required>
+            <select name="tahapan-usia" id="edit-tahapan-usia" required>
+              <option value="">Pilih tahapan usia</option>
+              <option value="Bibit">Bibit</option>
+              <option value="Anak">Anak</option>
+              <option value="Remaja">Remaja</option>
+              <option value="Dewasa">Dewasa</option>
+              <option value="Tua">Tua</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="edit-warna">Warna</label>
