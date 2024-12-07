@@ -32,6 +32,7 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    <link rel="shortcut icon" href="assets/logo/logo.ico" type="image/x-icon">
     <title>
         <?php
         if ($url === '/') {
