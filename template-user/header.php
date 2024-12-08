@@ -36,7 +36,7 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     <title>
         <?php
         if ($url === '/') {
-            echo 'Home';
+            echo 'Beranda';
         } elseif ($url === '/profile') {
             echo 'Profile';
         } elseif ($url === '/riwayat-pembelian') {

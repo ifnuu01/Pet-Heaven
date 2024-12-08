@@ -147,8 +147,8 @@ body {
 }
 
 .menu-nav .img-profile {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   /* background-color: #212121; */
 }
@@ -372,5 +372,10 @@ body {
   .profile-content button {
     padding: 10px;
     font-size: 1.2em;
+  }
+
+  .menu-nav .img-profile {
+    width: 40px;
+    height: 40px;
   }
 }
