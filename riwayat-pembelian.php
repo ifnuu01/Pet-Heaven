@@ -33,7 +33,7 @@ $pembelian_tertunda = count(array_filter($riwayat, function($item) { return $ite
                 <span class="stat-value"><?= $total_riwayat ?></span>
             </div>
             <div class="stat-item">
-                <span class="stat-label">Pembelian Berhasil</span>
+                <span class="stat-label">Pembelian Dikonfirmasi</span>
                 <span class="stat-value"><?= $pembelian_berhasil ?></span>
             </div>
             <div class="stat-item">
@@ -41,7 +41,7 @@ $pembelian_tertunda = count(array_filter($riwayat, function($item) { return $ite
                 <span class="stat-value"><?= $pembelian_ditolak ?></span>
             </div>
             <div class="stat-item">
-                <span class="stat-label">Pembelian Tertunda</span>
+                <span class="stat-label">Pembelian Menunggu</span>
                 <span class="stat-value"><?= $pembelian_tertunda ?></span>
             </div>
         </div>
@@ -54,9 +54,9 @@ $pembelian_tertunda = count(array_filter($riwayat, function($item) { return $ite
                 <div class="purchase-group">
                     <div class="purchase-info">
                         <?php if ($item['status'] == 'Dikonfirmasi'): ?>
-                                <span class="status-badge status-success">Berhasil</span>
+                                <span class="status-badge status-success">Dikonfirmasi</span>
                             <?php elseif ($item['status'] == 'Menunggu'): ?>
-                                <span class="status-badge status-pending">Tertunda</span>
+                                <span class="status-badge status-pending">Menunggu</span>
                             <?php elseif ($item['status'] == 'Ditolak'): ?>
                                 <span class="status-badge status-rejected">Ditolak</span>
                         <?php endif; ?>
