@@ -10,10 +10,9 @@
 .container-panduan {
   width: 100%;
   padding: 20px;
-  margin-top: 8.5em;
+  margin-top: 7.8em;
   background-color: #ffff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: 0;
 }
 
 .header {
@@ -94,6 +93,8 @@
   .container-panduan {
     width: 80%;
     margin: 8.5em auto 0 auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   }
 
   .content-panduan {
