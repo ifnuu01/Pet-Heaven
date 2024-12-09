@@ -126,7 +126,7 @@ function uploadPhoto($file, $id_pengguna, $conn) {
     }
 
     
-    if ($current_photo_path && file_exists($current_photo_path)) {
+    if ($current_photo_path && file_exists($current_photo_path) && $current_photo_path != 'assets/img/profiles/profile.jpg') {
         unlink($current_photo_path);
     }
 
