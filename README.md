@@ -39,7 +39,7 @@ Memiliki beberapa fitur antara lain sebagai berikut:
 ![Halaman Home](assets/img/panduan/Data-Penjualan.png)
 
 #### Manajemen Hewan
-![Halaman Home](assets/img/panduan/Manajemen-Hewan.png)
+![Halaman Home](assets/img/panduan/Manajemen-hewan.png)
 
 #### Manajemen User
 ![Halaman Home](assets/img/panduan/manajemen-user.png)
