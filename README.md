@@ -13,7 +13,7 @@ Judul Proyek : Pet-Heaven
 - Dashboard Admin
 
 ### Tampilan aplikasi web pada sisi pengguna:
-
+![Halaman Home](assets/img/panduan/Home.png)
 
 ### Tampilan dashboard admin:
 
