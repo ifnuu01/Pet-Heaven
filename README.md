@@ -22,6 +22,9 @@ Judul Proyek : Pet-Heaven
 
 ### Tampilan dashboard admin:
 
+#### Dashboard Admin
+![Halaman Home](assets/img/panduan/Dashboard-Admin.png)
+
 ### Cara mengakses aplikasi web:
 
 Cara masuk ke website :
