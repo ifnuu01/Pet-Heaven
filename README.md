@@ -18,7 +18,7 @@ Judul Proyek : Pet-Heaven
 ![Halaman Home](assets/img/panduan/Home.png)
 
 #### Produk / Hewan
-![Halaman Home](assets/img/panduan/Halaman Product.png)
+![Halaman Home](assets/img/panduan/Halaman-Product.png)
 
 ### Tampilan dashboard admin:
 
